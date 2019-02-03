@@ -1,4 +1,4 @@
-def placer_obstacle(self,x,y,int forme):
+def placer_obstacle(self,x,y,int forme):   #PROVISOIRE A MODIFIER
 	if x<LONGUEUR and y<LARGEUR:
 		if Mat_Arene[x]!=1 and Mat_Arene[y]!=1: #selon le nom de la matrice de la classe Arène
 			if forme=1:
