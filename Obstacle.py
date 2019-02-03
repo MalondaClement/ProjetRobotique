@@ -47,7 +47,7 @@ if triangle.get_forme() == 3 :
 else :
     print("Il y a une erreur")
 
-if inconnu.get_position() == 1 :
+if inconnu.get_forme() == 1 :
     print("C'est un carre par défaut")
 else :
     print("Il y a une erreur")
