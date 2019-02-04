@@ -1,6 +1,6 @@
 class Obstacle(object):
     def __init__(self, x, y, forme):
-        self.x = y
+        self.x = x
         self.y = y
         self.forme = forme
         if self.forme == 1 : #carre
