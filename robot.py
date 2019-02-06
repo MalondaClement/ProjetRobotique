@@ -17,7 +17,7 @@ class Robot(object):
 	    self.angle+=delta
 	    while self.angle>(m.pi)*2:
 			self.angle-=(m.pi)*2
-	    while self.angle<0:
+	    while self.angle<0 :
 			self.angle+=(m.pi)*2
 
 	def avancer (self, distance):
