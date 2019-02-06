@@ -2,6 +2,7 @@ from Tkinter import *
 from arene import Arene
 from robot import Robot
 from Obstacle import Obstacle
+import math as m
 
 class Affichage(object):
 	def __init__(self,arene):	
@@ -24,10 +25,18 @@ class Affichage(object):
 					zone_dessin.create_rectangle(j*5,i*5,(j+1)*5,(i+1 )*5,fill='red')
 				i=i+1
 			j=j+1
+		for a in arene.list_rob:
+			zone_dessin.create_line(a.x*5,a.y*5,round(100*m.cos(a.angle),1)+a.x*5,a.y*5+round(100*m.sin(-a.angle),1),arrow='last',fill='yellow')
 		fenetre.mainloop()
 
-m=Obstacle(50,80,1)
-p=Robot(20,40,90)
-b=Arene(200,100,[m],[p])
+#o=Obstacle(50,80,1)
+p=Robot(60,60,m.pi/4)
+b=Arene(200,100,[],[p])
+p.changer_angle(m.pi/4)
 a=Affichage(b)
-a
+print p.x,p.y
+p.avancer(20)
+print p.x,p.y
+b=Arene(200,100,[],[p])
+a=Affichage(b)
+

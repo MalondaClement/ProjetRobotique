@@ -1,6 +1,7 @@
 import numpy as np
 from robot import Robot
 from Obstacle import Obstacle
+import math as m
 
 #j'ai juste fait le cas ou la forme est un caree
 class Arene(object):
@@ -9,6 +10,7 @@ class Arene(object):
 		self.nb_ligne=nb_ligne
 		self.nb_colonne=nb_colonne
 		self.matrice=np.zeros((nb_ligne,nb_colonne))
+		self.list_rob=list_rob
 		#cree les mur
 		j=0
 		while j<nb_colonne:
@@ -29,12 +31,21 @@ class Arene(object):
 		
 		#mettre un robot dans la matrice
 		for i in list_rob:
+			tmp=0
 			trouv=False
 			#verifie si les coordonnees du centre du caree rentre dans la matrice
 			if i.x<nb_colonne and i.x>0 and i.y<nb_ligne  and i.y>0:
 				#verifie si le caree rentre dans la matrice
 				if i.y-(i.longueur/2)>0 and i.x-(i.largeur/2)>0 and i.y+(i.longueur/2)<nb_ligne and i.x+(i.largeur/2)<nb_colonne:
 					#verifie qu'il n'y a pas autre chose que du vide a l'emplacement du robot
+					if (i.angle<=m.pi/4 or i.angle>=(7*m.pi)/4):
+						tmp=i.largeur
+						i.largeur=i.longueur
+						i.longueur=tmp
+					elif (i.angle>=(3*m.pi)/4 and i.angle<=(5*m.pi)/4):
+						tmp=i.largeur
+						i.largeur=i.longueur
+						i.longueur=tmp
 					a=i.x-(i.largeur/2)
 					b=i.y-(i.longueur/2)
 					while a<i.x+(i.largeur/2) and not trouv:
@@ -89,9 +100,10 @@ class Arene(object):
 			 
 	
 #jeu de test:
-p=Obstacle(6,6,1)
-m=Obstacle(6,15,1)
-b=Robot(6,8,90)
+#p=Obstacle(6,6,1)
+#m=Obstacle(6,15,1)
+
+b=Robot(6,8,m.pi/4)
 b.largeur=4
 b.longueur=8
 a=Arene(20,12,[],[b])
