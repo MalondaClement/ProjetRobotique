@@ -32,22 +32,22 @@ print(rond.get_position())
 print(triangle.get_position())
 print(inconnu.get_position())
 
-if carre.get_position() == 1 :
+if carre.get_forme() == 1 :
     print("C'est un carre")
 else :
     print("Il y a une erreur")
 
-if rond.get_position() == 2 :
+if rond.get_forme() == 2 :
     print("C'est un rond")
 else :
     print("Il y a une erreur")
 
-if carre.get_position() == 3 :
+if carre.get_forme() == 3 :
     print("C'est un triangle")
 else :
     print("Il y a une erreur")
 
-if inconnu.get_position() == 1 :
+if inconnu.get_forme() == 1 :
     print("C'est un carre")
 else :
     print("Il y a une erreur")
