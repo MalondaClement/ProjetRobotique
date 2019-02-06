@@ -50,15 +50,17 @@ class Arene(object):
 	
 	def placer_obstacle(self,x,y,forme):
 		trouv=False
+		#on verifie si x et y sont dans la matrice et si ils sont supérieurs à 0
 		if x<nb_ligne and  y<nb_colonne:
 			if x<=nb_collone and x>=0 and y<=nb_ligne  and i.y>=0: 
-				#verifie si le caree rentre dans la matrice
 				if forme==1:
+					#création de l'obstacle i (ici un carré)
 					i=Obstacle(x,y,1)
+					#on verifie que l'obstacle puisse entrer dans la matrice
 					if i.y-(i.largeur/2)>0 and i.x-(i.largeur/2)>0 and i.y+(i.largeur/2)<nb_ligne and i.x+(i.largeur/2)<nb_collone:
 						a=i.x-(i.largeur/2)
 						b=i.y-(i.largeur/2)
-						#on rempli la matrice
+						#on remplie la matrice
 						while a<i.x+(i.largeur/2) and not trouv:
 							while b<i.y+(i.largeur/2) and not trouv:
 								if self.matrice[b,a]==1:
