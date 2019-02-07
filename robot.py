@@ -1,5 +1,4 @@
 import math as m
-
 class Robot(object):
 	def __init__(self,x,y,angle):
 		self.x=x
@@ -26,7 +25,6 @@ class Robot(object):
 	    self.y-=m.sin(self.angle)*distance
 	    self.y=int(round(self.y,1))
 
-
 '''#jeu de test:
 a=Robot(0,0, m.pi/2)
 print (a.get_position()==(0,0))
@@ -48,6 +46,7 @@ changer_angle(a, -13*(m.pi)/6)#-13(m.pi)/6=> -(m.pi/6)
 print(a.angle==(m.pi/2))#True resultat correct
 changer_angle(a, 0)#angle nul
 print(a.angle==(m.pi/2))#True resultat correct
+
 
 #jeu de test avancer
 b=Robot(0,0,0)
