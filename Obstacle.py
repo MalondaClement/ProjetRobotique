@@ -20,7 +20,7 @@ class Obstacle(object):
         return self.forme
 
 
-#jeu de test
+"""#jeu de test
 
 carre = Obstacle(10, 10, 1)
 rond = Obstacle(20, 20, 2)
@@ -48,7 +48,7 @@ else :
     print("Il y a une erreur")
 
 if inconnu.get_forme() == 1 :
-    print("C'est un carre")
+    print("C'est un carre par defaut")
 else :
-    print("Il y a une erreur")
+    print("Il y a une erreur")"""
 
