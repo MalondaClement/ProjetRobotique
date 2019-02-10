@@ -10,7 +10,19 @@ class Robot(object):
 
 	def get_position(self):
 		return self.x, self.y
-
+	
+	def obstacle (self, originex, originey, arene, pas):
+       		recherche_x= originex
+        	recherche_y= originey
+        	while True:
+            		if recherche_x<0 or recherche_y<0 or recherche_x>arene.nb_colonne or recherche_y>arene.nb_ligne:
+                		return recherche_x, recherche_y
+            		recherche_x+=m.cos(self.angle)*pas
+            		recherche_y-=m.sin(self.angle)*pas
+            		recherche_x=round(recherche_x,0)
+            		recherche_y=round(recherche_y,0)
+            		if arene.matrice[recherche_x, recherche_y]==1:
+                		return recherche_x, recherche_y
 
 	def changer_angle(self, delta):
 	    self.angle+=delta
