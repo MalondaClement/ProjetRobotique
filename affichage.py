@@ -26,9 +26,19 @@ class Affichage(object):
 
 	def distancemax(self,arene,r):
 		MAX=50
+		a,b=r.obstacle(p.x,p.y-t*m.sin(p.angle),arene,1)
+		tmpx=a
+		tmpy=b
 		a,b=r.obstacle(p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),arene,1)
-		label['text']=a,b
-		if abs(a-r.x)<MAX and abs(b-r.y)<MAX:
+		if a<=tmpx and b<=tmpy:
+			tmpx=a
+			tmpy=b
+		a,b=r.obstacle(p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),arene,1)
+		if a<=tmpx and b<=tmpy:
+			tmpx=a
+			tmpy=b
+		label['text']=tmpx,tmpy
+		if abs(tmpx-r.x)<MAX and abs(tmpy-r.y)<MAX:
 			return True  
 	
 arret=False	
@@ -83,7 +93,7 @@ def arreter():
 	arret=True
 	
 arret=False	
-o=Obstacle(40,150,1)
+o=Obstacle(30,150,1)
 p=Robot(70,400,-m.pi/2)
 b=Arene(500,500,[o],[p])
 z=Affichage(b)
