@@ -5,6 +5,11 @@ import math as m
 
 #j'ai juste fait le cas ou la forme est un caree
 class Arene(object):
+"""La classe arene permet la représentation des éléments dans l'arène pour faire nos calculs comme la détection d'obtacle.
+Elle gère une matrice dans laquelle chaque élément correpond à un "object" à cette position dans l'arene.
+Si 0 il n'y a rien, si 1 on a un obstacle, si 2 on a le robot.
+	:param nb_ligne:
+"""
 #initialise la matrice avec des zero partout
 	def __init__(self,nb_ligne, nb_colonne,list_obs,list_rob): 
 		self.nb_ligne=nb_ligne
