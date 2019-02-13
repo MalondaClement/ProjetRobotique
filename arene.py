@@ -12,52 +12,44 @@ class Arene(object):
         self.matrice=np.zeros((nb_ligne,nb_colonne))
         self.list_rob=list_rob
         self.list_obj=list_obj
-		#cree les mur
-        j=0
-        while j<nb_colonne:
-                self.matrice[0,j]=1
-                j=j+1
-        j=0
-        while j<nb_colonne:
-                self.matrice[nb_ligne-1,j]=1
-                j=j+1
-        i=0
-        while i<nb_ligne:
-                self.matrice[i,0]=1
-                i=i+1
-        i=0
-        while i<nb_ligne:
-                self.matrice[i,nb_colonne-1]=1
-                i=i+1
-		
-		#mettre un robot dans la matrice
+        #cree les mur
+        for i in range(0,nb_ligne):
+            for j in range(0,nb_colonne):
+                if (i == 0) or (j==0) or (i==nb_ligne-1) or (j==nb_colonne-1):
+                    self.matrice[i,j] =1
+                        
+        
+        #mettre un robot dans la matrice
         for i in list_rob:
-                if self.matrice[i.x - i.longueur,i.y - i.largeur]==0 and self.matrice[i.x + i.longueur,i.y + i.largeur]==0 and self.matrice[i.x + i.longueur,i.y - i.largeur]==0 and self.matrice[i.x - i.longueur,i.y + i.largeur]==0 :
-                        self.matrice[i.x,i.y]=2
+            if self.matrice[i.x - i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y + i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x - i.longueur//2,i.y + i.largeur//2]==0 :
+                self.matrice[i.x,i.y]=2
 
-		#parcoure la liste des obstacles meme principe que pour le robot
+        #parcoure la liste des obstacles meme principe que pour le robot
         for i in list_obj:
-                if self.matrice[i.x - i.longueur,i.y - i.largeur]==0 and self.matrice[i.x + i.longueur,i.y + i.largeur]==0 and self.matrice[i.x + i.longueur,i.y - i.largeur]==0 and self.matrice[i.x - i.longueur,i.y + i.largeur]==0 :
-                        self.matrice[i.x,i.y]=1
-				
+            if self.matrice[i.x - i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y + i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x - i.longueur//2,i.y + i.largeur//2]==0 :
+                for p in range(i.y - i.largeur//2,i.y + i.largeur//2):
+                    for q in range(i.x - i.longueur//2,i.x + i.longueur//2):
+                        self.matrice[p,q]=1
+                        
+                
 #on rentre des coordonnee ca nous renvoie le chiffre contenu dans la case de la matrice
         def get_object(self,x,y):
-                return int(self.matrice[x,y])
-		#0:vide, 1:obstacle, 2:robot
+            return int(self.matrice[x,y])
+        #0:vide, 1:obstacle, 2:robot
 
 
 def calcul_angle(L,l):
-        a=m.atan(L/l)
-        return a
+    a=m.atan(L/l)
+    return a
 
 def calcul_hypo(L,l):
-        a=m.pow(L,2)+m.pow(l,2)
-        return m.sqrt(a)
+    a=m.pow(L,2)+m.pow(l,2)
+    return m.sqrt(a)
 
-	
+    
 
-			 
-	
+             
+    
 """#jeu de test:
 #p=Obstacle(6,6,1)
 #m=Obstacle(6,15,1)
