@@ -11,14 +11,35 @@ class Robot(object):
 
 	def get_position(self):
 		return self.x, self.y
-
+	
+	def obstacle (self, originex, originey, arene, pas):
+	"""Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot
+		:param originex: x de l'origine de la demi-droite
+		:param origeney: y de l'origine de la demi-droite
+		:param arene: arene (matrice) dans lequel se trouve le robot
+		:param pas: pas entre chaque avancer sur la demi-droite de détection
+		:returns : position x, y de l'obstacle qui permetra le calcul de la distance avec celui-ci
+	"""
+       		recherche_x= originex
+        	recherche_y= originey
+        	while True:
+            		recherche_x+=m.cos(self.angle)*pas
+            		recherche_y-=m.sin(self.angle)*pas
+            		recherche_x=round(recherche_x,0)
+            		recherche_y=round(recherche_y,0)
+			if recherche_x<0 or recherche_y<0 or recherche_x>arene.nb_colonne or recherche_y>arene.nb_ligne:
+                		return recherche_x, recherche_y
+            		if arene.matrice[recherche_x, recherche_y]==1:
+                		return recherche_x, recherche_y
 
 	def changer_angle(self, delta):
+
 	    	self.angle+=delta
 	    	while self.angle>(m.pi)*2:
 	    		self.angle-=(m.pi)*2
 	    	while self.angle<0:
 	    		self.angle+=(m.pi)*2
+
 
 	def avancer (self, distance):
 	    	self.x+=m.cos(self.angle)*distance
