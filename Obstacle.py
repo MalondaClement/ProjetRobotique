@@ -20,6 +20,9 @@ class Obstacle(object):
             self.largeur = self. longueur = 10
 
     def get_position(self):
+    #"""Récupération de la position du centre
+    #    :returns: position du centre tuplet
+    #"""
         return self.x, self.y
 
     def get_forme(self):
