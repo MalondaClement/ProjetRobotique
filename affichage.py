@@ -1,28 +1,31 @@
+
+
 from tkinter import *
 from arene import Arene
 from arene import calcul_hypo
 from arene import calcul_angle
 from robot import Robot
 from obstacle import Obstacle
+
 import math as m
 from tkinter.filedialog import *
 
 class Affichage(object):
     def __init__(self,arene):
-        self.arene=arene
-        print (arene.matrice)
+        self.arene=arene    
 
     def afficher(self):
         #on parcoure tous les elements de la matrice et on les colorie selon leur valeur
         i=0
         j=0
-        while i<self.arene.nb_ligne:
-            j=0
-            while j<self.arene.nb_colonne:
-                if self.arene.matrice[i,j]==1:
-                    zone_dessin.create_rectangle(i,j,(i+1),(j+1 ),fill='white')
-                j=j+1
-            i=i+1
+        while i < self.arene.nb_ligne:
+                j=0
+                while j < self.arene.nb_colonne:
+                        if self.arene.matrice[i,j] == 1:
+                                zone_dessin.create_rectangle(i,j,i+1,j+1,fill='black')
+                        j=j+1
+                i=i+1
+                        
 
     def distancemax(self,arene,r):
         MAX=50 ##avant 50
@@ -48,6 +51,7 @@ arret=False
 def main():
     global arret
     if arret==False:
+
         print(z.distancemax(b,p))
         if z.distancemax(b,p):
             p.changer_angle(m.pi/7)
@@ -55,6 +59,7 @@ def main():
             #je dessine la fleche et le robot dans la fenetre .coords permet de donner de nouvelle coordonnée au objet de la fenetre
             #objet fenetre != objet affichage, l'objet de la fenetre est a déclaré avec la fenetre"""
         #tester le changement d'angle
+
         zone_dessin.coords(r,p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),p.x+t*m.cos(p.angle+angle+m.pi),p.y-t*m.sin(p.angle+angle+m.pi),p.x+t*m.cos(p.angle-angle+m.pi),p.y-t*m.sin(p.angle-angle+m.pi))
         zone_dessin.coords(f,p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.sin(-p.angle),1))
         fenetre.after(50,main)
@@ -69,7 +74,6 @@ def import_file():
     filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
     fichier = open(filepath,'r')
     content = fichier.read()
-
     fichier.close()
 
 def export_file():
@@ -105,7 +109,8 @@ z=Affichage(b)
 #declarer la fenetre en dernier
 fenetre = Tk()#creer une fenetre
 fenetre.title('Arene')#donner un nom  la fenetre
-fenetre.geometry("1000x600")#donner la taille de la fenetre
+
+fenetre.geometry("1200x600")#donner la taille de la fenetre
         #on definit la zone ou on dessine(fenetre,y,x,couleur d'arrier plan)
 BoutonImporter = Button(fenetre, text ='Importer', command = import_file)
 BoutonImporter.pack(side = LEFT, padx = 10, pady = 10)
@@ -115,14 +120,15 @@ BoutonExporter.pack(side = LEFT, padx = 10, pady = 10)
 
 BoutonArreter = Button(fenetre, text ='Arreter', command = arreter)
 BoutonArreter.pack(side = LEFT, padx = 10, pady = 10)
-#bouton demarer
+#bouton demarer 
 BoutonGo = Button(fenetre, text ='Démarrer', command = Demarrer)
 BoutonGo.pack(side = LEFT, padx = 10, pady = 10)
 #bouton quitter
 BoutonQuitter = Button(fenetre, text ='Quitter', command = fenetre.destroy)
 BoutonQuitter.pack(side = LEFT, padx = 5, pady = 5)
 #crée la zone de dessin
-zone_dessin =Canvas(fenetre, width=z.arene.nb_colonne,height=z.arene.nb_ligne,background='white')
+
+zone_dessin =Canvas(fenetre, width=z.arene.nb_ligne,height=z.arene.nb_colonne,background='white')
 #j'affiche l'arene de base avant de demarer la demo
 z.afficher()
 #le robot
@@ -142,6 +148,7 @@ r=zone_dessin.create_polygon(p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angl
 f=zone_dessin.create_line(p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.sin(-p.angle),1),arrow='last',fill='yellow')
 label = Label(fenetre, text="Texte par défaut", bg="yellow")
 label.pack()
+
 zone_dessin.pack()
 fenetre.mainloop()
 

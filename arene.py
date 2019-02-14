@@ -1,10 +1,12 @@
 import numpy as np
 from robot import Robot
+
 from obstacle import Obstacle
 import math as m
 
 #j'ai juste fait le cas ou la forme est un caree
 class Arene(object):
+
 #"""La classe arene permet la représentation des éléments dans l'arène pour faire nos calculs comme la détection d'obtacle.
 #Elle gère une matrice dans laquelle chaque élément correpond à un "object" à cette position dans l'arene.
 #Si 0 il n'y a rien, si 1 on a un obstacle, si 2 on a le robot.
@@ -37,6 +39,7 @@ class Arene(object):
             if self.matrice[i.x - i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y + i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x - i.longueur//2,i.y + i.largeur//2]==0 :
                 for p in range(i.y - i.largeur//2,i.y + i.largeur//2):
                     for q in range(i.x - i.longueur//2,i.x + i.longueur//2):
+
                         self.matrice[q,p]=1
 				
 #on rentre des coordonnee ca nous renvoie le chiffre contenu dans la case de la matrice
