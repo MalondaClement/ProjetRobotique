@@ -21,79 +21,23 @@ class Arene(object):
 		self.list_rob=list_rob
 		self.list_obj=list_obj
 		#cree les mur
-		j=0
-		while j<nb_colonne:
-			self.matrice[0,j]=1
-			j=j+1
-		j=0
-		while j<nb_colonne:
-			self.matrice[nb_ligne-1,j]=1
-			j=j+1
-		i=0
-		while i<nb_ligne:
-			self.matrice[i,0]=1
-			i=i+1
-		i=0
-		while i<nb_ligne:
-			self.matrice[i,nb_colonne-1]=1
-			i=i+1
-		
-		#mettre un robot dans la matrice
-		for i in list_rob:
-			tmp=0
-			trouv=False
-			#verifie si les coordonnees du centre du caree rentre dans la matrice
-			if i.x<nb_colonne and i.x>0 and i.y<nb_ligne  and i.y>0:
-				#verifie si le caree rentre dans la matrice
-				if i.y-(i.longueur/2)>0 and i.x-(i.largeur/2)>0 and i.y+(i.longueur/2)<nb_ligne and i.x+(i.largeur/2)<nb_colonne:
-					#verifie qu'il n'y a pas autre chose que du vide a l'emplacement du robot
-					a=i.x-(i.largeur//2)
-					b=i.y-(i.longueur//2)
-					while a<=i.x+(i.largeur//2) and not trouv:
-						while b<=i.y+(i.longueur//2)and not trouv:
-							if self.matrice[b,a]!=0: 
-								trouv=True
-							b=b+1
-						a=a+1
-						b=i.y-(i.longueur//2)
-					#on rempli la matrice
-					a=i.x-(i.largeur//2)
-					b=i.y-(i.longueur//2)
-					while a<=i.x+(i.largeur//2)and not trouv:
-						while b<=i.y+(i.longueur//2)and not trouv:
-							self.matrice[b,a]=3
-							b=b+1
-						a=a+1
-						b=i.y-(i.longueur//2)
-					if not trouv:
-						self.matrice[i.y,i.x]=2
+        for i in range(0,nb_ligne):
+            for j in range(0,nb_colonne):
+                if (i == 0) or (j==0) or (i==nb_ligne-1) or (j==nb_colonne-1):
+                    self.matrice[i,j] =1
+                        
+        
+        #mettre un robot dans la matrice
+        for i in list_rob:
+            if self.matrice[i.x - i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y + i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x - i.longueur//2,i.y + i.largeur//2]==0 :
+                self.matrice[i.x,i.y]=2
 
-		#parcoure la liste des obstacles meme principe que pour le robot
-		for i in list_obj:
-			trouv=False
-			#verifie si les coordonnees du centre du caree rentre dans la matrice
-			if i.x<nb_colonne and i.x>0 and i.y<nb_ligne  and i.y>0:
-				#verifie si le caree rentre dans la matrice
-				if i.y-(i.longueur/2)>0 and i.x-(i.largeur/2)>0 and i.y+(i.longueur/2)<nb_ligne and i.x+(i.largeur/2)<nb_colonne:
-					a=i.x-(i.largeur//2)
-					b=i.y-(i.longueur//2)
-					while a<i.x+(i.largeur//2) and not trouv:
-						while b<i.y+(i.longueur//2)and not trouv:
-							if self.matrice[b,a]!=0:
-								trouv=True
-							b=b+1
-						a=a+1
-						b=i.y-(i.longueur//2)
-					#on rempli la matrice
-					a=i.x-(i.largeur//2)
-					b=i.y-(i.longueur//2)
-					while a<i.x+(i.largeur//2)and not trouv:
-						while b<i.y+(i.longueur//2)and not trouv:
-							self.matrice[a,b]=1
-							b=b+1
-						a=a+1
-						b=i.y-(i.longueur//2)
-						
+        #parcoure la liste des obstacles meme principe que pour le robot
+        for i in list_obj:
+            if self.matrice[i.x - i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y + i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x - i.longueur//2,i.y + i.largeur//2]==0 :
+                for p in range(i.y - i.largeur//2,i.y + i.largeur//2):
+                    for q in range(i.x - i.longueur//2,i.x + i.longueur//2):
+                        self.matrice[p,q]=1
 				
 #on rentre des coordonnee ca nous renvoie le chiffre contenu dans la case de la matrice
 	def get_object(self,x,y):
