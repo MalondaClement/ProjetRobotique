@@ -3,7 +3,7 @@ from arene import Arene
 from arene import calcul_hypo
 from arene import calcul_angle
 from robot import Robot
-from Obstacle import Obstacle
+from obstacle import Obstacle
 import math as m
 from tkinter.filedialog import *
 
