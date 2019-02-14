@@ -1,10 +1,16 @@
 class Obstacle(object):
+#""" Obstacle est une classe qui permet de créer des objets dans notre arène
+#    :param x: position en x dans la matrice du centre de l'obstacle
+#    :param y: position en y dans la matrice du centre de l'obstacle
+#    :param forme: permet la gestion de la forme, 1 pour carré, 2 rond, 3 triangle
+#    ...
+#"""
     def __init__(self, x, y, forme):
         self.x = x
         self.y = y
         self.forme = forme
         if self.forme == 1 : #carre
-            self.largeur = self. longueur = 10
+            self.largeur = self. longueur = 30
         elif self.forme == 2 : #rond
             self.rayon = 10
         elif self.forme == 3 : #triangle
@@ -14,9 +20,15 @@ class Obstacle(object):
             self.largeur = self. longueur = 10
 
     def get_position(self):
+    #"""Récupération de la position du centre
+    #    :returns: position du centre tuplet
+    #"""
         return self.x, self.y
 
     def get_forme(self):
+    #"""Récupération de la forme
+    #    :returns: position du centre
+    #"""
         return self.forme
 
 

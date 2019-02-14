@@ -33,13 +33,11 @@ class Robot(object):
                 		return recherche_x, recherche_y
 
 	def changer_angle(self, delta):
-
 	    	self.angle+=delta
 	    	while self.angle>(m.pi)*2:
 	    		self.angle-=(m.pi)*2
 	    	while self.angle<0:
 	    		self.angle+=(m.pi)*2
-
 
 	def avancer (self, distance):
 	    	self.x+=m.cos(self.angle)*distance
