@@ -26,6 +26,9 @@ class Obstacle(object):
         return self.x, self.y
 
     def get_forme(self):
+    #"""Récupération de la forme
+    #    :returns: position du centre
+    #"""
         return self.forme
 
 
