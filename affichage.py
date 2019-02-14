@@ -1,5 +1,6 @@
 
 
+
 from tkinter import *
 from arene import Arene
 from arene import calcul_hypo
@@ -149,8 +150,8 @@ f=zone_dessin.create_line(p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.
 label = Label(fenetre, text="Texte par défaut", bg="yellow")
 label.pack()
 
+
 zone_dessin.pack()
 fenetre.mainloop()
-
 
 
