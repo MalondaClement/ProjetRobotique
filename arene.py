@@ -1,6 +1,6 @@
 import numpy as np
 from robot import Robot
-from Obstacle import Obstacle
+from obstacle import Obstacle
 import math as m
 
 #j'ai juste fait le cas ou la forme est un caree
