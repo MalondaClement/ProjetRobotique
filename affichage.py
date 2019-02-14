@@ -1,9 +1,12 @@
-from tkinter import * 
+
+
+from tkinter import *
 from arene import Arene
 from arene import calcul_hypo
 from arene import calcul_angle
 from robot import Robot
-from Obstacle import Obstacle
+from obstacle import Obstacle
+
 import math as m
 from tkinter.filedialog import *
 
@@ -24,27 +27,39 @@ class Affichage(object):
                 i=i+1
                         
 
+    def distancemax(self,arene,r):
+        MAX=50 ##avant 50
+        a,b=r.obstacle(p.x,p.y-t*m.sin(p.angle),arene,1)
+        #print(m.sqrt(pow(a-p.x, 2) + pow(b-p.y, 2)))
+        if m.sqrt(pow(a-p.x, 2) + pow(b-p.y, 2)) < MAX:
+            return True
+        a,b=r.obstacle(p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),arene,1)
+        #print(m.sqrt(pow(a-p.x, 2) + pow(b-p.y, 2)))
+        if m.sqrt(pow(a-p.x, 2) + pow(b-p.y, 2)) < MAX:
+            return True
+        a,b=r.obstacle(p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),arene,1)
+        #print(m.sqrt(pow(a-p.x, 2) + pow(b-p.y, 2)))
+        if m.sqrt(pow(a-p.x, 2) + pow(b-p.y, 2)) < MAX:
+            return True
+        label['text']=a,b
+        return False
+        #if abs(tmpx-r.x)<MAX and abs(tmpy-r.y)<MAX:
+        #   return True
 
-
-
-
-arret=False 
+arret=False
 #petit main ou le robot effectue un parcour simple
 def main():
     global arret
     if arret==False:
-        """if p.x==900 and p.y==200:
-            p.changer_angle(m.pi/2)
-                #.after permet d'attendre un temps donne puis d'effectuer une fonction ensuite
-            fenetre.after(50,main)
-        if p.x==900 and p.y==100:
-            p.changer_angle(m.pi/2)
-            fenetre.after(50,main)
+
+        print(z.distancemax(b,p))
+        if z.distancemax(b,p):
+            p.changer_angle(m.pi/7)
         p.avancer(10)
             #je dessine la fleche et le robot dans la fenetre .coords permet de donner de nouvelle coordonnée au objet de la fenetre
             #objet fenetre != objet affichage, l'objet de la fenetre est a déclaré avec la fenetre"""
         #tester le changement d'angle
-        p.changer_angle(m.pi/10)
+
         zone_dessin.coords(r,p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),p.x+t*m.cos(p.angle+angle+m.pi),p.y-t*m.sin(p.angle+angle+m.pi),p.x+t*m.cos(p.angle-angle+m.pi),p.y-t*m.sin(p.angle-angle+m.pi))
         zone_dessin.coords(f,p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.sin(-p.angle),1))
         fenetre.after(50,main)
@@ -59,7 +74,6 @@ def import_file():
     filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
     fichier = open(filepath,'r')
     content = fichier.read()
-            
     fichier.close()
 
 def export_file():
@@ -84,17 +98,18 @@ def export_file():
 def arreter():
     global arret
     arret=True
-    
-arret=False 
-o=Obstacle(50,50,1)
-p=Robot(70,200,0)
-b=Arene(1000,500,[o],[p])
+
+arret=False
+o=Obstacle(30,150,1)
+p=Robot(70,400,-m.pi/2)
+b=Arene(500,500,[o],[p])
 z=Affichage(b)
 
 
 #declarer la fenetre en dernier
 fenetre = Tk()#creer une fenetre
 fenetre.title('Arene')#donner un nom  la fenetre
+
 fenetre.geometry("1200x600")#donner la taille de la fenetre
         #on definit la zone ou on dessine(fenetre,y,x,couleur d'arrier plan)
 BoutonImporter = Button(fenetre, text ='Importer', command = import_file)
@@ -112,6 +127,7 @@ BoutonGo.pack(side = LEFT, padx = 10, pady = 10)
 BoutonQuitter = Button(fenetre, text ='Quitter', command = fenetre.destroy)
 BoutonQuitter.pack(side = LEFT, padx = 5, pady = 5)
 #crée la zone de dessin
+
 zone_dessin =Canvas(fenetre, width=z.arene.nb_ligne,height=z.arene.nb_colonne,background='white')
 #j'affiche l'arene de base avant de demarer la demo
 z.afficher()
@@ -130,6 +146,9 @@ c=zone_dessin.create_line(j1,y1,j1+150*m.cos(p.angle),y1-150*m.sin(p.angle))"""
 r=zone_dessin.create_polygon(p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),p.x+t*m.cos(p.angle+angle+m.pi),p.y-t*m.sin(p.angle+angle+m.pi),p.x+t*m.cos(p.angle-angle+m.pi),p.y-t*m.sin(p.angle-angle+m.pi),fill='red',outline='red')
 #le fleche
 f=zone_dessin.create_line(p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.sin(-p.angle),1),arrow='last',fill='yellow')
+label = Label(fenetre, text="Texte par défaut", bg="yellow")
+label.pack()
+
 zone_dessin.pack()
 fenetre.mainloop()
 
