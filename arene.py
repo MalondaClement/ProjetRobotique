@@ -24,7 +24,7 @@ class Arene(object):
         for i in range(0,nb_ligne):
             for j in range(0,nb_colonne):
                 if (i == 0) or (j==0) or (i==nb_ligne-1) or (j==nb_colonne-1):
-                    self.matrice[i,j] =1
+                    self.matrice[j,i] =1
                         
         
         #mettre un robot dans la matrice
@@ -37,7 +37,7 @@ class Arene(object):
             if self.matrice[i.x - i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y + i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x - i.longueur//2,i.y + i.largeur//2]==0 :
                 for p in range(i.y - i.largeur//2,i.y + i.largeur//2):
                     for q in range(i.x - i.longueur//2,i.x + i.longueur//2):
-                        self.matrice[p,q]=1
+                        self.matrice[q,p]=1
 				
 #on rentre des coordonnee ca nous renvoie le chiffre contenu dans la case de la matrice
 	def get_object(self,x,y):
