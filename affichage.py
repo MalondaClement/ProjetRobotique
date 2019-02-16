@@ -7,7 +7,6 @@ from obstacle import Obstacle
 
 import math as m
 from tkinter.filedialog import *
-
 class Affichage(object):
     def __init__(self,arene):
         self.arene=arene
@@ -19,14 +18,14 @@ class Affichage(object):
     			if self.arene.matrice[i,j]==1:
     				zone_dessin.create_rectangle(i,j,i+1,j+1,fill='black')        
     def afficher_robot(self):
-    	r=zone_dessin.create_polygon(p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),p.x+t*m.cos(p.angle+angle+m.pi),p.y-t*m.sin(p.angle+angle+m.pi),p.x+t*m.cos(p.angle-angle+m.pi),p.y-t*m.sin(p.angle-angle+m.pi),fill='red',outline='red')
     	global r
-    	f=zone_dessin.create_line(p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.sin(-p.angle),1),arrow='last',fill='yellow')
+    	r=zone_dessin.create_polygon(p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),p.x+t*m.cos(p.angle+angle+m.pi),p.y-t*m.sin(p.angle+angle+m.pi),p.x+t*m.cos(p.angle-angle+m.pi),p.y-t*m.sin(p.angle-angle+m.pi),fill='red',outline='red')
     	global f
+    	f=zone_dessin.create_line(p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.sin(-p.angle),1),arrow='last',fill='yellow')
     
     def zone(self):
-    	zone_dessin =Canvas(fenetre, width=self.arene.nb_ligne,height=self.arene.nb_colonne,background='white')
     	global zone_dessin
+    	zone_dessin =Canvas(fenetre, width=self.arene.nb_ligne,height=self.arene.nb_colonne,background='white')
     	zone_dessin.focus_set()
     	zone_dessin.bind('<Key>',clavier)
     	zone_dessin.pack()
@@ -113,12 +112,12 @@ def import_file():
     		ROBOT=True
     		OBSTACLE=False
     	elif i.strip()=="OBSTACLE":
-    		p=Robot(int(L[0]),int(L[1]),m.radians(int(L[2])))
     		global p
-    		angle=p.calcul_angle()
+    		p=Robot(int(L[0]),int(L[1]),m.radians(int(L[2])))
     		global angle
-    		t=p.calcul_hypo()
+    		angle=p.calcul_angle()
     		global t
+    		t=p.calcul_hypo()
     		b.inserer_robot(p)
     		L=[]
     		ARENE=False
@@ -130,9 +129,9 @@ def import_file():
     			o=Obstacle(int(L[a]),int(L[a+1]),int(L[a+2]))
     			b.inserer_obs(o)
     			a=a+3
+    		global z
     		z=Affichage(b)
     		z.arene=b
-    		global z
     		z.zone()
     		z.afficher()
     		z.afficher_robot()
