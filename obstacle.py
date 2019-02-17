@@ -10,7 +10,7 @@ class Obstacle(object):
         self.y = y
         self.forme = forme
         self.para1=para1
-        self.para1=para2
+        self.para2=para2
         if self.forme == 1 : #carre
             self.creer_carree (para1,para2)
         elif self.forme == 2 : #rond

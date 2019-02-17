@@ -33,16 +33,16 @@ class Arene(object):
 		if o.x-o.largeur//2>0 and o.x+o.largeur//2<self.nb_colonne and o.y-o.longueur//2>0 and o.y+o.longueur//2<self.nb_ligne:
 			return True
 	def est_vide(self,o):
-		for p in range(i.y - i.largeur//2,i.y + i.largeur//2):
-			for q in range(i.x - i.longueur//2,i.x + i.longueur//2):
-				if self.matrice[q,p]!=0:
+		for p in range(i.y - i.longueur//2,i.y + i.longueur//2):
+			for q in range(i.x - i.largeur//2,i.x + i.largeur//2):
+				if self.matrice[p,q]!=0:
 					return False
 		return True
 				 
 	def remplir_matrice(self,i,val):
-		for p in range(i.y - i.largeur//2,i.y + i.largeur//2):
-			for q in range(i.x - i.longueur//2,i.x + i.longueur//2):
-					self.matrice[q,p]=val
+		for p in range(i.y - i.longueur//2,i.y + i.longueur//2):
+			for q in range(i.x - i.largeur//2,i.x + i.largeur//2):
+					self.matrice[p,q]=val
 
 	def inserer_robot(self,r):
 			if self.est_dans_matrice(r) and self.est_vide:
@@ -73,9 +73,7 @@ def calcul_hypo(p):
 			 
 	
 """#jeu de test:
-p=Obstacle(6,6,1)
-p.largeur=4
-p.longueur=4
+p=Obstacle(4,8,4,2,6)
 #m=Obstacle(6,15,1)
 
 b=Robot(5,15,m.pi/2)
@@ -86,5 +84,4 @@ print (a.matrice)
 a.inserer_robot(b)
 a.inserer_obs(p)
 print (a.matrice)"""
-print(-m.pi/2)
 
