@@ -16,31 +16,43 @@ class Arene(object):
 #	:param list_rob: liste d'élément de type robotà mettre dans la matrice, dans un premier temps 1 seul
 #"""
 #initialise la matrice avec des zero partout
-	def __init__(self,nb_ligne, nb_colonne,list_obj,list_rob): 
+	def __init__(self,nb_ligne, nb_colonne): 
 		self.nb_ligne=nb_ligne
 		self.nb_colonne=nb_colonne
 		self.matrice=np.zeros((nb_ligne,nb_colonne))
-		self.list_rob=list_rob
-		self.list_obj=list_obj
+		self.list_rob=[]
+		self.list_obj=[]
 		#cree les mur
-        for i in range(0,nb_ligne):
-            for j in range(0,nb_colonne):
-                if (i == 0) or (j==0) or (i==nb_ligne-1) or (j==nb_colonne-1):
-                    self.matrice[j,i] =1
-                        
-        
-        #mettre un robot dans la matrice
-        for i in list_rob:
-            if self.matrice[i.x - i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y + i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x - i.longueur//2,i.y + i.largeur//2]==0 :
-                self.matrice[i.x,i.y]=2
+		
+	def cree_mur(self):
+		for i in range(0,self.nb_ligne):
+			for j in range(0,self.nb_colonne):
+				if (i == 0) or (j==0) or (i==self.nb_ligne-1) or (j==self.nb_colonne-1):
+				    self.matrice[i,j] =1
+	def est_dans_matrice(self,o):
+		if o.x-o.largeur//2>0 and o.x+o.largeur//2<self.nb_colonne and o.y-o.longueur//2>0 and o.y+o.longueur//2<self.nb_ligne:
+			return True
+	def est_vide(self,o):
+		for p in range(i.y - i.largeur//2,i.y + i.largeur//2):
+			for q in range(i.x - i.longueur//2,i.x + i.longueur//2):
+				if self.matrice[q,p]!=0:
+					return False
+		return True
+				 
+	def remplir_matrice(self,i,val):
+		for p in range(i.y - i.largeur//2,i.y + i.largeur//2):
+			for q in range(i.x - i.longueur//2,i.x + i.longueur//2):
+					self.matrice[q,p]=val
 
-        #parcoure la liste des obstacles meme principe que pour le robot
-        for i in list_obj:
-            if self.matrice[i.x - i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y + i.largeur//2]==0 and self.matrice[i.x + i.longueur//2,i.y - i.largeur//2]==0 and self.matrice[i.x - i.longueur//2,i.y + i.largeur//2]==0 :
-                for p in range(i.y - i.largeur//2,i.y + i.largeur//2):
-                    for q in range(i.x - i.longueur//2,i.x + i.longueur//2):
-
-                        self.matrice[q,p]=1
+	def inserer_robot(self,r):
+			if self.est_dans_matrice(r) and self.est_vide:
+				self.matrice[r.y,r.x]=2
+				self.list_rob.append(r)
+		#parcoure la liste des obstacles meme principe que pour le robot
+	def inserer_obs(self,o):
+		if self.est_dans_matrice(o) and self.est_vide:
+			self.remplir_matrice(o,1)
+			self.list_obj.append(o)
 				
 #on rentre des coordonnee ca nous renvoie le chiffre contenu dans la case de la matrice
 	def get_object(self,x,y):
@@ -48,12 +60,12 @@ class Arene(object):
 		#0:vide, 1:obstacle, 2:robot
 
 
-def calcul_angle(L,l):
-	a=m.atan(L/l)
+def calcul_angle(p):
+	a=m.atan(p.largeur/p.longueur)
 	return a
 
-def calcul_hypo(L,l):
-	a=m.pow(L,2)+m.pow(l,2)
+def calcul_hypo(p):
+	a=m.pow(p.largeur/2,2)+m.pow(p.longueur/2,2)
 	return m.sqrt(a)
 
 	
@@ -61,16 +73,18 @@ def calcul_hypo(L,l):
 			 
 	
 """#jeu de test:
-#p=Obstacle(6,6,1)
+p=Obstacle(6,6,1)
+p.largeur=4
+p.longueur=4
 #m=Obstacle(6,15,1)
 
-b=Robot(10,10,m.pi/2)
-b.largeur=3
-b.longueur=5
-a=Arene(22,18,[],[b])
+b=Robot(5,15,m.pi/2)
+a=Arene(20,10)
 print (a.matrice)
-#print a.matrice[-1,-1]
-#a.matrice[0,0]=1
-#print a.matrice
-#print a.get_object(0,0)"""
+a.cree_mur()
+print (a.matrice)
+a.inserer_robot(b)
+a.inserer_obs(p)
+print (a.matrice)"""
+print(-m.pi/2)
 
