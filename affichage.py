@@ -11,11 +11,12 @@ class Affichage(object):
     def __init__(self,arene):
         self.arene=arene
         self.vitesse=10 
-
+	
     def afficher(self):
-    	for i in range(0,self.arene.nb_ligne):
-    		for j in range(0,self.arene.nb_colonne):
-    			if self.arene.matrice[i,j]==1:
+    	print (self.arene.matrice)
+    	for i in range(0,self.arene.nb_colonne):
+    		for j in range(0,self.arene.nb_ligne):
+    			if self.arene.matrice[j,i]==1:
     				zone_dessin.create_rectangle(i,j,i+1,j+1,fill='black')        
     def afficher_robot(self):
     	global r
@@ -25,7 +26,7 @@ class Affichage(object):
     
     def zone(self):
     	global zone_dessin
-    	zone_dessin =Canvas(fenetre, width=self.arene.nb_ligne,height=self.arene.nb_colonne,background='white')
+    	zone_dessin =Canvas(fenetre, width=self.arene.nb_colonne,height=self.arene.nb_ligne,background='white')
     	zone_dessin.focus_set()
     	zone_dessin.bind('<Key>',clavier)
     	zone_dessin.pack()
@@ -126,9 +127,9 @@ def import_file():
     	elif i.strip()=="FIN":
     		a=0
     		while a<len(L):
-    			o=Obstacle(int(L[a]),int(L[a+1]),int(L[a+2]))
+    			o=Obstacle(int(L[a]),int(L[a+1]),int(L[a+2]),int(L[a+3]),int(L[a+4]))
     			b.inserer_obs(o)
-    			a=a+3
+    			a=a+5
     		global z
     		z=Affichage(b)
     		z.arene=b
@@ -158,6 +159,8 @@ def export_file():
     	f.write(str(i.x)+'\n')
     	f.write(str(i.y)+'\n')
     	f.write(str(i.forme)+'\n')
+    	f.write(str(i.para1)+'\n')
+    	f.write(str(i.para2)+'\n')
     f.write("FIN")
     f.close()
 
