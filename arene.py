@@ -25,14 +25,23 @@ class Arene(object):
 		#cree les mur
 		
 	def cree_mur(self):
+		"""Cette fonction permet de mettre les valeurs des bords à 1 afin de les murs.
+		"""
 		for i in range(0,self.nb_ligne):
 			for j in range(0,self.nb_colonne):
 				if (i == 0) or (j==0) or (i==self.nb_ligne-1) or (j==self.nb_colonne-1):
 				    self.matrice[i,j] =1
+	
 	def est_dans_matrice(self,o):
+		"""Cette fonction permet de vérifier si un intertion est bien dans la matrice
+			:returns : True si on incère dans la matrice False sinon
+		"""
 		if o.x-o.largeur//2>0 and o.x+o.largeur//2<self.nb_colonne and o.y-o.longueur//2>0 and o.y+o.longueur//2<self.nb_ligne:
 			return True
+	
 	def est_vide(self,o):
+		"""
+		"""
 		for p in range(i.y - i.longueur//2,i.y + i.longueur//2):
 			for q in range(i.x - i.largeur//2,i.x + i.largeur//2):
 				if self.matrice[p,q]!=0:
@@ -45,20 +54,30 @@ class Arene(object):
 					self.matrice[p,q]=val
 
 	def inserer_robot(self,r):
+		"""Cette fonction permet d'inserer un robot dans l'arène
+			:param r: on passe en paramètre le robot à placer dans la matrice qui représente l'arène
+			La fonction fait appel aux fonctions est_dans_matrice et est_vide.
+		"""
 			if self.est_dans_matrice(r) and self.est_vide:
 				self.matrice[r.y,r.x]=2
 				self.list_rob.append(r)
-		#parcoure la liste des obstacles meme principe que pour le robot
+
 	def inserer_obs(self,o):
+		"""Cette fonction permet d'inserer un obstacle dans l'arène
+			:param o: on passe en paramètre l'obstacle à placer dans la matrice qui représente l'arène
+			La fonction fait appel aux fonctions est_dans_matrice et est_vide.
+		"""
 		if self.est_dans_matrice(o) and self.est_vide:
 			self.remplir_matrice(o,1)
 			self.list_obj.append(o)
 				
-#on rentre des coordonnee ca nous renvoie le chiffre contenu dans la case de la matrice
-	def get_object(self,x,y):
-		return int(self.matrice[x,y])
-		#0:vide, 1:obstacle, 2:robot
 
+	def get_object(self,x,y):
+		"""Cette fonction permet de savoir si on a un objet est présente dans la case de la matrice.
+			:param x,y: coordonnées de la case que l'on souhaite regarder
+			:returns : 0 si vide, 1 si obstacle, 2 si robot
+		"""
+		return int(self.matrice[x,y])
 
 def calcul_angle(p):
 	a=m.atan(p.largeur/p.longueur)
@@ -67,21 +86,3 @@ def calcul_angle(p):
 def calcul_hypo(p):
 	a=m.pow(p.largeur/2,2)+m.pow(p.longueur/2,2)
 	return m.sqrt(a)
-
-	
-
-			 
-	
-"""#jeu de test:
-p=Obstacle(4,8,4,2,6)
-#m=Obstacle(6,15,1)
-
-b=Robot(5,15,m.pi/2)
-a=Arene(20,10)
-print (a.matrice)
-a.cree_mur()
-print (a.matrice)
-a.inserer_robot(b)
-a.inserer_obs(p)
-print (a.matrice)"""
-
