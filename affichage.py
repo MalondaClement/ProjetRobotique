@@ -8,6 +8,10 @@ from obstacle import Obstacle
 import math as m
 from tkinter.filedialog import *
 class Affichage(object):
+	"""La classe arène permet de faire le lien entre notre modèle et notre interface graphique.
+		Elle utilise notre matrice pour en faire un représentation concrète dans la fenètre graphique.
+		:param arene: l'arène dont on souhaite avoir la représentation en graphique
+	"""
     def __init__(self,arene):
         self.arene=arene
         self.vitesse=10 
@@ -32,17 +36,21 @@ class Affichage(object):
     	zone_dessin.pack()
 
       
-"""dessiner() permet de bouger l'image du robot et de sa fleche selon les coordonnée du robot """        
+       
 def dessiner():
+	"""Cette fonction permet de bouger l'image du robot et de sa fleche selon les coordonnée du robot 
+	""" 
 	zone_dessin.coords(r,p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),p.x+t*m.cos(p.angle+angle+m.pi),p.y-t*m.sin(p.angle+angle+m.pi),p.x+t*m.cos(p.angle-angle+m.pi),p.y-t*m.sin(p.angle-angle+m.pi))
 	zone_dessin.coords(f,p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.sin(-p.angle),1))
 
-	"""Fonction qui recoit les touches appuyé par l'utilisateur et effectue des actions pour certaines d'entre elles.
--Touche Up permet d'augmenter la vitesse
--Touche Down permet baisser la vitesse
--Touche Right permet de faire tourner le robot a droite
--Touche Left permet de faire tourner le robot a gauche"""
 def clavier(event):
+	"""Cette fonction reçoit les touches appuyé par l'utilisateur et effectue des actions pour certaines d'entre elles.
+		:param event: flèche recu
+			-Touche Up permet d'augmenter la vitesse
+			-Touche Down permet baisser la vitesse
+			-Touche Right permet de faire tourner le robot a droite
+			-Touche Left permet de faire tourner le robot a gauche
+	"""
 	touche=event.keysym
 	print(touche)
 	if touche =='Up':
@@ -73,8 +81,10 @@ def Demarrer():
         arret=False
     main()
     
-"""Fonction qui permet d'effacer un affichage pour pouvoir en importer un autre"""
+
 def reset():
+	"""Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
+	"""
 	zone_dessin.delete(ALL)
 	zone_dessin.destroy()
 
@@ -143,8 +153,10 @@ def import_file():
     	elif OBSTACLE:
     		L.append(i.strip())
     	fichier.close()
-"""permet de sauvegarder une configuration : creer un nouveau fichier Scenario.txt"""
+
 def export_file():
+	"""Cette fonction permet de sauvegarder une configuration : creer un nouveau fichier Scenario.txt
+	"""
     f=open('Scenario.txt','w')
     f.write('ARENE\n')
     f.write(str(z.arene.nb_ligne)+'\n')
