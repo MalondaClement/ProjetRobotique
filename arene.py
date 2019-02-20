@@ -16,14 +16,14 @@ class Arene(object):
 		:param list_obj: liste d'élément de type obstacle à placer dans la matrice
 		:param list_rob: liste d'élément de type robotà mettre dans la matrice, dans un premier temps 1 seul
 	"""
-	def __init__(self,nb_ligne, nb_colonne): 
+	def __init__(self,nb_ligne, nb_colonne):
 		self.nb_ligne=nb_ligne
 		self.nb_colonne=nb_colonne
 		self.matrice=np.zeros((nb_ligne,nb_colonne))
 		self.list_rob=[]
 		self.list_obj=[]
 		#cree les mur
-		
+
 	def cree_mur(self):
 		"""Cette fonction permet de mettre les valeurs des bords à 1 afin de les murs.
 		"""
@@ -31,14 +31,14 @@ class Arene(object):
 			for j in range(0,self.nb_colonne):
 				if (i == 0) or (j==0) or (i==self.nb_ligne-1) or (j==self.nb_colonne-1):
 				    self.matrice[i,j] =1
-	
+
 	def est_dans_matrice(self,o):
 		"""Cette fonction permet de vérifier si un intertion est bien dans la matrice
 			:returns : True si on incère dans la matrice False sinon
 		"""
 		if o.x-o.largeur//2>0 and o.x+o.largeur//2<self.nb_colonne and o.y-o.longueur//2>0 and o.y+o.longueur//2<self.nb_ligne:
 			return True
-	
+
 	def est_vide(self,o):
 		"""
 		"""
@@ -47,7 +47,7 @@ class Arene(object):
 				if self.matrice[p,q]!=0:
 					return False
 		return True
-				 
+
 	def remplir_matrice(self,i,val):
 		for p in range(i.y - i.longueur//2,i.y + i.longueur//2):
 			for q in range(i.x - i.largeur//2,i.x + i.largeur//2):
@@ -58,9 +58,9 @@ class Arene(object):
 			:param r: on passe en paramètre le robot à placer dans la matrice qui représente l'arène
 			La fonction fait appel aux fonctions est_dans_matrice et est_vide.
 		"""
-			if self.est_dans_matrice(r) and self.est_vide:
-				self.matrice[r.y,r.x]=2
-				self.list_rob.append(r)
+		if self.est_dans_matrice(r) and self.est_vide:
+			self.matrice[r.y,r.x]=2
+			self.list_rob.append(r)
 
 	def inserer_obs(self,o):
 		"""Cette fonction permet d'inserer un obstacle dans l'arène
@@ -70,7 +70,7 @@ class Arene(object):
 		if self.est_dans_matrice(o) and self.est_vide:
 			self.remplir_matrice(o,1)
 			self.list_obj.append(o)
-				
+
 
 	def get_object(self,x,y):
 		"""Cette fonction permet de savoir si on a un objet est présente dans la case de la matrice.
