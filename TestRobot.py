@@ -1,16 +1,15 @@
 import unittest
 import math as m
 #from rep import Robot
-
 #probleme ligne 25 classe Robot
 
 class TestRobot (unittest.TestCase):
 	def setUp(self):
-		self.p = Robot(0,0,m.pi/2) 
+		self.p = Robot(0,0,m.pi/2)
 		self.j = Robot(1,1,m.pi)
 		self.i = Robot(1,1,-3*(m.pi/2))
 		self.k = Robot(0,0,0)
-	
+
 	def test_coord(self):
 		self.assertEqual(self.p.x,0)
 		self.assertEqual(self.p.y,0)
