@@ -13,17 +13,17 @@ class Robot(object):
 
 
 	def changer_angle(self, delta):
-	    self.angle+=delta
-	    while self.angle>(m.pi)*2:
+		self.angle+=delta
+		while self.angle>(m.pi)*2:
 			self.angle-=(m.pi)*2
-	    while self.angle<0 :
+		while self.angle<0 :
 			self.angle+=(m.pi)*2
 
 	def avancer (self, distance):
-	    self.x+=m.cos(self.angle)*distance
-	    self.x=int(round(self.x,1))
-	    self.y-=m.sin(self.angle)*distance
-	    self.y=int(round(self.y,1))
+		self.x+=m.cos(self.angle)*distance
+		self.x=int(round(self.x,1))
+		self.y-=m.sin(self.angle)*distance
+		self.y=int(round(self.y,1))
 
 '''#jeu de test:
 a=Robot(0,0, m.pi/2)
