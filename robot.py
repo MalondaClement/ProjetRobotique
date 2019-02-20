@@ -22,6 +22,7 @@ class Robot(object):
 			:param arene: arene (matrice) dans lequel se trouve le robot
 			:param pas: pas entre chaque avancer sur la demi-droite de détection
 			:returns : position x, y de l'obstacle qui permetra le calcul de la distance avec celui-ci
+			ICI JE SUIS PAS SUR !
 		"""
 		recherche_x= originex
 		recherche_y= originey
