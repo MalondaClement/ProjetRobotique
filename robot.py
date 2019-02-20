@@ -14,7 +14,7 @@ class Robot(object):
 
 	def get_position(self):
 		return self.x, self.y
-	
+
 	def obstacle (self, originex, originey, arene, pas):
 		"""Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot
 			:param originex: x de l'origine de la demi-droite
@@ -40,21 +40,21 @@ class Robot(object):
 			:param delta: le fragment d'angle que l'on souhaite ajouter en RADIAN
 			Si ramène la valeur entre 0 et 2pi si besoin
 		"""
-	    	self.angle+=delta
-	    	while self.angle>(m.pi)*2:
-	    		self.angle-=(m.pi)*2
-	    	while self.angle<0:
-	    		self.angle+=(m.pi)*2
+		self.angle+=delta
+		while self.angle>(m.pi)*2:
+			self.angle-=(m.pi)*2
+		while self.angle<0:
+			self.angle+=(m.pi)*2
 
 	def avancer (self, distance):
 		"""Cette fonction permet de faire avancer notre robot de la distance donnée
 			:param distance: distance à déplacer du robot
 		"""
-	    	self.x+=m.cos(self.angle)*distance
-	    	self.x=int(round(self.x,1))
-	    	self.y-=m.sin(self.angle)*distance
-	    	self.y=int(round(self.y,1))
-	
+		self.x+=m.cos(self.angle)*distance
+		self.x=int(round(self.x,1))
+		self.y-=m.sin(self.angle)*distance
+		self.y=int(round(self.y,1))
+
 	def calcul_angle(self):
 		"""Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
 			:returns : Angle de la demi-droite
@@ -70,7 +70,7 @@ class Robot(object):
 
 
 	def distancemax(self,arene):
-		MAX=50 
+		MAX=50
 		angle=self.calcul_angle()
 		t=self.calcul_hypo()
 		a,b=self.obstacle(self.x,self.y-t*m.sin(self.angle),arene,1)
@@ -83,7 +83,7 @@ class Robot(object):
 		if m.sqrt(pow(a-self.x, 2) + pow(b-self.y, 2)) < MAX:
 		    return True
 		return False
-		
+
 
 #jeu de test:
 #a=Robot(0,0, m.pi/2)
