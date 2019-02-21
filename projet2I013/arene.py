@@ -1,8 +1,8 @@
 import numpy as np
 from robot import Robot
 
-from obstacle import Obstacle
-import math as m
+from obstacle.obstacle import Obstacle
+from math import pow,atan,sqrt
 
 #j'ai juste fait le cas ou la forme est un caree
 class Arene(object):
@@ -80,9 +80,9 @@ class Arene(object):
         return int(self.matrice[x,y])
 
 def calcul_angle(p):
-    a=m.atan(p.largeur/p.longueur)
+    a=atan(p.largeur/p.longueur)
     return a
 
 def calcul_hypo(p):
-    a=m.pow(p.largeur/2,2)+m.pow(p.longueur/2,2)
-    return m.sqrt(a)
+    a=pow(p.largeur/2,2)+pow(p.longueur/2,2)
+    return sqrt(a)
