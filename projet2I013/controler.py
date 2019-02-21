@@ -1,3 +1,8 @@
+class Controleur(object):
+    """docstring for Controleur"""
+    def __init__(self):
+        pass
+
 def clavier(event):
     """Cette fonction reçoit les touches appuyé par l'utilisateur et effectue des actions pour certaines d'entre elles.
         :param event: flèche recu
