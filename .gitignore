@@ -1,11 +1,3 @@
-
-__pycache__/TestArene.cpython-36.pyc
-__pycache__/TestRobot.cpython-36.pyc
-__pycache__/TestObstacle.cpython-36.pyc
-__pycache__/arene.cpython-36.pyc
-__pycache__/obstacle.cpython-36.pyc
-__pycache__/arene.cpython-36.pyc
-__pycache__/arene.cpython-36.pyc
-__pycache__/obstacle.cpython-36.pyc
-__pycache__/robot.cpython-36.pyc
-.DS_Store
+*pycache__
+*.pyc
+*/.DS_Store
