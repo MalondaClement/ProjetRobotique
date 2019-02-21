@@ -1,4 +1,9 @@
+from bouton import *
+from tkinter import *
 
+class Fenetre(object):
+    def __init__(self, ):
+        pass
 
 arret=False ## A VIRER
 """cree une fenetre"""
@@ -13,7 +18,7 @@ BoutonExporter.pack(side = LEFT, padx = 10, pady = 10)
 BoutonArreter = Button(fenetre, text ='Arreter', command = arreter)
 BoutonArreter.pack(side = LEFT, padx = 10, pady = 10)
 
-BoutonGo = Button(fenetre, text ='Démarrer', command = Demarrer)
+BoutonGo = Button(fenetre, text ='Démarrer', command = demarrer)
 BoutonGo.pack(side = LEFT, padx = 10, pady = 10)
 
 BoutonQuitter = Button(fenetre, text ='Quitter', command = fenetre.destroy)
