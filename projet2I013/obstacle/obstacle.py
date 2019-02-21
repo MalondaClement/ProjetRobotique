@@ -21,10 +21,10 @@ class Obstacle(object):
             self.creer_rectangle(para1,para2)
         else :
             self.creer_carree(para1,para2)
-            
+
     def creer_carree (self,para1, para2):
         """Fonction permetant la création d'un obstacle carré
-            :param para1: valeur de la longueur et de la largeur 
+            :param para1: valeur de la longueur et de la largeur
             :param para2: si para1 vaut 0 on prend para2 sinon valeur par defaut 30
         """
         if para1!=0 and para2!=0:
@@ -35,10 +35,10 @@ class Obstacle(object):
                 self.longueur = self.largeur= para1
             else :
                 self.longueur = self.largeur= para2
-                
+
     def creer_rond (self,para1,para2):
             """Fonction permetant la création d'un obstacle rond
-                :param para1: valeur du rayon 
+                :param para1: valeur du rayon
                 :param para2: si para1 vaut 0 on prend para2 sinon valeur par defaut 10
             """
             if para1!=0 and para2!=0:
@@ -49,12 +49,12 @@ class Obstacle(object):
                     self.rayon= para1
                 else :
                      self.rayon= para2
-                     
+
     def creer_triangle (self,para1,para2):
             """Fonction permetant la création d'un obstacle triangulaire
-                :param para1: valeur de la base 
+                :param para1: valeur de la base
                 :param para2: valeur de la hauteur
-                Si para1 et para2 valent 0, on prend 10 par défaut 
+                Si para1 et para2 valent 0, on prend 10 par défaut
             """
             if para1==0 or para2==0:
                 self.base = self.hauteur = 10
@@ -62,10 +62,10 @@ class Obstacle(object):
             else :
                 self.base=para1
                 self.hauteur=para2
-                
+
     def creer_rectangle(self,para1,para2):
             """Fonction permetant la création d'un obstacle carré
-                :param para1: valeur de la longueur et de la largeur 
+                :param para1: valeur de la longueur et de la largeur
                 :param para2: si para1 vaut 0 on prend para2 sinon valeur par defaut 30
             """
             if para1==0 or para2==0:
@@ -87,37 +87,3 @@ class Obstacle(object):
         :returns: position du centre
     """
         return self.forme
-
-
-"""#jeu de test
-
-carre = Obstacle(10, 10, 1)
-rond = Obstacle(20, 20, 2)
-triangle = Obstacle(30, 30, 3)
-inconnu = Obstacle(40, 40, 5)
-
-print(carre.get_position())
-print(rond.get_position())
-print(triangle.get_position())
-print(inconnu.get_position())
-
-if carre.get_forme() == 1 :
-    print("C'est un carre")
-else :
-    print("Il y a une erreur")
-
-if rond.get_forme() == 2 :
-    print("C'est un rond")
-else :
-    print("Il y a une erreur")
-
-if triangle.get_forme() == 3 :
-    print("C'est un triangle")
-else :
-    print("Il y a une erreur")
-
-if inconnu.get_forme() == 1 :
-    print("C'est un carre par defaut")
-else :
-    print("Il y a une erreur")"""
-
