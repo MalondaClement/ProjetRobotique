@@ -1,13 +1,9 @@
 from tkinter import *
-import window.fenetre
-# from tkinter import *
-# from arene import Arene
-# from arene import calcul_hypo
-# from arene import calcul_angle
-# from robot import Robot
-# from obstacle import Obstacle
-# import math as m
-# from tkinter.filedialog import *
+from window.fenetre import Fenetre
+from arene import Arene,calcul_hypo,calcul_angle
+from robot import Robot
+from obstacle.obstacle import Obstacle
+from tkinter.filedialog import *
 
 class Affichage(object):
     """La classe arène permet de faire le lien entre notre modèle et notre interface graphique.
