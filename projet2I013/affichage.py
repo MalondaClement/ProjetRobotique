@@ -1,20 +1,23 @@
 from tkinter import *
-from arene import Arene
-from arene import calcul_hypo
-from arene import calcul_angle
-from robot import Robot
-from obstacle import Obstacle
-import math as m
-from tkinter.filedialog import *
+import window.fenetre
+# from tkinter import *
+# from arene import Arene
+# from arene import calcul_hypo
+# from arene import calcul_angle
+# from robot import Robot
+# from obstacle import Obstacle
+# import math as m
+# from tkinter.filedialog import *
 
 class Affichage(object):
     """La classe arène permet de faire le lien entre notre modèle et notre interface graphique.
         Elle utilise notre matrice pour en faire un représentation concrète dans la fenètre graphique.
         :param arene: l'arène dont on souhaite avoir la représentation en graphique
     """
-    def __init__(self,arene):
+    def __init__(self,arene,fenetre):
         self.arene=arene
         self.vitesse=10
+        self.fenetre=fenetre
 
     def afficher(self):
         print (self.arene.matrice)
