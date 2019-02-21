@@ -1,4 +1,4 @@
-import math as m
+from math import pi,atan,cos,sin,pow,sqrt
 
 class Robot(object):
     """La classe robot permet de construire un robot avec sa position et son angle.
@@ -26,8 +26,8 @@ class Robot(object):
         recherche_x= originex
         recherche_y= originey
         while True:
-                    recherche_x+=m.cos(self.angle)*pas
-                    recherche_y-=m.sin(self.angle)*pas
+                    recherche_x+=cos(self.angle)*pas
+                    recherche_y-=sin(self.angle)*pas
                     recherche_x=int(round(recherche_x,0))
                     recherche_y=int(round(recherche_y,0))
                     if recherche_x<0 or recherche_y<0 or recherche_x>arene.nb_colonne or recherche_y>arene.nb_ligne:
@@ -41,45 +41,45 @@ class Robot(object):
             Si ramène la valeur entre 0 et 2pi si besoin
         """
         self.angle+=delta
-        while self.angle>(m.pi)*2:
-            self.angle-=(m.pi)*2
+        while self.angle>(pi)*2:
+            self.angle-=(pi)*2
         while self.angle<0:
-            self.angle+=(m.pi)*2
+            self.angle+=(pi)*2
 
     def avancer (self, distance):
         """Cette fonction permet de faire avancer notre robot de la distance donnée
             :param distance: distance à déplacer du robot
         """
-        self.x+=m.cos(self.angle)*distance
+        self.x+=cos(self.angle)*distance
         self.x=int(round(self.x,1))
-        self.y-=m.sin(self.angle)*distance
+        self.y-=sin(self.angle)*distance
         self.y=int(round(self.y,1))
 
     def calcul_angle(self):
         """Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
             :returns : Angle de la demi-droite
         """
-        a=m.atan(self.largeur/self.longueur)
+        a=atan(self.largeur/self.longueur)
         return a
 
     def calcul_hypo(self):
         """
         """
-        a=m.pow(self.largeur/2,2)+m.pow(self.longueur/2,2)
-        return m.sqrt(a)
+        a=pow(self.largeur/2,2)+pow(self.longueur/2,2)
+        return sqrt(a)
 
 
     def distancemax(self,arene):
         MAX=50
         angle=self.calcul_angle()
         t=self.calcul_hypo()
-        a,b=self.obstacle(self.x,self.y-t*m.sin(self.angle),arene,1)
-        if m.sqrt(pow(a-self.x, 2) + pow(b-self.y, 2)) < MAX:
+        a,b=self.obstacle(self.x,self.y-t*sin(self.angle),arene,1)
+        if sqrt(pow(a-self.x, 2) + pow(b-self.y, 2)) < MAX:
             return True
-        a,b=self.obstacle(self.x+t*m.cos(self.angle+angle),self.y-t*m.sin(self.angle+angle),arene,1)
-        if m.sqrt(pow(a-self.x, 2) + pow(b-self.y, 2)) < MAX:
+        a,b=self.obstacle(self.x+t*cos(self.angle+angle),self.y-t*sin(self.angle+angle),arene,1)
+        if sqrt(pow(a-self.x, 2) + pow(b-self.y, 2)) < MAX:
             return True
-        a,b=self.obstacle(self.x+t*m.cos(self.angle-angle),self.y-t*m.sin(self.angle-angle),arene,1)
-        if m.sqrt(pow(a-self.x, 2) + pow(b-self.y, 2)) < MAX:
+        a,b=self.obstacle(self.x+t*cos(self.angle-angle),self.y-t*sin(self.angle-angle),arene,1)
+        if sqrt(pow(a-self.x, 2) + pow(b-self.y, 2)) < MAX:
             return True
         return False
