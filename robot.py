@@ -16,13 +16,12 @@ class Robot(object):
 		return self.x, self.y
 
 	def obstacle (self, originex, originey, arene, pas):
-		"""Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot
+		"""Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot ?
 			:param originex: x de l'origine de la demi-droite
 			:param origeney: y de l'origine de la demi-droite
 			:param arene: arene (matrice) dans lequel se trouve le robot
 			:param pas: pas entre chaque avancer sur la demi-droite de détection
 			:returns : position x, y de l'obstacle qui permetra le calcul de la distance avec celui-ci
-			ICI JE SUIS PAS SUR !
 		"""
 		recherche_x= originex
 		recherche_y= originey
