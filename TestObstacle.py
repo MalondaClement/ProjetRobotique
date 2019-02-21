@@ -1,6 +1,6 @@
 import unittest
+from rep import Obstacle
 
-#from rep import Obstacle
 class TestObstacle (unittest.TestCase):
 	def test_Obstacle(self):
 		self.assertEqual(Obstacle(10,10,1,10,20).x,10)
