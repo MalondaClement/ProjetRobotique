@@ -1,6 +1,6 @@
 import numpy as np
 from robot import Robot
-from obstacle.obstacle import Obstacle
+from obstacle import Obstacle
 from math import pow,atan,sqrt
 
 #j'ai juste fait le cas ou la forme est un caree
