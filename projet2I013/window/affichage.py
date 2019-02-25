@@ -1,8 +1,4 @@
 from tkinter import *
-from window.fenetre import Fenetre
-from arene import Arene,calcul_hypo,calcul_angle
-from robot import Robot
-from obstacle.obstacle import Obstacle
 from tkinter.filedialog import *
 
 class Affichage(object):
