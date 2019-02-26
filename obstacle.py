@@ -100,8 +100,8 @@ class ObstacleRectangle(Obstacle):
         self.largeur=largeur
         self.longueur=longueur
         
-class ObstacleElliptique(Obstacle):
-    """ ObstacleOvale est une classe fille de Obstacle qui permet de creer des objets elliptiques (et circulaires) dans notre arène
+class ObstacleEllipse(Obstacle):
+    """ ObstacleEllipse est une classe fille de Obstacle qui permet de creer des objets elliptiques (et circulaires) dans notre arène
     :param x: position en x dans la matrice du centre de l'obstacle
     :param y: position en y dans la matrice du centre de l'obstacle
     :param grand_r: grand rayon 
@@ -112,3 +112,14 @@ class ObstacleElliptique(Obstacle):
         self.grand_r=grand_r
         self.petit_r=petit_r
 
+class ObstacleTringle(Obstacle):
+    """ ObstacleTringle est une classe fille de Obstacle qui permet de creer des objets triangulaires dans notre arène
+    :param x: position en x dans la matrice du centre de l'obstacle
+    :param y: position en y dans la matrice du centre de l'obstacle
+    :param hauteur: hauteur du triangle 
+    :param base: base du triangle
+    """
+    def __init__(self,x, y, hauteur, base):
+        Obsatacle.__init__(self,x,y)
+        self.hauteur=hauteur
+        self.base=base
