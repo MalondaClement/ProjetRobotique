@@ -93,9 +93,22 @@ class ObstacleRectangle(Obstacle):
     :param x: position en x dans la matrice du centre de l'obstacle
     :param y: position en y dans la matrice du centre de l'obstacle
     :param largeur: largeur du coté 
-    :param longueur: longeur du coté (si largeur == longueur alors on aun carré)
+    :param longueur: longeur du coté (si largeur == longueur alors on a un carré)
     """
     def __init__(self,x, y, largeur, longueur):
         Obsatacle.__init__(self,x,y)
         self.largeur=largeur
         self.longueur=longueur
+        
+class ObstacleElliptique(Obstacle):
+    """ ObstacleOvale est une classe fille de Obstacle qui permet de creer des objets elliptiques (et circulaires) dans notre arène
+    :param x: position en x dans la matrice du centre de l'obstacle
+    :param y: position en y dans la matrice du centre de l'obstacle
+    :param grand_r: grand rayon 
+    :param petit_r: petit rayon (si grand_r == petit_r alors on a un cercle)
+    """
+    def __init__(self,x, y, grand_r, petit_r):
+        Obsatacle.__init__(self,x,y)
+        self.grand_r=grand_r
+        self.petit_r=petit_r
+
