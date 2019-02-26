@@ -87,3 +87,15 @@ class Obstacle(object):
         :returns: position du centre
     """
         return self.forme
+
+class ObstacleRectangle(Obstacle):
+    """ ObstacleRectagle est une classe fille de Obstacle qui permet de creer des objets rectangulaires (et carrés) dans notre arène
+    :param x: position en x dans la matrice du centre de l'obstacle
+    :param y: position en y dans la matrice du centre de l'obstacle
+    :param largeur: largeur du coté 
+    :param longueur: longeur du coté (si largeur == longueur alors on aun carré)
+    """
+    def __init__(self,x, y, largeur, longueur):
+        Obsatacle.__init__(self,x,y)
+        self.largeur=largeur
+        self.longueur=longueur
