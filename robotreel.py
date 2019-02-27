@@ -63,7 +63,7 @@ class RobotReel(object) :
         recherche_x= self.x +(self.longueur/2)*cos(angle)
         recherche_y= self.y -(self.longueur/2)*sin(angle)
         test=0
-        while test=0:
+        while test==0:
             recherche_x+=cos(self.angle)*2
             recherche_y-=sin(self.angle)*2
             recherche_x=int(round(recherche_x,0))
@@ -78,14 +78,14 @@ class RobotReel(object) :
     def stop (self) :
         """Arrete le robot
         """
-        self.MOTOR_LEFT_DPS =MOTOR_RIGHT_DPS = 0 #c'est pas un self.MOTOR_RIGHT_DPS ?
+        self.MOTOR_LEFT_DPS == MOTOR_RIGHT_DPS = 0 #c'est pas un self.MOTOR_RIGHT_DPS ?
 
     def actualiser(self) :
         """ Réalise une actualisation de la position, ou de l'angle du robot
         """
-        if MOTOR_RIGHT_DPS = MOTOR_LEFT_DPS :
+        if MOTOR_RIGHT_DPS == MOTOR_LEFT_DPS :
             x+= cos(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10 #conversion en cm
             y-= sin(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10
 
         elif MOTOR_RIGHT_DPS = -MOTOR_LEFT_DPS :
-            angle+= (MOTOR_RIGHT_DPS*WHEEL_CIRCUMFERENCE/WHEEL_BASE_CIRCUMFERENCE) * × (π/180)
+            angle+= (MOTOR_RIGHT_DPS*WHEEL_CIRCUMFERENCE/WHEEL_BASE_CIRCUMFERENCE) * (pi/180)
