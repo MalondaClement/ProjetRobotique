@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.filedialog import *
+#from ..modele.arene import Arene
 
 class Fenetre(object):
     def __init__(self):
