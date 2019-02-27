@@ -9,7 +9,15 @@ MOTOR_RIGHT = 2
 
 
 class RobotReel(object) :
-
+    """ La classe RobotReel est une classe qui à pour but d'être la plus plroche possible de l'API du robot que
+        nous utilisons dans le projet. Pour cela cette classe a été developpées avec uniquent les fonctions de
+        l'API, seul le corps est différents, le code n'aura donc pas a être modifié si nous passons de la 
+        simulation au monde réel.
+            :param x: coordonnée x du robot dans l'arène
+            :param y: coordonnée y du robot dans l'arène
+            :param angle: angle du robot en radian
+            :param arene: arène de simulation dans lequel il se trouve (matrice)
+    """
     def __init__(self,x,y,angle, arene):
         self.x=x
         self.y=y
@@ -24,8 +32,10 @@ class RobotReel(object) :
 
 
     def set_motor_dps(self, port,dps):
-        #port=1 pour la roue gauche, 2 pour la roue droite, 3 pour les 2 roues
-        #dps est une vitesse angulaire en degré par seconde
+        """ Fixe la vitesse du robot
+            - port=1 pour la roue gauche, 2 pour la roue droite, 3 pour les 2 roues
+            - dps est une vitesse angulaire en degré par seconde
+        """
         if port == MOTOR_LEFT :
             self.MOTOR_LEFT = dps
         elif port == MOTOR_RIGHT :
@@ -46,8 +56,10 @@ class RobotReel(object) :
             self.MOTOR_RIGHT_ROTATION = self.MOTOR_LEFT_ROTATION = offset
 
     def get_distance (self) :
-        #retourne la distance au plus proche obstacle
-        #je n'ai pas compris les valeurs de l'intervalle de détection du robot -> fonction à préciser 
+        """Rcupération de la distance qui sépare de l'obstacle
+            :returns: la distance au plus proche obstacle
+        #je n'ai pas compris les valeurs de l'intervalle de détection du robot -> fonction à préciser
+        """
         recherche_x= self.x +(self.longueur/2)*cos(angle)
         recherche_y= self.y -(self.longueur/2)*sin(angle)
         test=0
@@ -64,28 +76,16 @@ class RobotReel(object) :
 
 
     def stop (self) :
-        #arrête le robot
-        self.MOTOR_LEFT_DPS =MOTOR_RIGHT_DPS = 0
+        """Arrete le robot
+        """
+        self.MOTOR_LEFT_DPS =MOTOR_RIGHT_DPS = 0 #c'est pas un self.MOTOR_RIGHT_DPS ?
 
     def actualiser(self) :
-        # réalise une actualisation de la position, ou de l'angle du robot
+        """ Réalise une actualisation de la position, ou de l'angle du robot
+        """
         if MOTOR_RIGHT_DPS = MOTOR_LEFT_DPS :
             x+= cos(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10 #conversion en cm
             y-= sin(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10
 
         elif MOTOR_RIGHT_DPS = -MOTOR_LEFT_DPS :
             angle+= (MOTOR_RIGHT_DPS*WHEEL_CIRCUMFERENCE/WHEEL_BASE_CIRCUMFERENCE) * × (π/180)
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
