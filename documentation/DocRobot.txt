@@ -1,0 +1,88 @@
+Help on module robot:
+
+NAME
+    robot
+
+CLASSES
+    builtins.object
+        Robot
+    
+    class Robot(builtins.object)
+     |  La classe robot permet de construire un robot avec sa position et son angle.
+     |  :param x,y: position x,y du robot
+     |  :param angle: angle d'oriantation du robot en RADIAN
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, x, y, angle)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  avancer(self, distance)
+     |      Cette fonction permet de faire avancer notre robot de la distance donnée
+     |      :param distance: distance à déplacer du robot
+     |  
+     |  calcul_angle(self)
+     |      Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
+     |      :returns : Angle de la demi-droite
+     |  
+     |  calcul_hypo(self)
+     |  
+     |  changer_angle(self, delta)
+     |      Cette fonction permet de changer l'oriantation de notre robot.
+     |      :param delta: le fragment d'angle que l'on souhaite ajouter en RADIAN
+     |      Si ramène la valeur entre 0 et 2pi si besoin
+     |  
+     |  distancemax(self, arene)
+     |  
+     |  get_position(self)
+     |  
+     |  obstacle(self, originex, originey, arene, pas)
+     |      Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot ?
+     |      :param originex: x de l'origine de la demi-droite
+     |      :param origeney: y de l'origine de la demi-droite
+     |      :param arene: arene (matrice) dans lequel se trouve le robot
+     |      :param pas: pas entre chaque avancer sur la demi-droite de détection
+     |      :returns : position x, y de l'obstacle qui permetra le calcul de la distance avec celui-ci
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+FUNCTIONS
+    atan(...)
+        atan(x)
+        
+        Return the arc tangent (measured in radians) of x.
+    
+    cos(...)
+        cos(x)
+        
+        Return the cosine of x (measured in radians).
+    
+    pow(...)
+        pow(x, y)
+        
+        Return x**y (x to the power of y).
+    
+    sin(...)
+        sin(x)
+        
+        Return the sine of x (measured in radians).
+    
+    sqrt(...)
+        sqrt(x)
+        
+        Return the square root of x.
+
+DATA
+    pi = 3.141592653589793
+
+FILE
+    /Users/ClementMalonda/Documents/Licence/L2/S2/2I013/ProjetRobotique/projet2I013/modele/robot.py
+
+
