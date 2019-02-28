@@ -58,7 +58,6 @@ class RobotReel(object) :
     def get_distance (self) :
         """Rcupération de la distance qui sépare de l'obstacle
             :returns: la distance au plus proche obstacle
-        #je n'ai pas compris les valeurs de l'intervalle de détection du robot -> fonction à préciser
         """
         recherche_x= self.x +(self.longueur/2)*cos(angle)
         recherche_y= self.y -(self.longueur/2)*sin(angle)
