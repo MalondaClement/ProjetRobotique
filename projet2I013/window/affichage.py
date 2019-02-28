@@ -6,10 +6,10 @@ class Affichage(object):
         Elle utilise notre matrice pour en faire un représentation concrète dans la fenètre graphique.
         :param arene: l'arène dont on souhaite avoir la représentation en graphique
     """
-    def __init__(self,arene,fenetre):
+    def __init__(self,arene):#,fenetre):
         self.arene=arene
         self.vitesse=10
-        self.fenetre=fenetre
+        #self.fenetre=fenetre
 
     def afficher(self):
         print (self.arene.matrice)
