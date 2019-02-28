@@ -78,12 +78,12 @@ class RobotReel(object) :
     def stop (self) :
         """Arrete le robot
         """
-        self.MOTOR_LEFT_DPS == MOTOR_RIGHT_DPS = 0 #c'est pas un self.MOTOR_RIGHT_DPS ?
+        self.MOTOR_LEFT_DPS = self.MOTOR_RIGHT_DPS = 0
 
     def actualiser(self) :
         """ Réalise une actualisation de la position, ou de l'angle du robot
         """
-        if MOTOR_RIGHT_DPS = MOTOR_LEFT_DPS :
+        if MOTOR_RIGHT_DPS == MOTOR_LEFT_DPS :
             x+= cos(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10 #conversion en cm
             y-= sin(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10
 
