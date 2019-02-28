@@ -3,11 +3,11 @@ class ControleurRobotReel (object) :
 		self.robot = robot
 
 
-	def avancer (vitesse) :
+	def avancer (self, vitesse) :
 		# attention : vitesse en mm/s
 		robot.set_motor_dps(3, ((vitesse*360)/robot.WHEEL_CIRCUMFERENCE))
 
-	def tourner (angle) :
+	def tourner (self, angle) :
 		#attention: angle est une vitesse angulaire en degré par seconde, un angle positif fait tourner dans le sens trigonométrique
 		robot.set_motor_dps(1, -((robot.WHEEL_BASE_CIRCUMFERENCE)/(360/angle)*360)/robot.WHEEL_CIRCUMFERENCE)
 		robot.set_motor_dps(2, ((robot.WHEEL_BASE_CIRCUMFERENCE)/(360/angle)*360)/robot.WHEEL_CIRCUMFERENCE)
