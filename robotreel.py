@@ -9,9 +9,9 @@ MOTOR_RIGHT = 2
 
 
 class RobotReel(object) :
-    """ La classe RobotReel est une classe qui à pour but d'être la plus plroche possible de l'API du robot que
-        nous utilisons dans le projet. Pour cela cette classe a été developpées avec uniquent les fonctions de
-        l'API, seul le corps est différents, le code n'aura donc pas a être modifié si nous passons de la 
+    """ La classe RobotReel est une classe qui a pour but d'être la plus proche possible de l'API du robot que
+        nous utilisons dans le projet. Pour cela cette classe a été developpée avec uniquement les fonctions de
+        l'API, seul le corps est différent, le code n'aura donc pas à être modifié si nous passons de la 
         simulation au monde réel.
             :param x: coordonnée x du robot dans l'arène
             :param y: coordonnée y du robot dans l'arène
