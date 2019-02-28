@@ -83,6 +83,9 @@ class RobotReel(object) :
     def actualiser(self) :
         """ Réalise une actualisation de la position, ou de l'angle du robot
         """
+        self.MOTOR_LEFT_ROTATION= self.MOTOR_LEFT_DPS /20
+        self.MOTOR_RIGHT_ROTATION= self.MOTOR_RIGHT_DPS /20
+
         if MOTOR_RIGHT_DPS == MOTOR_LEFT_DPS :
             x+= cos(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10 #conversion en cm
             y-= sin(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10
