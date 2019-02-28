@@ -1,6 +1,11 @@
 from tkinter import *
 from tkinter.filedialog import *
-#from ..modele.arene import Arene
+from projet2I013.modele.arene import Arene
+from projet2I013.modele.robot import Robot
+from projet2I013.modele.obstacle import Obstacle
+from projet2I013.window.affichage import Affichage
+from math import radians, degrees
+
 
 class Fenetre(object):
     def __init__(self):
@@ -42,7 +47,7 @@ def import_file():
             OBSTACLE=False
         elif i.strip()=="OBSTACLE":
             global p
-            p=Robot(int(L[0]),int(L[1]),m.radians(int(L[2])))
+            p=Robot(int(L[0]),int(L[1]),radians(int(L[2])))
             global angle
             angle=p.calcul_angle()
             global t
@@ -83,7 +88,7 @@ def export_file():
     for i in z.arene.list_rob:
         f.write(str(i.x)+'\n')
         f.write(str(i.y)+'\n')
-        f.write(str(int(m.degrees(i.angle)))+'\n')
+        f.write(str(int(degrees(i.angle)))+'\n')
     f.write("OBSTACLE\n")
     for i in z.arene.list_obj:
         f.write(str(i.x)+'\n')
