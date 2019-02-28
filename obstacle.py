@@ -84,7 +84,7 @@ class ObstacleRectangle(Obstacle):
     :param longueur: longeur du coté (si largeur == longueur alors on a un carré)
     """
     def __init__(self,x, y, largeur, longueur):
-        Obsatacle.__init__(self,x,y)
+        Obstacle.__init__(self,x,y)
         self.largeur=largeur
         self.longueur=longueur
         
@@ -96,7 +96,7 @@ class ObstacleEllipse(Obstacle):
     :param petit_r: petit rayon (si grand_r == petit_r alors on a un cercle)
     """
     def __init__(self,x, y, grand_r, petit_r):
-        Obsatacle.__init__(self,x,y)
+        Obstacle.__init__(self,x,y)
         self.grand_r=grand_r
         self.petit_r=petit_r
 
@@ -108,6 +108,6 @@ class ObstacleTringle(Obstacle):
     :param base: base du triangle
     """
     def __init__(self,x, y, hauteur, base):
-        Obsatacle.__init__(self,x,y)
+        Obstacle.__init__(self,x,y)
         self.hauteur=hauteur
         self.base=base
