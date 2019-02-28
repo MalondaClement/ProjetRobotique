@@ -13,7 +13,7 @@ class Fenetre(object):
        
     def demarrer(self):
         main(self,self.z,self.p,fenetre)
-        #fenetre.after(50,self.demarrer(self))
+       
 
     def reset(self):
         """Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
@@ -42,7 +42,7 @@ class Fenetre(object):
                 ROBOT=True
                 OBSTACLE=False
             elif i.strip()=="OBSTACLE":
-                self.p=Robot(int(L[0]),int(L[1]),m.radians(int(L[2])))
+                self.p=RobotReel(int(L[0]),int(L[1]),m.radians(int(L[2])),b)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 b.inserer_robot(self.p)
@@ -109,7 +109,7 @@ def arrete():
 def demar():
     if not f.fin: 
         f.demarrer(f)
-        fenetre.after(50,demar)
+        fenetre.after(20,demar)
     else:
         f.fin=False
         

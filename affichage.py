@@ -16,6 +16,8 @@ class Affichage(object):
         self.p=robot
         self.a=calcul_angle(self.p)
         self.t=calcul_hypo(self.p)
+        self.avancer=1
+        self.tourner=0
 
 
     def afficher(self):
@@ -42,5 +44,5 @@ class Affichage(object):
         p=self.p
         t=self.t
         angle=self.a
-        self.zone_dessin.coords(self.r,p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),p.x+t*m.cos(p.angle+angle+m.pi),p.y-t*m.sin(p.angle+angle+m.pi),p.x+t*m.cos(p.angle-angle+m.pi),p.y-t*m.sin(p.angle-angle+m.pi))
-        self.zone_dessin.coords(self.f,p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.sin(-p.angle),1))
+        self.zone_dessin.coords(self.r,int(p.x+t*m.cos(p.angle+angle)),int(p.y-t*m.sin(p.angle+angle)),int(p.x+t*m.cos(p.angle-angle)),int(p.y-t*m.sin(p.angle-angle)),int(p.x+t*m.cos(p.angle+angle+m.pi)),int(p.y-t*m.sin(p.angle+angle+m.pi)),int(p.x+t*m.cos(p.angle-angle+m.pi)),int(p.y-t*m.sin(p.angle-angle+m.pi)))
+        self.zone_dessin.coords(self.f,int(p.x),int(p.y),int(round(50*m.cos(p.angle),1)+p.x),int(p.y+round(50*m.sin(-p.angle),1)))

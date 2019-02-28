@@ -85,3 +85,4 @@ def calcul_angle(p):
 def calcul_hypo(p):
     a=pow(p.largeur/2,2)+pow(p.longueur/2,2)
     return sqrt(a)
+

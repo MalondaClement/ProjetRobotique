@@ -9,9 +9,9 @@ MOTOR_RIGHT = 2
 
 
 class RobotReel(object) :
-    """ La classe RobotReel est une classe qui a pour but d'être la plus proche possible de l'API du robot que
-        nous utilisons dans le projet. Pour cela cette classe a été developpée avec uniquement les fonctions de
-        l'API, seul le corps est différent, le code n'aura donc pas à être modifié si nous passons de la 
+    """ La classe RobotReel est une classe qui à pour but d'être la plus plroche possible de l'API du robot que
+        nous utilisons dans le projet. Pour cela cette classe a été developpées avec uniquent les fonctions de
+        l'API, seul le corps est différents, le code n'aura donc pas a être modifié si nous passons de la 
         simulation au monde réel.
             :param x: coordonnée x du robot dans l'arène
             :param y: coordonnée y du robot dans l'arène
@@ -29,6 +29,11 @@ class RobotReel(object) :
         self.MOTOR_RIGHT_DPS=0
         self.MOTOR_LEFT_ROTATION =0
         self.MOTOR_RIGHT_ROTATION = 0
+        self.WHEEL_BASE_WIDTH         = 117
+        self.WHEEL_DIAMETER           = 66.5 
+        self.WHEEL_BASE_CIRCUMFERENCE = self.WHEEL_BASE_WIDTH * pi
+        self.WHEEL_CIRCUMFERENCE      = self.WHEEL_DIAMETER   * pi
+        
 
 
     def set_motor_dps(self, port,dps):
@@ -37,7 +42,7 @@ class RobotReel(object) :
             - dps est une vitesse angulaire en degré par seconde
         """
         if port == MOTOR_LEFT :
-            self.MOTOR_LEFT = dps
+            self.MOTOR_LEFT_DPS = dps
         elif port == MOTOR_RIGHT :
             self.MOTOR_RIGHT_DPS = dps
         elif port ==MOTOR_LEFT+MOTOR_RIGHT :
@@ -86,12 +91,28 @@ class RobotReel(object) :
     def actualiser(self) :
         """ Réalise une actualisation de la position, ou de l'angle du robot
         """
-        self.MOTOR_LEFT_ROTATION= self.MOTOR_LEFT_DPS /20
-        self.MOTOR_RIGHT_ROTATION= self.MOTOR_RIGHT_DPS /20
+        self.MOTOR_LEFT_ROTATION+= self.MOTOR_LEFT_DPS /20
+        self.MOTOR_RIGHT_ROTATION+= self.MOTOR_RIGHT_DPS /20
 
-        if MOTOR_RIGHT_DPS == MOTOR_LEFT_DPS :
-            x+= cos(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10 #conversion en cm
-            y-= sin(angle)* (((MOTOR_LEFT_DPS/20) * WHEEL_DIAMETER )/ 360 ) /10
+        if self.MOTOR_RIGHT_DPS == self.MOTOR_LEFT_DPS :
+            
+            self.x+= cos(self.angle)* (((self.MOTOR_LEFT_DPS/20) * self.WHEEL_DIAMETER )/ 360 ) /10 #conversion en cm
+            self.y-= sin(self.angle)* (((self.MOTOR_LEFT_DPS/20) * self.WHEEL_DIAMETER )/ 360 ) /10
 
-        elif MOTOR_RIGHT_DPS == -MOTOR_LEFT_DPS :
-            angle+= (MOTOR_RIGHT_DPS*WHEEL_CIRCUMFERENCE/WHEEL_BASE_CIRCUMFERENCE) * (pi/180)
+        elif self.MOTOR_RIGHT_DPS == -self.MOTOR_LEFT_DPS :
+            print (self.angle)
+            self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
+            
+    def calcul_angle(self):
+        """Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
+            :returns : Angle de la demi-droite
+        """
+        a=atan(self.largeur/self.longueur)
+        return a
+
+    def calcul_hypo(self):
+        """
+        """
+        a=pow(self.largeur/2,2)+pow(self.longueur/2,2)
+        return sqrt(a)
+
