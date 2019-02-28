@@ -72,7 +72,11 @@ class RobotReel(object) :
                 test=1
             if self.arene.matrice[recherche_y, recherche_x]==1:
                 test=1
-        return sqrt(pow(recherche_x-self.x, 2) + pow(recherche_y-self.y, 2))
+       
+        distance= sqrt(pow(recherche_x-self.x, 2) + pow(recherche_y-self.y, 2))
+        if distance < 5 or distance > 8000 :
+            distance = 8190
+        return distance
 
 
     def stop (self) :
