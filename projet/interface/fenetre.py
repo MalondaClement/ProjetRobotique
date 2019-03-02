@@ -1,19 +1,19 @@
 from tkinter import *
 from tkinter.filedialog import *
-from arene import*
-from obstacle import*
-from robot import*
-import math as m
-from affichage import *
-from demo4 import*
+from math import degrees, radians
+from modele.arene import*
+from modele.obstacle import*
+from modele.robot import*
+from .affichage import *
+from demo4 import *
 
 class Fenetre(object):
     def __init__(self):
         self.fin=False
-       
+
     def demarrer(self):
         main(self,self.z,self.p,fenetre)
-       
+
 
     def reset(self):
         """Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
@@ -42,7 +42,7 @@ class Fenetre(object):
                 ROBOT=True
                 OBSTACLE=False
             elif i.strip()=="OBSTACLE":
-                self.p=RobotReel(int(L[0]),int(L[1]),m.radians(int(L[2])),b)
+                self.p=RobotReel(int(L[0]),int(L[1]),radians(int(L[2])),b)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 b.inserer_robot(self.p)
@@ -80,7 +80,7 @@ class Fenetre(object):
         for i in self.z.arene.list_rob:
             f.write(str(i.x)+'\n')
             f.write(str(i.y)+'\n')
-            f.write(str(int(m.degrees(i.angle)))+'\n')
+            f.write(str(int(degrees(i.angle)))+'\n')
         f.write("OBSTACLE\n")
         for i in self.z.arene.list_obj:
             f.write(str(i.x)+'\n')
@@ -94,28 +94,28 @@ class Fenetre(object):
     def arreter(self):
         self.fin=True
         print(self.fin)
-        
+
 f=Fenetre
 f.fin=False
 def importe():
     f.import_file(f)
-    
+
 def export():
     f.export_file(f)
 
 def arrete():
     f.arreter(f)
-   
+
 def demar():
-    if not f.fin: 
+    if not f.fin:
         f.demarrer(f)
         fenetre.after(20,demar)
     else:
         f.fin=False
-        
+
 def res():
     f.reset(f)
-    
+
 
 """cree une fenetre"""
 fenetre = Tk()#creer une fenetre

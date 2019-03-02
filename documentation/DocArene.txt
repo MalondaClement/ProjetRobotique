@@ -1,0 +1,83 @@
+Help on module arene:
+
+NAME
+    arene
+
+CLASSES
+    builtins.object
+        Arene
+    
+    class Arene(builtins.object)
+     |  La classe arene permet la représentation des éléments dans l'arène pour faire nos calculs comme la détection d'obtacle.
+     |  Elle gère une matrice dans laquelle chaque élément correpond à un "object" à cette position dans l'arene.
+     |  La matrice est initialement vide (valeurs à 0).
+     |  Si 0 il n'y a rien, si 1 on a un obstacle, si 2 on a le robot.
+     |      :param nb_ligne: nb de lignes de la matrice correpond au pixels
+     |      :param nb_colonne: nb de colonnes de la matrice correpond au pixels
+     |      :param list_obj: liste d'élément de type obstacle à placer dans la matrice
+     |      :param list_rob: liste d'élément de type robotà mettre dans la matrice, dans un premier temps 1 seul
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, nb_ligne, nb_colonne)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  cree_mur(self)
+     |      Cette fonction permet de mettre les valeurs des bords à 1 afin de les murs.
+     |  
+     |  est_dans_matrice(self, o)
+     |      Cette fonction permet de vérifier si un intertion est bien dans la matrice
+     |      :returns : True si on incère dans la matrice False sinon
+     |  
+     |  est_vide(self, o)
+     |  
+     |  get_object(self, x, y)
+     |      Cette fonction permet de savoir si on a un objet est présente dans la case de la matrice.
+     |      :param x,y: coordonnées de la case que l'on souhaite regarder
+     |      :returns : 0 si vide, 1 si obstacle, 2 si robot
+     |  
+     |  inserer_obs(self, o)
+     |      Cette fonction permet d'inserer un obstacle dans l'arène
+     |      :param o: on passe en paramètre l'obstacle à placer dans la matrice qui représente l'arène
+     |      La fonction fait appel aux fonctions est_dans_matrice et est_vide.
+     |  
+     |  inserer_robot(self, r)
+     |      Cette fonction permet d'inserer un robot dans l'arène
+     |      :param r: on passe en paramètre le robot à placer dans la matrice qui représente l'arène
+     |      La fonction fait appel aux fonctions est_dans_matrice et est_vide.
+     |  
+     |  remplir_matrice(self, i, val)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+FUNCTIONS
+    atan(...)
+        atan(x)
+        
+        Return the arc tangent (measured in radians) of x.
+    
+    calcul_angle(p)
+    
+    calcul_hypo(p)
+    
+    pow(...)
+        pow(x, y)
+        
+        Return x**y (x to the power of y).
+    
+    sqrt(...)
+        sqrt(x)
+        
+        Return the square root of x.
+
+FILE
+    /Users/ClementMalonda/Documents/Licence/L2/S2/2I013/ProjetRobotique/projet2I013/modele/arene.py
+
+

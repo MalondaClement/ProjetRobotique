@@ -1,7 +1,7 @@
 import math as m
-from fenetre import* 
-from robotreel import RobotReel
-from controleur_robotreel import ControleurRobotReel
+from interface.fenetre import*
+from modele.robotreel import RobotReel
+from modele.controleur_robotreel import ControleurRobotReel
 
 avancer =1
 tourner =0
@@ -15,7 +15,7 @@ def main(o,z,p,fenetre):
         if (p.MOTOR_LEFT_ROTATION < 5000*360/p.WHEEL_CIRCUMFERENCE) :
             print(p.MOTOR_LEFT_ROTATION)
             c.avancer(1000)
-            
+
         else :
             p.stop()
             z.avancer =0
@@ -29,5 +29,5 @@ def main(o,z,p,fenetre):
     		z.avancer =1
     		z.tourner =0
     		p.offset_motor_encoder(3, 0)
-    
+
 

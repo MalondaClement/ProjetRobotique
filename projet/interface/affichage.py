@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter.filedialog import *
-from arene import*
-import math as m
-from controler import*
+from modele.arene import *
+from modele.controler import *
+from math import pi, cos, sin, pow, sqrt
 
 class Affichage(object):
     """La classe arène permet de faire le lien entre notre modèle et notre interface graphique.
@@ -29,8 +29,8 @@ class Affichage(object):
         p=self.p
         t=self.t
         angle=self.a
-        self.r=self.zone_dessin.create_polygon(p.x+t*m.cos(p.angle+angle),p.y-t*m.sin(p.angle+angle),p.x+t*m.cos(p.angle-angle),p.y-t*m.sin(p.angle-angle),p.x+t*m.cos(p.angle+angle+m.pi),p.y-t*m.sin(p.angle+angle+m.pi),p.x+t*m.cos(p.angle-angle+m.pi),p.y-t*m.sin(p.angle-angle+m.pi),fill='red',outline='red')
-        self.f=self.zone_dessin.create_line(p.x,p.y,round(50*m.cos(p.angle),1)+p.x,p.y+round(50*m.sin(-p.angle),1),arrow='last',fill='yellow')
+        self.r=self.zone_dessin.create_polygon(p.x+t*cos(p.angle+angle),p.y-t*sin(p.angle+angle),p.x+t*cos(p.angle-angle),p.y-t*sin(p.angle-angle),p.x+t*cos(p.angle+angle+pi),p.y-t*sin(p.angle+angle+pi),p.x+t*cos(p.angle-angle+pi),p.y-t*sin(p.angle-angle+pi),fill='red',outline='red')
+        self.f=self.zone_dessin.create_line(p.x,p.y,round(50*cos(p.angle),1)+p.x,p.y+round(50*sin(-p.angle),1),arrow='last',fill='yellow')
 
     def zone(self):
         self.zone_dessin =Canvas(self.fenetre, width=self.arene.nb_colonne,height=self.arene.nb_ligne,background='white')
@@ -44,5 +44,5 @@ class Affichage(object):
         p=self.p
         t=self.t
         angle=self.a
-        self.zone_dessin.coords(self.r,int(p.x+t*m.cos(p.angle+angle)),int(p.y-t*m.sin(p.angle+angle)),int(p.x+t*m.cos(p.angle-angle)),int(p.y-t*m.sin(p.angle-angle)),int(p.x+t*m.cos(p.angle+angle+m.pi)),int(p.y-t*m.sin(p.angle+angle+m.pi)),int(p.x+t*m.cos(p.angle-angle+m.pi)),int(p.y-t*m.sin(p.angle-angle+m.pi)))
-        self.zone_dessin.coords(self.f,int(p.x),int(p.y),int(round(50*m.cos(p.angle),1)+p.x),int(p.y+round(50*m.sin(-p.angle),1)))
+        self.zone_dessin.coords(self.r,int(p.x+t*cos(p.angle+angle)),int(p.y-t*sin(p.angle+angle)),int(p.x+t*cos(p.angle-angle)),int(p.y-t*sin(p.angle-angle)),int(p.x+t*cos(p.angle+angle+pi)),int(p.y-t*sin(p.angle+angle+pi)),int(p.x+t*cos(p.angle-angle+pi)),int(p.y-t*sin(p.angle-angle+pi)))
+        self.zone_dessin.coords(self.f,int(p.x),int(p.y),int(round(50*cos(p.angle),1)+p.x),int(p.y+round(50*sin(-p.angle),1)))

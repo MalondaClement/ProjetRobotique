@@ -1,0 +1,92 @@
+Help on module robotreel:
+
+NAME
+    robotreel
+
+CLASSES
+    builtins.object
+        RobotReel
+    
+    class RobotReel(builtins.object)
+     |  La classe RobotReel est une classe qui à pour but d'être la plus plroche possible de l'API du robot que
+     |  nous utilisons dans le projet. Pour cela cette classe a été developpées avec uniquent les fonctions de
+     |  l'API, seul le corps est différents, le code n'aura donc pas a être modifié si nous passons de la
+     |  simulation au monde réel.
+     |      :param x: coordonnée x du robot dans l'arène
+     |      :param y: coordonnée y du robot dans l'arène
+     |      :param angle: angle du robot en radian
+     |      :param arene: arène de simulation dans lequel il se trouve (matrice)
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, x, y, angle, arene)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  actualiser(self)
+     |      Réalise une actualisation de la position, ou de l'angle du robot
+     |  
+     |  get_distance(self)
+     |      Rcupération de la distance qui sépare de l'obstacle
+     |          :returns: la distance au plus proche obstacle
+     |      #je n'ai pas compris les valeurs de l'intervalle de détection du robot -> fonction à préciser
+     |  
+     |  get_motor_position(self)
+     |  
+     |  offset_motor_encoder(self, port, offset)
+     |  
+     |  set_motor_dps(self, port, dps)
+     |      Fixe la vitesse du robot
+     |      - port=1 pour la roue gauche, 2 pour la roue droite, 3 pour les 2 roues
+     |      - dps est une vitesse angulaire en degré par seconde
+     |  
+     |  stop(self)
+     |      Arrete le robot
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+FUNCTIONS
+    atan(...)
+        atan(x)
+        
+        Return the arc tangent (measured in radians) of x.
+    
+    cos(...)
+        cos(x)
+        
+        Return the cosine of x (measured in radians).
+    
+    pow(...)
+        pow(x, y)
+        
+        Return x**y (x to the power of y).
+    
+    sin(...)
+        sin(x)
+        
+        Return the sine of x (measured in radians).
+    
+    sqrt(...)
+        sqrt(x)
+        
+        Return the square root of x.
+
+DATA
+    MOTOR_LEFT = 1
+    MOTOR_RIGHT = 2
+    WHEEL_BASE_CIRCUMFERENCE = 367.5663404700058
+    WHEEL_BASE_WIDTH = 117
+    WHEEL_CIRCUMFERENCE = 208.91591146372124
+    WHEEL_DIAMETER = 66.5
+    pi = 3.141592653589793
+
+FILE
+    /Users/ClementMalonda/Desktop/robotreel.py
+
+

@@ -1,4 +1,4 @@
-from fenetre import*
+from interface.fenetre import*
 import math as m
 
 def clavier(event):
