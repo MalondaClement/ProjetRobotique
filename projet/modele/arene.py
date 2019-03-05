@@ -88,15 +88,11 @@ class Arene(object):
                     self.matrice[i,j]=0
 
     def update(self) :
-        """ attention : la fonction creee une boucle infine, elle doit être lancee en arrière-plan
-        """
-        while true : 
             self.supprimer_uns()
             l_rob= self.list_rob
             self.list_rob=[]
             for i in len(l_rob):
                 self.inserer_robot(l_rob[i])
-            time.sleep(0.05)
 
 def calcul_angle(p):
     a=atan(p.largeur/p.longueur)
