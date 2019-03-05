@@ -3,13 +3,15 @@ from tkinter.filedialog import *
 from modele.arene import *
 from modele.controler import *
 from math import pi, cos, sin, pow, sqrt
+from threading import Thread
 
-class Affichage(object):
+class Affichage(Thread):
     """La classe arène permet de faire le lien entre notre modèle et notre interface graphique.
         Elle utilise notre matrice pour en faire un représentation concrète dans la fenètre graphique.
         :param arene: l'arène dont on souhaite avoir la représentation en graphique
     """
     def __init__(self,arene,fenetre,robot):
+        super(Affichage,self).__init__()
         self.arene=arene
         self.vitesse=10
         self.fenetre=fenetre
@@ -49,4 +51,10 @@ class Affichage(object):
         
     def update(self):
         self.dessiner()
+        
+    def run (self, fps):
+        while True :
+            self.update()
+            time.sleep(1./fps)
+    
         
