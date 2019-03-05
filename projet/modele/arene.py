@@ -96,7 +96,7 @@ class Arene(object):
             self.list_rob=[]
             for i in len(l_rob):
                 self.inserer_robot(l_rob[i])
-            sleep(0.05)
+            time.sleep(0.05)
 
 def calcul_angle(p):
     a=atan(p.largeur/p.longueur)
