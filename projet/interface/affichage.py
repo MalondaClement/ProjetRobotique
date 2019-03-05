@@ -46,3 +46,7 @@ class Affichage(object):
         angle=self.a
         self.zone_dessin.coords(self.r,int(p.x+t*cos(p.angle+angle)),int(p.y-t*sin(p.angle+angle)),int(p.x+t*cos(p.angle-angle)),int(p.y-t*sin(p.angle-angle)),int(p.x+t*cos(p.angle+angle+pi)),int(p.y-t*sin(p.angle+angle+pi)),int(p.x+t*cos(p.angle-angle+pi)),int(p.y-t*sin(p.angle-angle+pi)))
         self.zone_dessin.coords(self.f,int(p.x),int(p.y),int(round(50*cos(p.angle),1)+p.x),int(p.y+round(50*sin(-p.angle),1)))
+        
+    def update(self):
+        self.dessiner()
+        
