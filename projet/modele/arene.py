@@ -2,9 +2,10 @@ import numpy as np
 from .robot import Robot
 from .obstacle import Obstacle
 from math import pow,atan,sqrt
+from threading import Thread
 
 #j'ai juste fait le cas ou la forme est un caree
-class Arene(object):
+class Arene(Thread):
 
     """La classe arene permet la représentation des éléments dans l'arène pour faire nos calculs comme la détection d'obtacle.
     Elle gère une matrice dans laquelle chaque élément correpond à un "object" à cette position dans l'arene.
@@ -16,6 +17,7 @@ class Arene(object):
         :param list_rob: liste d'élément de type robotà mettre dans la matrice, dans un premier temps 1 seul
     """
     def __init__(self,nb_ligne, nb_colonne):
+        super(Arene, self).__init__()
         self.nb_ligne=nb_ligne
         self.nb_colonne=nb_colonne
         self.matrice=np.zeros((nb_ligne,nb_colonne))
@@ -93,6 +95,10 @@ class Arene(object):
             self.list_rob=[]
             for i in len(l_rob):
                 self.inserer_robot(l_rob[i])
+                
+    def run(self,fps):
+        self.update()
+        time.sleep(1./fps)
 
 def calcul_angle(p):
     a=atan(p.largeur/p.longueur)
