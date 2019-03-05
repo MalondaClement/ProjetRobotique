@@ -97,8 +97,9 @@ class Arene(Thread):
                 self.inserer_robot(l_rob[i])
                 
     def run(self,fps):
-        self.update()
-        time.sleep(1./fps)
+        while True:
+            self.update()
+            time.sleep(1./fps)
 
 def calcul_angle(p):
     a=atan(p.largeur/p.longueur)
