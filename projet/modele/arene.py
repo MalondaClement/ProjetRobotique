@@ -77,6 +77,26 @@ class Arene(object):
             :returns : 0 si vide, 1 si obstacle, 2 si robot
         """
         return int(self.matrice[x,y])
+    
+       
+    def supprimer_uns(self) :
+        """Supprime les 1 dans la matrice pour supprimer le robot
+        """
+        for i in range (0, self.nb_ligne) :
+            for j in range(0, self.nb_colonne) :
+                if self.matrice[i,j]==1:
+                    self.matrice[i,j]=0
+
+    def update(self) :
+        """ attention : la fonction creee une boucle infine, elle doit être lancee en arrière-plan
+        """
+        while true : 
+            self.supprimer_uns()
+            l_rob= self.list_rob
+            self.list_rob=[]
+            for i in len(l_rob):
+                self.inserer_robot(l_rob[i])
+            sleep(0.05)
 
 def calcul_angle(p):
     a=atan(p.largeur/p.longueur)
