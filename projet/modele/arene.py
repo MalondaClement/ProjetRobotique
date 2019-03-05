@@ -86,7 +86,7 @@ class Arene(Thread):
         """
         for i in range (0, self.nb_ligne) :
             for j in range(0, self.nb_colonne) :
-                if self.matrice[i,j]==1:
+                if self.matrice[i,j]==2:
                     self.matrice[i,j]=0
 
     def update(self) :
