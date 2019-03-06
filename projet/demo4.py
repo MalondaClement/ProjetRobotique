@@ -2,6 +2,7 @@ import time
 try:
     from robot2I013 import Robot2I013 as Robot
     robot = Robot()
+    
 except ImportError:
     from interface.fenetre import Fenetre
     from modele.robotreel import RobotReel as Robot
@@ -13,8 +14,8 @@ ctrl=ControleurRobotReel(robot)
 def main(ctrl):
     while not ctrl.stop():
         ctrl.update()
-        time.sleep(dt)
-        
+        time.sleep(0.20)
+    
 """def main(z,p,f,c):
     p.actualiser()
     z.dessiner()
