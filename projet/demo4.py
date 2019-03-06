@@ -1,19 +1,16 @@
 import math as m
-from interface.fenetre import*
+from interface.fenetre import Fenetre
 from modele.robotreel import RobotReel
 from modele.controleur_robotreel import ControleurRobotReel
 
-avancer =1
-tourner =0
+f=Fenetre()
+f.creer()
 
-def main(o,z,p,fenetre):
-    c=ControleurRobotReel(p)
+"""def main(z,p,f,c):
     p.actualiser()
     z.dessiner()
-    z.zone_dessin.create_rectangle(p.x,p.y,p.x+1,p.y+1,fill='green')
     if (z.avancer ==1) :
         if (p.MOTOR_LEFT_ROTATION < 5000*360/p.WHEEL_CIRCUMFERENCE) :
-            print(p.MOTOR_LEFT_ROTATION)
             c.avancer(1000)
 
         else :
@@ -30,4 +27,7 @@ def main(o,z,p,fenetre):
     		z.tourner =0
     		p.offset_motor_encoder(3, 0)
 
-
+while not hasattr(f, 'z'):
+    pass
+c=ControleurRobotReel(f.p)
+main(f.z,f.p,f,c) """   		
