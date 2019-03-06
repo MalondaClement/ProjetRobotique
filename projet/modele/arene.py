@@ -101,11 +101,3 @@ class Arene(Thread):
             self.update()
             time.sleep(1./fps)
 
-def calcul_angle(p):
-    a=atan(p.largeur/p.longueur)
-    return a
-
-def calcul_hypo(p):
-    a=pow(p.largeur/2,2)+pow(p.longueur/2,2)
-    return sqrt(a)
-
