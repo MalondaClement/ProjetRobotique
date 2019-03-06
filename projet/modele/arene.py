@@ -3,6 +3,7 @@ from .robot import Robot
 from .obstacle import Obstacle
 from math import pow,atan,sqrt
 from threading import Thread
+import time 
 
 #j'ai juste fait le cas ou la forme est un caree
 class Arene(Thread):
@@ -60,7 +61,7 @@ class Arene(Thread):
             La fonction fait appel aux fonctions est_dans_matrice et est_vide.
         """
         if self.est_dans_matrice(r) and self.est_vide:
-            self.matrice[r.y,r.x]=2
+            self.matrice[int(r.y),int(r.x)]=2
             self.list_rob.append(r)
 
     def inserer_obs(self,o):
@@ -79,8 +80,7 @@ class Arene(Thread):
             :returns : 0 si vide, 1 si obstacle, 2 si robot
         """
         return int(self.matrice[x,y])
-    
-       
+
     def supprimer_uns(self) :
         """Supprime les 1 dans la matrice pour supprimer le robot
         """
@@ -90,14 +90,14 @@ class Arene(Thread):
                     self.matrice[i,j]=0
 
     def update(self) :
-            self.supprimer_uns()
-            l_rob= self.list_rob
-            self.list_rob=[]
-            for i in len(l_rob):
-                self.inserer_robot(l_rob[i])
+        self.supprimer_uns()
+        l_rob= self.list_rob
+        self.list_rob=[]
+        for i in l_rob:
+            self.inserer_robot(i)
+            i.actualiser()
                 
-    def run(self,fps):
+    def run(self):
         while True:
             self.update()
-            time.sleep(1./fps)
-
+            time.sleep(1./20)
