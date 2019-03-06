@@ -3,16 +3,59 @@ from tkinter.filedialog import *
 from math import degrees, radians
 from modele.arene import*
 from modele.obstacle import*
-from modele.robot import*
+from modele.robotreel import*
 from .affichage import *
-from demo4 import *
+from threading import Thread
+from modele.controleur_robotreel import ControleurRobotReel
+import time 
 
-class Fenetre(object):
+class Fenetre(Thread):
     def __init__(self):
         self.fin=False
+        super(Fenetre,self).__init__()
+                
+    def creer(self):
+        """cree une fenetre"""
+        self.fenetre = Tk()#creer une fenetre
+        self.fenetre.title('Arene')#donner un nom  la fenetre
 
+        self.fenetre.geometry("1200x600")
+        """creation des different bouton"""
+        #f=Fenetre
+        BoutonExporter = Button(self.fenetre, text ='Exporter', command = self.export_file)
+        BoutonExporter.pack(side = LEFT, padx = 10, pady = 10)
+
+        BoutonArreter = Button(self.fenetre, text ='Arreter', command = self.arreter)
+        BoutonArreter.pack(side = LEFT, padx = 10, pady = 10)
+
+        BoutonGo = Button(self.fenetre, text ='Démarrer', command = self.demarrer)
+        BoutonGo.pack(side = LEFT, padx = 10, pady = 10)
+
+        BoutonQuitter = Button(self.fenetre, text ='Quitter', command = self.fenetre.destroy)
+        BoutonQuitter.pack(side = LEFT, padx = 5, pady = 5)
+
+        BoutonImporter = Button(self.fenetre, text ='Importer', command = self.import_file)
+        BoutonImporter.pack(side = LEFT, padx = 10, pady = 10)
+
+        BoutonReset = Button(self.fenetre, text ='Reset', command = self.reset)
+        BoutonReset.pack(side = LEFT, padx = 10, pady = 10)
+
+        """creation de case avec des informations a l'interieur"""
+        label = Label(self.fenetre, text="x y", bg="yellow")
+        label.pack()
+
+        self.fenetre.mainloop()
+    
     def demarrer(self):
-        main(self,self.z,self.p,fenetre)
+         c=ControleurRobotReel(self.p)
+         if (self.p.y>350) :
+            c.avancer(1000)
+            self.p.actualiser()
+            self.run()
+            self.b.run()
+         else:
+            return False 
+         self.fenetre.after(0.1,self.demarrer())          
 
 
     def reset(self):
@@ -24,6 +67,10 @@ class Fenetre(object):
 
     def import_file(self):
         filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
+        if filepath==() or  filepath=="":
+            return 
+        if hasattr(self, 'z'):
+            self.reset(self)
         fichier = open(filepath,'r')
         ARENE=False
         ROBOT=False
@@ -35,17 +82,17 @@ class Fenetre(object):
                 ROBOT=False
                 OBSTACLE=False
             elif i.strip()=="ROBOT":
-                b=Arene(int(L[0]),int(L[1]))
-                b.cree_mur()
+                self.b=Arene(int(L[0]),int(L[1]))
+                self.b.cree_mur()
                 L=[]
                 ARENE=False
                 ROBOT=True
                 OBSTACLE=False
             elif i.strip()=="OBSTACLE":
-                self.p=RobotReel(int(L[0]),int(L[1]),radians(int(L[2])),b)
+                self.p=RobotReel(int(L[0]),int(L[1]),radians(int(L[2])),self.b)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
-                b.inserer_robot(self.p)
+                self.b.inserer_robot(self.p)
                 L=[]
                 ARENE=False
                 ROBOT=False
@@ -54,10 +101,10 @@ class Fenetre(object):
                 a=0
                 while a<len(L):
                     o=Obstacle(int(L[a]),int(L[a+1]),int(L[a+2]),int(L[a+3]),int(L[a+4]))
-                    b.inserer_obs(o)
+                    self.b.inserer_obs(o)
                     a=a+5
-                self.z=Affichage(b,fenetre,self.p)
-                self.z.arene=b
+                self.z=Affichage(self.b,self.fenetre,self.p)
+                self.z.arene=self.b
                 self.z.zone()
                 self.z.afficher()
                 self.z.afficher_robot()
@@ -72,6 +119,8 @@ class Fenetre(object):
     def export_file(self):
         """Cette fonction permet de sauvegarder une configuration : creer un nouveau fichier Scenario.txt
         """
+        if not hasattr(self, 'z'):
+            return 
         f=open('Scenario.txt','w')
         f.write('ARENE\n')
         f.write(str(self.z.arene.nb_ligne)+'\n')
@@ -93,57 +142,13 @@ class Fenetre(object):
 
     def arreter(self):
         self.fin=True
-        print(self.fin)
 
-f=Fenetre
-f.fin=False
-def importe():
-    f.import_file(f)
-
-def export():
-    f.export_file(f)
-
-def arrete():
-    f.arreter(f)
-
-def demar():
-    if not f.fin:
-        f.demarrer(f)
-        fenetre.after(20,demar)
-    else:
-        f.fin=False
-
-def res():
-    f.reset(f)
+    def update(self):
+        self.z.dessiner()
+        
+    def run(self,fps):
+        while True:
+            self.update()
+            time.sleep(1./fps)
 
 
-"""cree une fenetre"""
-fenetre = Tk()#creer une fenetre
-fenetre.title('Arene')#donner un nom  la fenetre
-
-fenetre.geometry("1200x600")
-"""creation des different bouton"""
-f=Fenetre
-BoutonExporter = Button(fenetre, text ='Exporter', command = export)
-BoutonExporter.pack(side = LEFT, padx = 10, pady = 10)
-
-BoutonArreter = Button(fenetre, text ='Arreter', command = arrete)
-BoutonArreter.pack(side = LEFT, padx = 10, pady = 10)
-
-BoutonGo = Button(fenetre, text ='Démarrer', command = demar)
-BoutonGo.pack(side = LEFT, padx = 10, pady = 10)
-
-BoutonQuitter = Button(fenetre, text ='Quitter', command = fenetre.destroy)
-BoutonQuitter.pack(side = LEFT, padx = 5, pady = 5)
-
-BoutonImporter = Button(fenetre, text ='Importer', command = importe)
-BoutonImporter.pack(side = LEFT, padx = 10, pady = 10)
-
-BoutonReset = Button(fenetre, text ='Reset', command = res)
-BoutonReset.pack(side = LEFT, padx = 10, pady = 10)
-
-"""creation de case avec des informations a l'interieur"""
-label = Label(fenetre, text="x y", bg="yellow")
-label.pack()
-
-fenetre.mainloop()
