@@ -15,6 +15,7 @@ def main(ctrl):
     while not ctrl.stop():
         ctrl.update()
         time.sleep(0.20)
+main(ctrl)
     
 """def main(z,p,f,c):
     p.actualiser()
