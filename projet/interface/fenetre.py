@@ -13,6 +13,7 @@ class Fenetre(Thread):
     def __init__(self):
         self.fin=False
         super(Fenetre,self).__init__()
+        
                 
     def creer(self):
         """cree une fenetre"""
@@ -46,12 +47,16 @@ class Fenetre(Thread):
         self.fenetre.mainloop()
     
     def demarrer(self):
-        ctrl=ControleurRobotReel(self.p)
-        while not ctrl.stop():
-            ctrl.update()
-            time.sleep(0.05)
-        
-        print ("fin")
+        #self.b.start()
+        #ctrl=ControleurRobotReel(self.p)
+        #self.start()
+        if not self.ctrl.stop():
+            self.ctrl.update()
+            self.update()
+            self.b.update()
+            self.fenetre.after(50,self.demarrer)
+        else:
+            print ("fin")
 
     def reset(self):
         """Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
@@ -84,6 +89,7 @@ class Fenetre(Thread):
                 OBSTACLE=False
             elif i.strip()=="OBSTACLE":
                 self.p=RobotReel(int(L[0]),int(L[1]),radians(int(L[2])),self.b)
+                self.ctrl=ControleurRobotReel(self.p)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 self.b.inserer_robot(self.p)

@@ -40,7 +40,6 @@ class Affichage(object):
     def dessiner(self):
         """Cette fonction permet de bouger l'image du robot et de sa fleche selon les coordonnée du robot
         """
-        print(self.p.y)
         p=self.p
         t=self.t
         angle=self.a
