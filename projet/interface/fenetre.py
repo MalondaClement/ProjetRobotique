@@ -43,25 +43,19 @@ class Fenetre(Thread):
         """creation de case avec des informations a l'interieur"""
         label = Label(self.fenetre, text="x y", bg="yellow")
         label.pack()
-
         self.fenetre.mainloop()
     
     def demarrer(self):
-         c=ControleurRobotReel(self.p)
-         if (self.p.y>350) :
-            c.avancer(1000)
-            self.p.actualiser()
-            self.run()
-            self.b.run()
-         else:
-            return False 
-         self.fenetre.after(0.1,self.demarrer())          
-
+        ctrl=ControleurRobotReel(self.p)
+        while not ctrl.stop():
+            ctrl.update()
+            time.sleep(0.05)
+        
+        print ("fin")
 
     def reset(self):
         """Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
         """
-        self.z.zone_dessin.delete(ALL)
         self.z.zone_dessin.destroy()
 
 
@@ -144,11 +138,12 @@ class Fenetre(Thread):
         self.fin=True
 
     def update(self):
+        self.z.zone_dessin.create_rectangle(self.p.x,self.p.y,self.p.x+1,self.p.y+1,fill='green')
         self.z.dessiner()
         
-    def run(self,fps):
+    def run(self):
         while True:
             self.update()
-            time.sleep(1./fps)
+            time.sleep(1./20)
 
 

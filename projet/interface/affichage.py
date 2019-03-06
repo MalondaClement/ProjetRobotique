@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter.filedialog import *
 from modele.arene import *
-from modele.controler import *
 from math import pi, cos, sin, pow, sqrt
 
 class Affichage(object):
@@ -33,7 +32,6 @@ class Affichage(object):
         self.f=self.zone_dessin.create_line(p.x,p.y,round(50*cos(p.angle),1)+p.x,p.y+round(50*sin(-p.angle),1),arrow='last',fill='yellow')
 
     def zone(self):
-        print (self.fen)
         self.zone_dessin =Canvas(self.fen, width=self.arene.nb_colonne,height=self.arene.nb_ligne,background='white')
         #self.zone_dessin.focus_set()
         #self.zone_dessin.bind('<Key>',clavier)
@@ -42,6 +40,7 @@ class Affichage(object):
     def dessiner(self):
         """Cette fonction permet de bouger l'image du robot et de sa fleche selon les coordonnée du robot
         """
+        print(self.p.y)
         p=self.p
         t=self.t
         angle=self.a
