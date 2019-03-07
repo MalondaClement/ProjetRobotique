@@ -69,7 +69,7 @@ class Fenetre(Thread):
         if filepath==() or  filepath=="":
             return
         if hasattr(self, 'z'):
-            self.reset(self)
+            self.reset()
         fichier = open(filepath,'r')
         ARENE=False
         ROBOT=False
