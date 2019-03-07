@@ -18,5 +18,8 @@ ctrl=ControleurRobotReel(robot)
 def main(ctrl):
     while not ctrl.stop():
         ctrl.update()
-        time.sleep(0.20)
+        time.sleep(0.01)
+robot.offset_motor_encoder(robot.MOTOR_LEFT, robot.get_motor_position()[0])
+robot.offset_motor_encoder(robot.MOTOR_RIGHT, robot.get_motor_position()[1])
+#robot.set_motor_dps(robot.MOTOR_LEFT+robot.MOTOR_RIGHT,0)
 main(ctrl)
