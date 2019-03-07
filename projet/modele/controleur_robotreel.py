@@ -11,6 +11,9 @@ class ControleurRobotReel(object):
         self.ava=True
         self.tour=False
         self.cpt=0
+        
+    def get_distance(self) :
+        return self.robot.get_distance()
 
     def update(self):
         '''if StratCarre(self.robot, 1000, 1000):
