@@ -1,5 +1,5 @@
 class Lisser:
-	def __init__(self, controler,):
+	def __init__(self, controler):
 		self.size=5
 		self.controler=controler
 		self.hist=[0]*5
