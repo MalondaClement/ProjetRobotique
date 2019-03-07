@@ -52,7 +52,7 @@ class Fenetre(Thread):
         #self.start()
         if not self.ctrl.stop():
             self.ctrl.update()
-            self.update()
+            self.update() ## a griser si pas d'affichage
             self.b.update()
             self.fenetre.after(50,self.demarrer)
         else:
