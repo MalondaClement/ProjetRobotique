@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter.filedialog import *
 from modele.arene import *
-from modele.controler import *
 from math import pi, cos, sin, pow, sqrt
 
 class Affichage(object):
@@ -9,13 +8,13 @@ class Affichage(object):
         Elle utilise notre matrice pour en faire un représentation concrète dans la fenètre graphique.
         :param arene: l'arène dont on souhaite avoir la représentation en graphique
     """
-    def __init__(self,arene,fenetre,robot):
+    def __init__(self,arene,fen,robot):
         self.arene=arene
         self.vitesse=10
-        self.fenetre=fenetre
+        self.fen=fen
         self.p=robot
-        self.a=calcul_angle(self.p)
-        self.t=calcul_hypo(self.p)
+        self.a=robot.calcul_angle()
+        self.t=robot.calcul_hypo()
         self.avancer=1
         self.tourner=0
 
@@ -33,9 +32,9 @@ class Affichage(object):
         self.f=self.zone_dessin.create_line(p.x,p.y,round(50*cos(p.angle),1)+p.x,p.y+round(50*sin(-p.angle),1),arrow='last',fill='yellow')
 
     def zone(self):
-        self.zone_dessin =Canvas(self.fenetre, width=self.arene.nb_colonne,height=self.arene.nb_ligne,background='white')
-        self.zone_dessin.focus_set()
-        self.zone_dessin.bind('<Key>',clavier)
+        self.zone_dessin =Canvas(self.fen, width=self.arene.nb_colonne,height=self.arene.nb_ligne,background='white')
+        #self.zone_dessin.focus_set()
+        #self.zone_dessin.bind('<Key>',clavier)
         self.zone_dessin.pack()
 
     def dessiner(self):

@@ -1,19 +1,27 @@
-import math as m
-from interface.fenetre import*
-from modele.robotreel import RobotReel
-from modele.controleur_robotreel import ControleurRobotReel
+import time
+try:
+    from robot2I013 import Robot2I013 as Robot
+    robot = Robot()
+    
+except ImportError:
+    from interface.fenetre import Fenetre
+    from modele.robotreel import RobotReel as Robot
+    from modele.controleur_robotreel import ControleurRobotReel
+    f=Fenetre()
+    f.creer()
 
-avancer =1
-tourner =0
-
-def main(o,z,p,fenetre):
-    c=ControleurRobotReel(p)
+ctrl=ControleurRobotReel(robot)
+def main(ctrl):
+    while not ctrl.stop():
+        ctrl.update()
+        time.sleep(0.20)
+main(ctrl)
+    
+"""def main(z,p,f,c):
     p.actualiser()
     z.dessiner()
-    z.zone_dessin.create_rectangle(p.x,p.y,p.x+1,p.y+1,fill='green')
     if (z.avancer ==1) :
         if (p.MOTOR_LEFT_ROTATION < 5000*360/p.WHEEL_CIRCUMFERENCE) :
-            print(p.MOTOR_LEFT_ROTATION)
             c.avancer(1000)
 
         else :
@@ -30,4 +38,7 @@ def main(o,z,p,fenetre):
     		z.tourner =0
     		p.offset_motor_encoder(3, 0)
 
-
+while not hasattr(f, 'z'):
+    pass
+c=ControleurRobotReel(f.p)
+main(f.z,f.p,f,c) """   		

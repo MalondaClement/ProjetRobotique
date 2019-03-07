@@ -47,6 +47,7 @@ class RobotReel(object) :
             self.MOTOR_RIGHT_DPS = dps
         elif port ==MOTOR_LEFT+MOTOR_RIGHT :
             self.MOTOR_RIGHT_DPS = self.MOTOR_LEFT_DPS = dps
+        self.actualiser()
 
     def get_motor_position (self) :
         return MOTOR_LEFT_ROTATION, MOTOR_RIGHT_ROTATION
@@ -100,7 +101,6 @@ class RobotReel(object) :
             self.y-= sin(self.angle)* (((self.MOTOR_LEFT_DPS/20) * self.WHEEL_DIAMETER )/ 360 ) /10
 
         elif self.MOTOR_RIGHT_DPS == -self.MOTOR_LEFT_DPS :
-            print (self.angle)
             self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
             
     def calcul_angle(self):
