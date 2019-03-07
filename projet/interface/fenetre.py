@@ -51,8 +51,9 @@ class Fenetre(Thread):
         #ctrl=ControleurRobotReel(self.p)
         #self.start()
         if not self.ctrl.stop():
+            #print("a")
             self.ctrl.update()
-            self.update() ## a griser si pas d'affichage
+            #self.update() ## a griser si pas d'affichage
             self.b.update()
             self.fenetre.after(50,self.demarrer)
         else:
@@ -113,6 +114,7 @@ class Fenetre(Thread):
                 self.z.zone()
                 self.z.afficher()
                 self.z.afficher_robot()
+                self.start()
             elif ARENE:
                 L.append(i.strip())
             elif ROBOT:
@@ -154,6 +156,7 @@ class Fenetre(Thread):
 
     def run(self):
         while True:
+            print("b")
             self.update()
             time.sleep(1./20)
 
