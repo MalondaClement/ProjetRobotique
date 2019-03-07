@@ -7,14 +7,14 @@ from modele.robotreel import*
 from .affichage import *
 from threading import Thread
 from modele.controleur_robotreel import ControleurRobotReel
-import time 
+import time
 
 class Fenetre(Thread):
     def __init__(self):
         self.fin=False
         super(Fenetre,self).__init__()
-        
-                
+
+
     def creer(self):
         """cree une fenetre"""
         self.fenetre = Tk()#creer une fenetre
@@ -45,7 +45,7 @@ class Fenetre(Thread):
         label = Label(self.fenetre, text="x y", bg="yellow")
         label.pack()
         self.fenetre.mainloop()
-    
+
     def demarrer(self):
         #self.b.start()
         #ctrl=ControleurRobotReel(self.p)
@@ -67,7 +67,7 @@ class Fenetre(Thread):
     def import_file(self):
         filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
         if filepath==() or  filepath=="":
-            return 
+            return
         if hasattr(self, 'z'):
             self.reset(self)
         fichier = open(filepath,'r')
@@ -100,7 +100,7 @@ class Fenetre(Thread):
             elif i.strip()=="FIN":
                 a=0
                 while a<len(L):
-                    o=Obstacle(int(L[a]),int(L[a+1]),int(L[a+2]),int(L[a+3]),int(L[a+4]))
+                    o=ObstacleRectangle(int(L[a]),int(L[a+1]),"""int(L[a+2])""",int(L[a+3]),int(L[a+4]))#modif
                     self.b.inserer_obs(o)
                     a=a+5
                 self.z=Affichage(self.b,self.fenetre,self.p)
@@ -120,7 +120,7 @@ class Fenetre(Thread):
         """Cette fonction permet de sauvegarder une configuration : creer un nouveau fichier Scenario.txt
         """
         if not hasattr(self, 'z'):
-            return 
+            return
         f=open('Scenario.txt','w')
         f.write('ARENE\n')
         f.write(str(self.z.arene.nb_ligne)+'\n')
@@ -146,7 +146,7 @@ class Fenetre(Thread):
     def update(self):
         self.z.zone_dessin.create_rectangle(self.p.x,self.p.y,self.p.x+1,self.p.y+1,fill='green')
         self.z.dessiner()
-        
+
     def run(self):
         while True:
             self.update()
