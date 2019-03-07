@@ -11,7 +11,7 @@ class ControleurRobotReel(object):
         self.ava=True
         self.tour=False
         self.cpt=0
-        
+
     def get_distance(self) :
         return self.robot.get_distance()
 
@@ -19,7 +19,7 @@ class ControleurRobotReel(object):
         '''if StratCarre(self.robot, 1000, 1000):
             self.sp = True
             return self.stop()'''
-        print(self.cpt)
+        '''print(self.cpt)
         if self.cpt==4:
             self.sp=True
             return self.stop()
@@ -33,7 +33,10 @@ class ControleurRobotReel(object):
             if self.StratAngleDroit.step()==False:
                 self.ava=True
                 self.tour=False
-                self.cpt+=1
+                self.cpt+=1'''
+        if self.StratAngleDroit.step()==False:
+            self.sp=True
+            return self.stop()
 
 
 
