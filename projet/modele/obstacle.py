@@ -35,8 +35,8 @@ class ObstacleEllipse(Obstacle):
         self.grand_r=grand_r
         self.petit_r=petit_r
 
-class ObstacleTringle(Obstacle):
-    """ ObstacleTringle est une classe fille de Obstacle qui permet de creer des objets triangulaires dans notre arène
+class ObstacleTriangle(Obstacle):
+    """ ObstacleTriangle est une classe fille de Obstacle qui permet de creer des objets triangulaires dans notre arène
     :param x: position en x dans la matrice du centre de l'obstacle
     :param y: position en y dans la matrice du centre de l'obstacle
     :param hauteur: hauteur du triangle
