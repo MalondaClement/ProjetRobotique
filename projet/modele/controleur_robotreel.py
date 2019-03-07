@@ -11,26 +11,26 @@ class ControleurRobotReel(object):
         self.ava=True
         self.tour=False
         self.cpt=0
-        
+
     def update(self):
-        print(self.cpt)
-        if self.cpt==4:
+        #print(self.cpt)
+        '''if self.cpt==4:
             self.sp=True
             return self.stop()
-            
+
         elif self.ava:
             if self.StratLigne.step()==False:
                 self.ava=False
                 self.tour=True
-                
+
         elif self.tour:
             if self.StratAngleDroit.step()==False:
                 self.ava=True
                 self.tour=False
-                self.cpt+=1
-        
-                
-            
-        
+                self.cpt+=1'''
+
+
+
+
     def stop(self):
         return self.sp
