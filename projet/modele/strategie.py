@@ -58,3 +58,24 @@ class StratAngleDroit(object):
         
     def stop(self):
         return self.parcouru>=self.distance
+
+class StratCarre(object):
+    def __init__(self,robot,vitesse,longueurCarre):
+        stratTourner = StratAngleDroit(robot,90)
+        stratAvancer = StratLigne(longueurCarre,vitesse,robot)
+        self.strategies = [stratAvancer,stratTourner,stratAvancer,stratTourner,stratAvancer,stratTourner,stratAvancer]
+    
+    
+    def start(self):
+        cur = 0
+        
+    def step(self):
+        if self.strop():
+            return
+        if self.cur < 0 or self.strategies[self.cur].strop():
+            self.cur+=1
+            self.strategies[self.cur].strat()
+            self.strategies[self.cur].step()
+            
+    def stop (self):
+        return self.cur == len(self.strategies)-1 and self.strategies[self.cur].stop()
