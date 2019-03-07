@@ -100,7 +100,12 @@ class Fenetre(Thread):
             elif i.strip()=="FIN":
                 a=0
                 while a<len(L):
-                    o=ObstacleRectangle(int(L[a]),int(L[a+1]),"""int(L[a+2])""",int(L[a+3]),int(L[a+4]))#modif
+                    if int(L[a+2]) == 1:
+                        o=ObstacleRectangle(int(L[a]),int(L[a+1]),int(L[a+3]),int(L[a+4]))#modif
+                    elif int(L[a+2]) == 2:
+                        o=ObstacleEllipse(int(L[a]),int(L[a+1]),int(L[a+3]),int(L[a+4]))#modif
+                    else :
+                        o=ObstacleTriangle(int(L[a]),int(L[a+1]),int(L[a+3]),int(L[a+4]))#modif
                     self.b.inserer_obs(o)
                     a=a+5
                 self.z=Affichage(self.b,self.fenetre,self.p)
