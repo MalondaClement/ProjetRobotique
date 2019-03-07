@@ -26,10 +26,13 @@ class StratLigne(object):
         self.parcouru=0
 
     def step(self):
-        self.parcouru=(self.robot.MOTOR_LEFT_ROTATION*self.robot.WHEEL_CIRCUMFERENCE)/360
+        x,y=self.robot.get_motor_position()
+        print(x,y)
+        self.parcouru=(x*self.robot.WHEEL_CIRCUMFERENCE)/360
         if self.stop():
-            self.robot.offset_motor_encoder(3, 0)
-            self.robot.MOTOR_LEFT_DPS = self.robot.MOTOR_RIGHT_DPS = 0
+            self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
+            self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
+            self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
             return False
         self.avancer(self.vitesse)
 
@@ -42,19 +45,21 @@ class StratAngleDroit(object):
         self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/4*360/self.robot.WHEEL_CIRCUMFERENCE
 
     def tourner (self, angle):
-        self.robot.set_motor_dps(1, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
-        self.robot.set_motor_dps(2, ((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
+        self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
+        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, ((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
 
     def start(self):
         self.parcouru=0
 
     def step(self):
-        self.parcouru=self.robot.MOTOR_LEFT_ROTATION
+        x,y=self.robot.get_motor_position()
+        self.parcouru=x
         if self.stop():
-            self.robot.offset_motor_encoder(3, 0)
-            self.robot.MOTOR_LEFT_DPS = self.robot.MOTOR_RIGHT_DPS = 0
+            self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
+            self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
+            self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
             return False
-        self.tourner(-90)
+        self.tourner(-45)
 
     def stop(self):
         return self.parcouru>=self.distance
