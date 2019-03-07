@@ -1,4 +1,4 @@
-from .strategie import StratLigne,StratAngleDroit
+from .strategie import StratLigne,StratAngleDroit, StratCarre
 
 class ControleurRobotReel(object):
     def __init__(self,robot):
@@ -13,8 +13,11 @@ class ControleurRobotReel(object):
         self.cpt=0
 
     def update(self):
-        #print(self.cpt)
-        '''if self.cpt==4:
+        '''if StratCarre(self.robot, 1000, 1000):
+            self.sp = True
+            return self.stop()'''
+        print(self.cpt)
+        if self.cpt==4:
             self.sp=True
             return self.stop()
 
@@ -27,7 +30,7 @@ class ControleurRobotReel(object):
             if self.StratAngleDroit.step()==False:
                 self.ava=True
                 self.tour=False
-                self.cpt+=1'''
+                self.cpt+=1
 
 
 
