@@ -59,7 +59,7 @@ class StratAngleDroit(object):
     def stop(self):
         return self.parcouru>=self.distance
 
-class StratCarrer(object):
+class StratCarre(object):
     def __init__(self,robot,vitesse,longueurCarre):
         stratTourner = StratAngleDroit(robot,90)
         stratAvancer = StratLigne(longueurCarre,vitesse,robot)
