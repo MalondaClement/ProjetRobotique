@@ -2,12 +2,9 @@ import time
 from modele.controleur_robotreel import ControleurRobotReel
 
 try:
-    print("try")
     from robot2I013 import Robot2I013 as Robot
     robot = Robot()
-    print("try ok")
 except ImportError:
-    print("execpt")
     from interface.fenetre import Fenetre
     from modele.robotreel import RobotReel as Robot
     from modele.controleur_robotreel import ControleurRobotReel

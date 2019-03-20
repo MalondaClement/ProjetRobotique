@@ -1,17 +1,3 @@
-'''
-class Traducteur:
-	def __init__(self, robot) :
-		self.robot = robot
-
-
-	def avancer (self, vitesse) :
-		# attention : vitesse en mm/s
-		self.robot.set_motor_dps(3, ((vitesse*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
-
-	def tourner (self, angle) :
-		#attention: angle est une vitesse angulaire en degré par seconde, un angle positif fait tourner dans le sens trigonométrique
-		self.robot.set_motor_dps(1, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
-		self.robot.set_motor_dps(2, ((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)'''
 
 class StratLigne(object):
     def __init__(self,distance,vitesse,robot):
@@ -59,28 +45,44 @@ class StratAngleDroit(object):
             self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
             return False
-        self.tourner(-45)
+        self.tourner(-90)
 
     def stop(self):
         return self.parcouru>=self.distance
 
 class StratCarre(object):
     def __init__(self,robot,vitesse,longueurCarre):
-        stratTourner = StratAngleDroit(robot)
-        stratAvancer = StratLigne(longueurCarre,vitesse,robot)
-        self.strategies = [stratAvancer,stratTourner,stratAvancer,stratTourner,stratAvancer,stratTourner,stratAvancer]
+        self.robot=robot
+        self.vitesse=vitesse
+        self.longueurCarre=longueurCarre
+        self.StratLigne=StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        self.StratAngleDroit=StratAngleDroit(self.robot)
+        self.StratLigne.start()
+        self.StratAngleDroit.start()
+        self.sp=False
+        self.ava=True
+        self.tour=False
+        self.cpt=0
 
-
-    def start(self):
-        self.cur = 0
+    def get_distance(self) :
+        return self.robot.get_distance()
 
     def step(self):
-        if self.stop():
-            return
-        if self.cur < 0 or self.strategies[self.cur].stop():
-            self.cur+=1
-            self.strategies[self.cur].start()
-            self.strategies[self.cur].step()
+        if self.cpt==4:
+            self.sp=True
+            return self.stop()
 
-    def stop (self):
-        return self.cur == len(self.strategies)-1 and self.strategies[self.cur].stop()
+        elif self.ava:
+            if self.StratLigne.step()==False:
+                self.ava=False
+                self.tour=True
+
+        elif self.tour:
+            print('oui')
+            if self.StratAngleDroit.step()==False:
+                self.ava=True
+                self.tour=False
+                self.cpt+=1
+
+    def stop(self):
+        return self.sp

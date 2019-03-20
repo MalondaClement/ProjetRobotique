@@ -33,6 +33,8 @@ class RobotReel(object) :
         self.WHEEL_DIAMETER           = 66.5 
         self.WHEEL_BASE_CIRCUMFERENCE = self.WHEEL_BASE_WIDTH * pi
         self.WHEEL_CIRCUMFERENCE      = self.WHEEL_DIAMETER   * pi
+        self.MOTOR_LEFT = 1
+        self.MOTOR_RIGHT = 2
         
 
 
@@ -50,16 +52,17 @@ class RobotReel(object) :
         self.actualiser()
 
     def get_motor_position (self) :
-        return MOTOR_LEFT_ROTATION, MOTOR_RIGHT_ROTATION
+        return self.MOTOR_LEFT_ROTATION, self.MOTOR_RIGHT_ROTATION
 
     def offset_motor_encoder (self, port, offset) :
         #port=1 pour la roue gauche, 2 pour la roue droite, 3 pour les 2 roues
         if port == MOTOR_LEFT :
-            self.MOTOR_LEFT_ROTATION = offset
+            self.MOTOR_LEFT_ROTATION -= offset
         elif port == MOTOR_RIGHT :
-            self.MOTOR_RIGHT_ROTATION = offset
+            self.MOTOR_RIGHT_ROTATION -= offset
         elif port ==MOTOR_LEFT+MOTOR_RIGHT :
-            self.MOTOR_RIGHT_ROTATION = self.MOTOR_LEFT_ROTATION = offset
+            self.MOTOR_RIGHT_ROTATION -= offset
+            self.MOTOR_LEFT_ROTATION -= offset
 
     def get_distance (self) :
         """Rcupération de la distance qui sépare de l'obstacle
