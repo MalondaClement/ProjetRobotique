@@ -26,7 +26,7 @@ class StratLigne(object):
             self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
         return self.parcouru>self.distance
-        
+
 
 class StratAngleDroit(object):
     def __init__(self,robot):
@@ -112,5 +112,5 @@ class StratMur(object):
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
     def stop(self):
-        return self.robot.get_distance()==8190
+        return self.robot.get_distance()<=30
 
