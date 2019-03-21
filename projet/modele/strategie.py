@@ -17,7 +17,6 @@ class StratLigne(object):
 
     def step(self):
         x,y=self.robot.get_motor_position()
-        print(x,y)
         self.avancer(self.vitesse)
         self.parcouru=(x*self.robot.WHEEL_CIRCUMFERENCE)/360
 
@@ -40,9 +39,9 @@ class StratAngleDroit(object):
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
     def step(self):
-        self.tourner(-40)
+        self.tourner(-90)
         x,y=self.robot.get_motor_position()
-        self.parcouru=-y
+        self.parcouru=x
 
     def stop(self):
         return self.parcouru>=self.distance
@@ -102,6 +101,8 @@ class StratMur(object):
 
     def step(self):
         self.avancer(self.vitesse)
+        print("getdistance")
+        print(self.robot.get_distance())
         if self.stop():
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
