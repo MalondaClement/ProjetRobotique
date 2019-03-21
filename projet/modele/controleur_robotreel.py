@@ -1,27 +1,28 @@
-from .strategie import StratLigne,StratAngleDroit, StratCarre
+from .strategie import StratLigne,StratAngleDroit, StratCarre, StratMur
 from threading import Thread
 class ControleurRobotReel(Thread):
-    def __init__(self,robot):
-        super(ControleurRobotReel,self).__init__()
-        self.robot=robot
-        #self.StratLigne=StratLigne(500, 600, self.robot)
-        self.StratCarre=StratCarre(self.robot,250,500)
-        self.sp=False
 
-    def init(self):
-        self.start()
+    # def __init__(self,robot):
+    #     super(ControleurRobotReel,self).__init__()
+    #     self.robot=robot
+    #     #self.StratLigne=StratLigne(500, 600, self.robot)
+    #     self.StratCarre=StratCarre(self.robot,250,500)
+    #     self.sp=False
 
-    def get_distance(self) :
-        return self.robot.get_distance()
+    # def init(self):
+    #     self.start()
 
-    def update(self):
-        if self.StratCarre.step():
-            self.sp=True
-            return self.stop
+    # def get_distance(self) :
+    #     return self.robot.get_distance()
 
-    def stop(self):
-        return self.sp
-    
+    # def update(self):
+    #     if self.StratCarre.step():
+    #         self.sp=True
+    #         return self.stop
+
+    # def stop(self):
+    #     return self.sp
+
     def __init__(self,robot):
         super(ControleurRobotReel,self).__init__()
         self.robot=robot
@@ -44,3 +45,4 @@ class ControleurRobotReel(Thread):
 
     def stop(self):
         return self.sp
+
