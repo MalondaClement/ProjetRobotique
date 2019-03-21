@@ -43,6 +43,7 @@ class StratAngleDroit(object):
     def __init__(self,robot):
         self.robot=robot
         self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/4*360/self.robot.WHEEL_CIRCUMFERENCE
+        print(self.distance)
 
     def tourner (self, angle):
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
@@ -58,6 +59,7 @@ class StratAngleDroit(object):
             self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
             self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+            print(self.parcouru)
             return False
         self.tourner(-45)
 
