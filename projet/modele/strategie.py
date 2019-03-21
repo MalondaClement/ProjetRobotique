@@ -10,17 +10,16 @@ class StratLigne(object):
 
     def start(self):
         self.parcouru=0
+        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
+        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
+        self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+
 
     def step(self):
         x,y=self.robot.get_motor_position()
         print(x,y)
-        self.parcouru=(x*self.robot.WHEEL_CIRCUMFERENCE)/360
-        if self.stop():
-            self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
-            self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
-            self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
-            return False
         self.avancer(self.vitesse)
+        self.parcouru=(x*self.robot.WHEEL_CIRCUMFERENCE)/360
 
     def stop(self):
         return self.parcouru>self.distance
@@ -29,7 +28,6 @@ class StratAngleDroit(object):
     def __init__(self,robot):
         self.robot=robot
         self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/4*360/self.robot.WHEEL_CIRCUMFERENCE
-        print(self.distance)
 
     def tourner (self, angle):
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
@@ -37,17 +35,14 @@ class StratAngleDroit(object):
 
     def start(self):
         self.parcouru=0
+        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
+        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
+        self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
     def step(self):
+        self.tourner(-90)
         x,y=self.robot.get_motor_position()
         self.parcouru=x
-        if self.stop():
-            self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
-            self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
-            self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
-            print(self.parcouru)
-            return False
-        self.tourner(-90)
 
     def stop(self):
         return self.parcouru>=self.distance
@@ -63,28 +58,30 @@ class StratCarre(object):
         self.StratAngleDroit.start()
         self.sp=False
         self.ava=True
-        self.tour=False
         self.cpt=0
 
     def get_distance(self) :
         return self.robot.get_distance()
 
     def step(self):
-        if self.cpt==4:
+        if self.cpt>=4:
             self.sp=True
             return self.stop()
 
         elif self.ava:
-            if self.StratLigne.step()==False:
+            if not self.StratLigne.stop():
+                self.StratLigne.step()
+            else:
                 self.ava=False
-                self.tour=True
+                self.StratAngleDroit.start()
 
-        elif self.tour:
-            print('oui')
-            if self.StratAngleDroit.step()==False:
+        elif not self.ava:
+            if not self.StratAngleDroit.stop():
+                self.StratAngleDroit.step()
+            else:
                 self.ava=True
-                self.tour=False
                 self.cpt+=1
+                self.StratLigne.start()
 
     def stop(self):
         return self.sp
