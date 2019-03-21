@@ -44,7 +44,7 @@ class Fenetre(Thread):
         label = Label(self.fenetre, text="x y", bg="yellow")
         label.pack()
 
-        #self.fenetre.mainloop()
+        self.fenetre.mainloop()
 
 
     def demarrer(self):
