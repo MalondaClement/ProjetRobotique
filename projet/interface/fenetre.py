@@ -1,9 +1,9 @@
 from tkinter import *
 from tkinter.filedialog import *
 from math import degrees, radians
-from modele.arene import*
-from modele.obstacle import*
-from modele.robotreel import*
+from modele.arene import *
+from modele.obstacle import *
+from modele.robotreel import *
 from .affichage import *
 from threading import Thread
 from modele.controleur_robotreel import ControleurRobotReel
@@ -40,24 +40,24 @@ class Fenetre(Thread):
 
         BoutonReset = Button(self.fenetre, text ='Reset', command = self.reset)
         BoutonReset.pack(side = LEFT, padx = 10, pady = 10)
-
         """creation de case avec des informations a l'interieur"""
         label = Label(self.fenetre, text="x y", bg="yellow")
         label.pack()
-        self.fenetre.mainloop()
+
+        #self.fenetre.mainloop()
+
 
     def demarrer(self):
         #self.b.start()
         #ctrl=ControleurRobotReel(self.p)
         #self.start()
-        if not self.ctrl.stop():
+        #if not self.ctrl.stop():
             #print("a")
-            self.ctrl.update()
+        self.ctrl.init()
             #self.update() ## a griser si pas d'affichage
-            self.b.update()
-            self.fenetre.after(50,self.demarrer)
-        else:
-            print ("fin")
+            #self.b.update()
+
+
 
     def reset(self):
         """Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
@@ -115,6 +115,7 @@ class Fenetre(Thread):
                 self.z.afficher()
                 self.z.afficher_robot()
                 self.start()
+                self.b.start()
             elif ARENE:
                 L.append(i.strip())
             elif ROBOT:
@@ -155,9 +156,6 @@ class Fenetre(Thread):
         self.z.dessiner()
 
     def run(self):
-        while True:
-            print("b")
-            self.update()
-            time.sleep(1./20)
+        self.fenetre.mainloop()
 
 
