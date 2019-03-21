@@ -10,7 +10,6 @@ except ImportError:
     from modele.controleur_robotreel import ControleurRobotReel
     f=Fenetre()
     f.creer()
-f.start()
 
 ctrl=ControleurRobotReel(robot)
 def main(ctrl):
