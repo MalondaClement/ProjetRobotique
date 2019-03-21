@@ -35,6 +35,7 @@ class StratLigne(object):
 class StratAngleDroit(object):
     def __init__(self,robot):
         self.robot=robot
+        self.angle=-90
         self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/4*360/self.robot.WHEEL_CIRCUMFERENCE
 
     def tourner (self, angle):
@@ -48,9 +49,11 @@ class StratAngleDroit(object):
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
     def step(self):
-        self.tourner(-90)
+        self.tourner(self.angle)
         x,y=self.robot.get_motor_position()
         self.parcouru=x
+        if self.parcouru >= self.distance*(3/4) :
+            self.angle = -20
 
     def stop(self):
         return self.parcouru>=self.distance
