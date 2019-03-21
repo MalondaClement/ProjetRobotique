@@ -2,13 +2,14 @@ from tkinter import *
 from tkinter.filedialog import *
 from modele.arene import *
 from math import pi, cos, sin, pow, sqrt
-
-class Affichage(object):
+from threading import Thread
+class Affichage(Thread):
     """La classe arène permet de faire le lien entre notre modèle et notre interface graphique.
         Elle utilise notre matrice pour en faire un représentation concrète dans la fenètre graphique.
         :param arene: l'arène dont on souhaite avoir la représentation en graphique
     """
     def __init__(self,arene,fen,robot):
+        super(Affichage,self).__init__()
         self.arene=arene
         self.vitesse=10
         self.fen=fen
@@ -45,3 +46,12 @@ class Affichage(object):
         angle=self.a
         self.zone_dessin.coords(self.r,int(p.x+t*cos(p.angle+angle)),int(p.y-t*sin(p.angle+angle)),int(p.x+t*cos(p.angle-angle)),int(p.y-t*sin(p.angle-angle)),int(p.x+t*cos(p.angle+angle+pi)),int(p.y-t*sin(p.angle+angle+pi)),int(p.x+t*cos(p.angle-angle+pi)),int(p.y-t*sin(p.angle-angle+pi)))
         self.zone_dessin.coords(self.f,int(p.x),int(p.y),int(round(50*cos(p.angle),1)+p.x),int(p.y+round(50*sin(-p.angle),1)))
+    def update(self):
+        self.z.zone_dessin.create_rectangle(self.p.x,self.p.y,self.p.x+1,self.p.y+1,fill='green')
+        self.z.dessiner()
+
+    def run(self):
+        while True:
+            #print("b")
+            self.update()
+            time.sleep(1./50)
