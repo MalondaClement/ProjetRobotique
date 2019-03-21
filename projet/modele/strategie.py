@@ -4,6 +4,7 @@ class StratLigne(object):
         self.distance=distance
         self.vitesse=vitesse
         self.robot=robot
+        self.ralenti=False
 
     def avancer (self, vitesse):
         self.robot.set_motor_dps(3, ((vitesse*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
@@ -19,6 +20,9 @@ class StratLigne(object):
         x,y=self.robot.get_motor_position()
         self.avancer(self.vitesse)
         self.parcouru=(x*self.robot.WHEEL_CIRCUMFERENCE)/360
+        if self.parcouru >= self.distance*(3/4) and self.ralenti==False :
+            self.ralenti=True
+            self.vitesse=self.vitesse/2
 
     def stop(self):
         if self.parcouru>self.distance :
