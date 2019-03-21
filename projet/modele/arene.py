@@ -3,7 +3,7 @@ from .robot import Robot
 from .obstacle import Obstacle
 from math import pow,atan,sqrt
 from threading import Thread
-import time 
+import time
 
 #j'ai juste fait le cas ou la forme est un caree
 class Arene(Thread):
@@ -92,8 +92,8 @@ class Arene(Thread):
             self.inserer_robot(i)
             i.actualiser()
             print(i.y)
-                
+
     def run(self):
         while True:
             self.update()
-            time.sleep(1./20)
+            time.sleep(1./50)
