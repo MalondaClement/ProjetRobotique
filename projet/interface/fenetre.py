@@ -117,8 +117,8 @@ class Fenetre(Thread):
                 self.z.zone()
                 self.z.afficher()
                 self.z.afficher_robot()
-                self.start()
-                self.b.start()
+                #self.start()
+                #self.b.start()
             elif ARENE:
                 L.append(i.strip())
             elif ROBOT:
