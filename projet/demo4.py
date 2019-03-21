@@ -14,6 +14,7 @@ except ImportError:
 ctrl=ControleurRobotReel(robot)
 def main(ctrl):
     while not ctrl.stop():
+        print(robot.get_distance())
         ctrl.update()
         time.sleep(0.01)
 robot.offset_motor_encoder(robot.MOTOR_LEFT, robot.get_motor_position()[0])
