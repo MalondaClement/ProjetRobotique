@@ -21,7 +21,12 @@ class StratLigne(object):
         self.parcouru=(x*self.robot.WHEEL_CIRCUMFERENCE)/360
 
     def stop(self):
+        if self.parcouru>self.distance :
+            self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
+            self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
+            self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
         return self.parcouru>self.distance
+        
 
 class StratAngleDroit(object):
     def __init__(self,robot):
