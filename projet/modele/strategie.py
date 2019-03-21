@@ -85,7 +85,7 @@ class StratCarre(object):
 
     def stop(self):
         return self.sp
-    
+
 class StratMur(object):
     #la distance entre la position initiale du robot et du mur ne depasse pas 8,000 millimetre
     def __init__(self,vitesse,robot):
@@ -107,5 +107,4 @@ class StratMur(object):
 
     def stop(self):
         return self.robot.get_distance()==8190
-               
-    
+
