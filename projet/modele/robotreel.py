@@ -11,7 +11,7 @@ MOTOR_RIGHT = 2
 class RobotReel(object) :
     """ La classe RobotReel est une classe qui à pour but d'être la plus plroche possible de l'API du robot que
         nous utilisons dans le projet. Pour cela cette classe a été developpées avec uniquent les fonctions de
-        l'API, seul le corps est différents, le code n'aura donc pas a être modifié si nous passons de la 
+        l'API, seul le corps est différents, le code n'aura donc pas a être modifié si nous passons de la
         simulation au monde réel.
             :param x: coordonnée x du robot dans l'arène
             :param y: coordonnée y du robot dans l'arène
@@ -30,10 +30,13 @@ class RobotReel(object) :
         self.MOTOR_LEFT_ROTATION =0
         self.MOTOR_RIGHT_ROTATION = 0
         self.WHEEL_BASE_WIDTH         = 117
-        self.WHEEL_DIAMETER           = 66.5 
+        self.WHEEL_DIAMETER           = 66.5
         self.WHEEL_BASE_CIRCUMFERENCE = self.WHEEL_BASE_WIDTH * pi
         self.WHEEL_CIRCUMFERENCE      = self.WHEEL_DIAMETER   * pi
-        
+        self.WHEEL_BASE_WIDTH         = 117  # distance (mm) de la roue gauche a la roue droite.
+        self.WHEEL_DIAMETER           = 66.5 #  diametre de la roue (mm)
+        self.MOTOR_LEFT = 1
+        self.MOTOR_RIGHT = 2
 
 
     def set_motor_dps(self, port,dps):
@@ -50,16 +53,17 @@ class RobotReel(object) :
         self.actualiser()
 
     def get_motor_position (self) :
-        return MOTOR_LEFT_ROTATION, MOTOR_RIGHT_ROTATION
+        return self.MOTOR_LEFT_ROTATION, self.MOTOR_RIGHT_ROTATION
 
     def offset_motor_encoder (self, port, offset) :
         #port=1 pour la roue gauche, 2 pour la roue droite, 3 pour les 2 roues
         if port == MOTOR_LEFT :
-            self.MOTOR_LEFT_ROTATION = offset
+            self.MOTOR_LEFT_ROTATION -= offset
         elif port == MOTOR_RIGHT :
-            self.MOTOR_RIGHT_ROTATION = offset
+            self.MOTOR_RIGHT_ROTATION -= offset
         elif port ==MOTOR_LEFT+MOTOR_RIGHT :
-            self.MOTOR_RIGHT_ROTATION = self.MOTOR_LEFT_ROTATION = offset
+            self.MOTOR_RIGHT_ROTATION -= offset
+            self.MOTOR_LEFT_ROTATION -= offset
 
     def get_distance (self) :
         """Rcupération de la distance qui sépare de l'obstacle
@@ -77,7 +81,7 @@ class RobotReel(object) :
                 test=1
             if self.arene.matrice[recherche_y, recherche_x]==1:
                 test=1
-       
+
         distance= sqrt(pow(recherche_x-self.x, 2) + pow(recherche_y-self.y, 2))
         if distance < 5 or distance > 8000 :
             distance = 8190
@@ -96,13 +100,13 @@ class RobotReel(object) :
         self.MOTOR_RIGHT_ROTATION+= self.MOTOR_RIGHT_DPS /20
 
         if self.MOTOR_RIGHT_DPS == self.MOTOR_LEFT_DPS :
-            
+
             self.x+= cos(self.angle)* (((self.MOTOR_LEFT_DPS/20) * self.WHEEL_DIAMETER )/ 360 ) /10 #conversion en cm
             self.y-= sin(self.angle)* (((self.MOTOR_LEFT_DPS/20) * self.WHEEL_DIAMETER )/ 360 ) /10
 
         elif self.MOTOR_RIGHT_DPS == -self.MOTOR_LEFT_DPS :
             self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
-            
+
     def calcul_angle(self):
         """Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
             :returns : Angle de la demi-droite
