@@ -51,13 +51,13 @@ class Fenetre(Thread):
         #self.b.start()
         #ctrl=ControleurRobotReel(self.p)
         #self.start()
-        #if not self.ctrl.stop():
-            #print("a")
-        self.ctrl.init()
-            #self.update() ## a griser si pas d'affichage
-            #self.b.update()
-
-
+        if not self.ctrl.stop():
+            self.ctrl.update()
+            self.update() ## a griser si pas d'affichage
+            self.b.update()
+            self.fenetre.after(50,self.demarrer)
+        else:
+            print ("fin")
 
     def reset(self):
         """Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
@@ -66,12 +66,15 @@ class Fenetre(Thread):
 
 
     def import_file(self):
-        filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
-        if filepath==() or  filepath=="":
-            return
-        if hasattr(self, 'z'):
-            self.reset()
-        fichier = open(filepath,'r')
+        #filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
+        #if filepath==() or  filepath=="":
+            #return
+        #if hasattr(self, 'z'):
+            #self.reset()
+        #fichier = open(filepath,'r')
+        a=os.getcwd()
+        a=a.replace('projet','')
+        fichier=open(a+"/Scenario/test.txt",'r')
         ARENE=False
         ROBOT=False
         OBSTACLE=False
@@ -157,5 +160,8 @@ class Fenetre(Thread):
 
     def run(self):
         self.fenetre.mainloop()
+        while True:
+            self.update()
+            time.sleep(1./20)
 
 

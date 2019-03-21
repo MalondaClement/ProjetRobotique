@@ -29,15 +29,12 @@ class RobotReel(object) :
         self.MOTOR_RIGHT_DPS=0
         self.MOTOR_LEFT_ROTATION =0
         self.MOTOR_RIGHT_ROTATION = 0
-        self.WHEEL_BASE_WIDTH         = 117
-        self.WHEEL_DIAMETER           = 66.5
+        self.WHEEL_BASE_WIDTH         = 117 # distance (mm) de la roue gauche a la
+        self.WHEEL_DIAMETER           = 66.5 #  diametre de la roue (mm)
         self.WHEEL_BASE_CIRCUMFERENCE = self.WHEEL_BASE_WIDTH * pi
         self.WHEEL_CIRCUMFERENCE      = self.WHEEL_DIAMETER   * pi
-        self.WHEEL_BASE_WIDTH         = 117  # distance (mm) de la roue gauche a la roue droite.
-        self.WHEEL_DIAMETER           = 66.5 #  diametre de la roue (mm)
         self.MOTOR_LEFT = 1
         self.MOTOR_RIGHT = 2
-
 
     def set_motor_dps(self, port,dps):
         """ Fixe la vitesse du robot
