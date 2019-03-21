@@ -12,7 +12,7 @@ except ImportError:
     f.creer()
 f.start()
 
-#ctrl=ControleurRobotReel(robot)
+ctrl=ControleurRobotReel(robot)
 def main(ctrl):
     while not ctrl.stop():
         ctrl.update()
