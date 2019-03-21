@@ -40,9 +40,9 @@ class StratAngleDroit(object):
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
     def step(self):
-        self.tourner(-90)
+        self.tourner(-40)
         x,y=self.robot.get_motor_position()
-        self.parcouru=x
+        self.parcouru=-y
 
     def stop(self):
         return self.parcouru>=self.distance
