@@ -85,3 +85,27 @@ class StratCarre(object):
 
     def stop(self):
         return self.sp
+    
+class StratMur(object):
+    #la distance entre la position initiale du robot et du mur ne depasse pas 8,000 millimetre
+    def __init__(self,vitesse,robot):
+        self.vitesse=vitesse
+        self.robot=robot
+
+    def avancer (self, vitesse):
+        self.robot.set_motor_dps(3, ((vitesse*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
+
+    def start(self):
+        self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
+        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
+        print("Début start StratMur")
+
+    def step(self):
+        self.avancer(self.vitesse)
+        if self.stop():
+            self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+
+    def stop(self):
+        return self.robot.get_distance()==8190
+               
+    
