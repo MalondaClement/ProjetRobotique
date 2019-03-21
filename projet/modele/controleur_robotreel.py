@@ -1,7 +1,8 @@
 from .strategie import StratLigne,StratAngleDroit, StratCarre
-
-class ControleurRobotReel(object):
+from threading import Thread
+class ControleurRobotReel(Thread):
     def __init__(self,robot):
+        super(ControleurRobotReel,self).__init__()
         self.robot=robot
         self.StratLigne=StratLigne(1000,1000,self.robot)
         self.StratAngleDroit=StratAngleDroit(self.robot)
@@ -12,6 +13,15 @@ class ControleurRobotReel(object):
         self.tour=False
         self.cpt=0
 
+    def init(self):
+        self.start()
+
+    def run(self):
+        while not self.stop():
+            self.update()
+            time.sleep(1./50)
+        print("stop")
+
     def get_distance(self) :
         return self.robot.get_distance()
 
@@ -19,7 +29,6 @@ class ControleurRobotReel(object):
         '''if StratCarre(self.robot, 1000, 1000):
             self.sp = True
             return self.stop()'''
-        '''print(self.cpt)
         if self.cpt==4:
             self.sp=True
             return self.stop()
@@ -33,10 +42,10 @@ class ControleurRobotReel(object):
             if self.StratAngleDroit.step()==False:
                 self.ava=True
                 self.tour=False
-                self.cpt+=1'''
-        if self.StratAngleDroit.step()==False:
+                self.cpt+=1
+        '''if self.StratAngleDroit.step()==False:
             self.sp=True
-            return self.stop()
+            return self.stop()'''
 
 
 
