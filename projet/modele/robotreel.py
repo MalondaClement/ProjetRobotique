@@ -65,7 +65,7 @@ class RobotReel(object) :
     def get_distance (self) :
         """Rcupération de la distance qui sépare de l'obstacle
             :returns: la distance au plus proche obstacle
-        """        
+        """
         recherche_x= self.x +(self.largeur/2)*cos(self.angle)
         recherche_y= self.y -(self.longueur/2)*sin(self.angle)
         print(recherche_y,recherche_x)
@@ -85,6 +85,8 @@ class RobotReel(object) :
             distance = 8190
         return distance
 
+    def servo_rotate(self,position):
+        pass
 
     def stop (self) :
         """Arrete le robot
