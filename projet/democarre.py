@@ -1,5 +1,5 @@
 import time
-from modele.controleur_robotreel import ControleurRobotReel
+from modele.controleur_robotreel_carre import ControleurRobotReelCarre
 
 try:
     from robot2I013 import Robot2I013 as Robot
@@ -10,7 +10,7 @@ except ImportError:
     f=Fenetre()
     f.creer()
 
-ctrl=ControleurRobotReel(robot)
+ctrl=ControleurRobotReelCarre(robot)
 def main(ctrl):
     while not ctrl.stop():
         print(robot.get_distance())
@@ -20,6 +20,3 @@ robot.offset_motor_encoder(robot.MOTOR_LEFT, robot.get_motor_position()[0])
 robot.offset_motor_encoder(robot.MOTOR_RIGHT, robot.get_motor_position()[1])
 #robot.set_motor_dps(robot.MOTOR_LEFT+robot.MOTOR_RIGHT,0)
 main(ctrl)
-# robot.servo_rotate(0)
-# robot.servo_rotate(180)
-# robot.servo_rotate(90)
