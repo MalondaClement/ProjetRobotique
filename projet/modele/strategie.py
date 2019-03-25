@@ -63,21 +63,29 @@ class StratCarre(object):
         self.robot=robot
         self.vitesse=vitesse
         self.longueurCarre=longueurCarre
-        self.StratLigne=StratLigne(self.longueurCarre,self.vitesse,self.robot)
-        self.StratAngleDroit=StratAngleDroit(self.robot)
-        self.StratLigne.start()
-        self.StratAngleDroit.start()
-        self.sp=False
-        self.ava=True
-        self.cpt=0
+        s0= StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        s1=StratAngleDroit(self.robot)
+        s2=StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        s3=StratAngleDroit(self.robot)
+        s4=StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        s5=StratAngleDroit(self.robot)
+        s6=StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        
+        self.strats = [s0, s1, s2, s3, s4, s5, s6]
+        self.cur =-1
 
     def get_distance(self) :
         return self.robot.get_distance()
 
     def step(self):
-        if self.cpt>=4:
-            self.sp=True
-            return self.stop()
+        if self.stop() :return
+        if self.cur < 0 or self.strats[self.cur].stop():
+            self.cur+=1
+            self.strats[self.cur].start()
+        self.strats[self.cur].step()
+    
+    def stop(self) :
+        return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
 
         elif self.ava:
             if not self.StratLigne.stop():
