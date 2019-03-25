@@ -87,24 +87,6 @@ class StratCarre(object):
     def stop(self) :
         return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
 
-        elif self.ava:
-            if not self.StratLigne.stop():
-                self.StratLigne.step()
-            else:
-                self.ava=False
-                self.StratAngleDroit.start()
-
-        elif not self.ava:
-            if not self.StratAngleDroit.stop():
-                self.StratAngleDroit.step()
-            else:
-                self.ava=True
-                self.cpt+=1
-                self.StratLigne.start()
-
-    def stop(self):
-        return self.sp
-
 class StratMur(object):
     #la distance entre la position initiale du robot et du mur ne depasse pas 8,000 millimetre
     def __init__(self,vitesse,robot):
