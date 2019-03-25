@@ -22,6 +22,7 @@ class RobotReel(object) :
         self.x=x
         self.y=y
         self.angle=angle
+        self.angle_tete=90
         self.largeur=20
         self.longueur=50
         self.arene= arene
@@ -86,7 +87,8 @@ class RobotReel(object) :
         return distance
 
     def servo_rotate(self,position):
-        pass
+        if position >= 0 and position <= 180:
+            self.angle_tete = position
 
     def stop (self) :
         """Arrete le robot
