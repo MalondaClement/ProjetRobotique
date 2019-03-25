@@ -10,7 +10,7 @@ def clavier(event):
             -Touche Left permet de faire tourner le robot a gauche
     """
     touche=event.keysym
-    print(touche)
+    #print(touche)
     if touche =='Up':
         f.z.vitesse=f.z.vitesse+1
     if touche =='Down':
