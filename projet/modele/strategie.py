@@ -109,15 +109,15 @@ class StratMur(object):
     def start(self):
         self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
         self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
-        print("Début start StratMur")
+        #print("Début start StratMur")
 
     def step(self):
         if self.stop():
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
         else :
             self.avancer(self.vitesse)
-            print("getdistance")
-            print(self.robot.get_distance())
+            #print("getdistance")
+            #print(self.robot.get_distance())
 
 
     def stop(self):
