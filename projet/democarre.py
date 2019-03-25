@@ -1,5 +1,5 @@
 import time
-from modele.controleur_robotreel import ControleurRobotReel
+from modele.controleur_robotreel_carre import ControleurRobotReelCarre
 
 try:
     from robot2I013 import Robot2I013 as Robot
@@ -7,7 +7,6 @@ try:
 except ImportError:
     from interface.fenetre import Fenetre
     from modele.robotreel import RobotReel as Robot
-    from modele.controleur_robotreel_carre import ControleurRobotReelCarre
     f=Fenetre()
     f.creer()
 
