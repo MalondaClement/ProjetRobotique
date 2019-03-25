@@ -1,8 +1,8 @@
 from .strategie import StratMur
 from threading import Thread
-class ControleurRobotReelCarre(Thread):
+class ControleurRobotReelMur(Thread):
     def __init__(self,robot):
-        super(ControleurRobotReelCarre,self).__init__()
+        super(ControleurRobotReelMur,self).__init__()
         self.robot=robot
         self.StratMur=StratMur(1000,self.robot)
         self.sp=False
