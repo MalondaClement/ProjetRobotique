@@ -69,7 +69,7 @@ class RobotReel(object) :
         """
         recherche_x= self.x +(self.largeur/2)*cos(self.angle)
         recherche_y= self.y -(self.longueur/2)*sin(self.angle)
-        print(recherche_y,recherche_x)
+        #print(recherche_y,recherche_x)
         test=0
         while test==0:
             recherche_x+=cos(self.angle)*2
