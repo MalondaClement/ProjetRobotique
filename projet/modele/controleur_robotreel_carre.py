@@ -1,8 +1,8 @@
 from .strategie import StratLigne,StratAngleDroit, StratCarre
 from threading import Thread
-class ControleurRobotReelMur(Thread):
+class ControleurRobotReelCarre(Thread):
     def __init__(self,robot):
-        super(ControleurRobotReelMur,self).__init__()
+        super(ControleurRobotReelCarre,self).__init__()
         self.robot=robot
         self.StratLigne=StratLigne(500, 600, self.robot)
         self.StratCarre=StratCarre(self.robot,250,500)
