@@ -1,23 +1,26 @@
-from .strategie import StratLigne,StratAngleDroit, StratCarre
+from .strategie import StratMur
 from threading import Thread
 class ControleurRobotReelMur(Thread):
     def __init__(self,robot):
         super(ControleurRobotReelMur,self).__init__()
         self.robot=robot
-        self.StratLigne=StratLigne(500, 600, self.robot)
-        self.StratCarre=StratCarre(self.robot,250,500)
+        self.StratMur=StratMur(1000,self.robot)
         self.sp=False
-
-    def init(self):
         self.start()
+
+    def start(self):
+        self.StratMur.start()
 
     def get_distance(self) :
         return self.robot.get_distance()
 
     def update(self):
-        if self.StratCarre.step():
+        if not self.StratMur.stop():
+            self.StratMur.step()
+        else:
             self.sp=True
             return self.stop
 
     def stop(self):
         return self.sp
+
