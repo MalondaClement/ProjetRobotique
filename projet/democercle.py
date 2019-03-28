@@ -7,7 +7,7 @@ try:
 except ImportError:
     from interface.fenetre import Fenetre
     from modele.robotreel import RobotReel as Robot
-    f=Fenetre(0)
+    f=Fenetre(2)
     f.creer()
 
 ctrl=ControleurRobotReelCercle(robot, 500, 5, 0, 75)
