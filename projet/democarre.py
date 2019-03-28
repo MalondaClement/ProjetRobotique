@@ -1,5 +1,6 @@
 import time
 from modele.controleur_robotreel_carre import ControleurRobotReelCarre
+ctrl=ControleurRobotReelCarre(robot)
 
 try:
     from robot2I013 import Robot2I013 as Robot
@@ -7,10 +8,9 @@ try:
 except ImportError:
     from interface.fenetre import Fenetre
     from modele.robotreel import RobotReel as Robot
-    f=Fenetre()
+    f=Fenetre(ctrl)
     f.creer()
 
-ctrl=ControleurRobotReelCarre(robot)
 def main(ctrl):
     while not ctrl.stop():
         print(robot.get_distance())
