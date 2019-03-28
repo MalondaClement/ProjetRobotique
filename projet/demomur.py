@@ -10,6 +10,7 @@ except ImportError:
     f=Fenetre(1)
     f.creer()
 
+ctrl=ControleurRobotReelMur(robot)
 def main(ctrl):
     while not ctrl.stop():
         print(robot.get_distance())
