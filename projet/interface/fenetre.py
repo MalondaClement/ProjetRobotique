@@ -6,7 +6,7 @@ from modele.obstacle import *
 from modele.robotreel import *
 from .affichage import *
 from threading import Thread
-from modele.controleur_robotreel import ControleurRobotReel
+from modele.controleur_robotreel_mur import ControleurRobotReelMur
 import time
 
 class Fenetre(Thread):
@@ -93,7 +93,7 @@ class Fenetre(Thread):
                 OBSTACLE=False
             elif i.strip()=="OBSTACLE":
                 self.p=RobotReel(int(L[0]),int(L[1]),radians(int(L[2])),self.b)
-                self.ctrl=ControleurRobotReel(self.p)
+                self.ctrl=ControleurRobotReelMur(self.p) #modif ici
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 self.b.inserer_robot(self.p)
