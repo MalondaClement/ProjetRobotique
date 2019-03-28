@@ -1,4 +1,4 @@
-from .strategie import StratLigne,StratAngleDroit, StratCarre
+from .strategie import StratLigne,StratAngle, StratCarre
 from threading import Thread
 class ControleurRobotReelCarre(Thread):
     def __init__(self,robot):
