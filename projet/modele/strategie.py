@@ -36,6 +36,7 @@ class StratAngle(object):
     def __init__(self,robot, val=-90):
         self.robot=robot
         self.angle=-90
+        self.val=val
         self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/fabs((360/self.val))*360/self.robot.WHEEL_CIRCUMFERENCE
 
     def tourner (self, angle):
