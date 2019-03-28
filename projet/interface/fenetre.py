@@ -94,9 +94,9 @@ class Fenetre(Thread):
                 OBSTACLE=False
             elif i.strip()=="OBSTACLE":
                 self.p=RobotReel(int(L[0]),int(L[1]),radians(int(L[2])),self.b)
-                if i==0 :
+                if self.i==0 :
                     self.controleur= ControleurRobotReelCarre(self.p)
-                elif i==1 :
+                elif self.i==1 :
                     self.controleur=ControleurRobotReelMur(self.p)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
