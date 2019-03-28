@@ -63,14 +63,14 @@ class StratCarre(object):
         self.robot=robot
         self.vitesse=vitesse
         self.longueurCarre=longueurCarre
-        s0= StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        s0=StratLigne(self.longueurCarre,self.vitesse,self.robot)
         s1=StratAngleDroit(self.robot)
         s2=StratLigne(self.longueurCarre,self.vitesse,self.robot)
         s3=StratAngleDroit(self.robot)
         s4=StratLigne(self.longueurCarre,self.vitesse,self.robot)
         s5=StratAngleDroit(self.robot)
         s6=StratLigne(self.longueurCarre,self.vitesse,self.robot)
-        
+
         self.strats = [s0, s1, s2, s3, s4, s5, s6]
         self.cur =-1
 
@@ -83,7 +83,7 @@ class StratCarre(object):
             self.cur+=1
             self.strats[self.cur].start()
         self.strats[self.cur].step()
-    
+
     def stop(self) :
         return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
 
@@ -111,8 +111,8 @@ class StratMur(object):
 
 
     def stop(self):
-        toto = self.robot.get_distance()
-        if toto<=50 or toto == 8190:
+        distance_mur = self.robot.get_distance()
+        if distance_mur<=50 or distance_mur == 8190:
             self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
             self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
