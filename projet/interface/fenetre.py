@@ -99,6 +99,8 @@ class Fenetre(Thread):
                     self.controleur= ControleurRobotReelCarre(self.p)
                 elif self.i==1 :
                     self.controleur=ControleurRobotReelMur(self.p)
+                elif self.i==2 :
+                    self.controleur=ControleurRobotReelCercle(self.p, 200, 5, 0, 100)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 self.b.inserer_robot(self.p)
