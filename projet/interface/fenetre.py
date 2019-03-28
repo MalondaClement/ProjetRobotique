@@ -13,6 +13,7 @@ import time
 class Fenetre(Thread):
     def __init__(self, i):
         self.fin=False
+        self.i=i
         super(Fenetre,self).__init__()
 
 
