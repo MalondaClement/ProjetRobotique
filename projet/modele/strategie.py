@@ -1,4 +1,4 @@
-
+from math import fabs
 class StratLigne(object):
     def __init__(self,distance,vitesse,robot):
         self.distance=distance
@@ -33,10 +33,10 @@ class StratLigne(object):
 
 
 class StratAngle(object):
-    def __init__(self,robot):
+    def __init__(self,robot, val=-90):
         self.robot=robot
         self.angle=-90
-        self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/4*360/self.robot.WHEEL_CIRCUMFERENCE
+        self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/fabs((360/self.val))*360/self.robot.WHEEL_CIRCUMFERENCE
 
     def tourner (self, angle):
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
@@ -53,7 +53,7 @@ class StratAngle(object):
         x,y=self.robot.get_motor_position()
         self.parcouru=x
         if self.parcouru >= self.distance*(3/4) :
-            self.angle = -20
+            self.angle = self.angle/5
 
     def stop(self):
         return self.parcouru>=self.distance
