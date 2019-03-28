@@ -1,6 +1,5 @@
 import time
 from modele.controleur_robotreel_mur import ControleurRobotReelMur
-ctrl=ControleurRobotReelMur(robot)
 
 try:
     from robot2I013 import Robot2I013 as Robot
@@ -8,7 +7,7 @@ try:
 except ImportError:
     from interface.fenetre import Fenetre
     from modele.robotreel import RobotReel as Robot
-    f=Fenetre(ctrl)
+    f=Fenetre(1)
     f.creer()
 
 def main(ctrl):
