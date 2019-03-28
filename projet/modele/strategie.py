@@ -53,7 +53,7 @@ class StratAngleDroit(object):
         x,y=self.robot.get_motor_position()
         self.parcouru=x
         if self.parcouru >= self.distance*(3/4) :
-            self.angle = -20
+            self.angle = self.angle/5
 
     def stop(self):
         return self.parcouru>=self.distance
