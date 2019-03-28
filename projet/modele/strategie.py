@@ -32,7 +32,7 @@ class StratLigne(object):
         return self.parcouru>self.distance
 
 
-class StratAngleDroit(object):
+class StratAngle(object):
     def __init__(self,robot):
         self.robot=robot
         self.angle=-90
@@ -64,11 +64,11 @@ class StratCarre(object):
         self.vitesse=vitesse
         self.longueurCarre=longueurCarre
         s0=StratLigne(self.longueurCarre,self.vitesse,self.robot)
-        s1=StratAngleDroit(self.robot)
+        s1=StratAngle(self.robot)
         s2=StratLigne(self.longueurCarre,self.vitesse,self.robot)
-        s3=StratAngleDroit(self.robot)
+        s3=StratAngle(self.robot)
         s4=StratLigne(self.longueurCarre,self.vitesse,self.robot)
-        s5=StratAngleDroit(self.robot)
+        s5=StratAngle(self.robot)
         s6=StratLigne(self.longueurCarre,self.vitesse,self.robot)
 
         self.strats = [s0, s1, s2, s3, s4, s5, s6]
