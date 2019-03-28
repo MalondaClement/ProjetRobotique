@@ -35,6 +35,7 @@ class StratLigne(object):
 class StratAngle(object):
     def __init__(self,robot, val=-90):
         self.robot=robot
+        self.test=True
         self.angle=-90
         self.val=val
         self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/fabs((360/self.val))*360/self.robot.WHEEL_CIRCUMFERENCE
@@ -53,8 +54,9 @@ class StratAngle(object):
         self.tourner(self.angle)
         x,y=self.robot.get_motor_position()
         self.parcouru=x
-        if self.parcouru >= self.distance*(3/4) :
+        if self.parcouru >= self.distance*(3/4) and self.test :
             self.angle = self.angle/5
+            self.test=False
 
     def stop(self):
         return self.parcouru>=self.distance
