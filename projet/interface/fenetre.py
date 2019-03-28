@@ -5,13 +5,14 @@ from modele.arene import *
 from modele.obstacle import *
 from modele.robotreel import *
 from .affichage import *
+from modele.controleur_robotreel_carre import ControleurRobotReelCarre
+from modele.controleur_robotreel_mur import ControleurRobotReelMur
 from threading import Thread
 import time
 
 class Fenetre(Thread):
-    def __init__(self, controleur):
+    def __init__(self, i):
         self.fin=False
-        self.controleur=controleur
         super(Fenetre,self).__init__()
 
 
@@ -93,6 +94,10 @@ class Fenetre(Thread):
                 OBSTACLE=False
             elif i.strip()=="OBSTACLE":
                 self.p=RobotReel(int(L[0]),int(L[1]),radians(int(L[2])),self.b)
+                if i==0 :
+                    self.controleur= ControleurRobotReelCarre(self.p)
+                elif i==1 :
+                    self.controleur=ControleurRobotReelMur(self.p)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 self.b.inserer_robot(self.p)
