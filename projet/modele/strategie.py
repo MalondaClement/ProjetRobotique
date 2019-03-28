@@ -1,4 +1,4 @@
-from math import fabs
+from math import fabs, pi
 class StratLigne(object):
     def __init__(self,distance,vitesse,robot):
         self.distance=distance
@@ -124,7 +124,8 @@ class StratMur(object):
             return False
 
 class StratCercle(object) :
-   def __init__(self, rayon, temps, direction, cercle) :
+   def __init__(self, robot, rayon, temps, direction, cercle) :
+       self.robot=robot
        self.rayon=rayon
        self.temps=temps
        self.direction=direction
