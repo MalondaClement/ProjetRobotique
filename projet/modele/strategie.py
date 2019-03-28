@@ -123,3 +123,34 @@ class StratMur(object):
         else:
             return False
 
+class StratCercle(object) :
+   def __init__(self, rayon, temps, direction, cercle) :
+       self.rayon=rayon
+       self.temps=temps
+       self.direction=direction
+       self.cercle=cercle
+       self.distance= (2*pi*rayon)* (cercle/100)*robot.WHEEL_CIRCUMFERENCE/360
+
+   def start(self):
+       self.parcouru=0
+       self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
+       self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
+       self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+
+   def step(self) :
+       if direction==0 :
+           self.robot.set_motor_dps(1, ((((2*pi*(rayon+WHEEL_BASE_WIDTH))/temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
+           self.robot.set_motor_dps(2, ((((2*pi*rayon/temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))
+       else :
+           self.robot.set_motor_dps(2, ((((2*pi*(rayon+WHEEL_BASE_WIDTH))/temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
+           self.robot.set_motor_dps(1, ((((2*pi*rayon/temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))
+
+
+   def stop(self) :
+       if direction==0 :
+           self.distance > self.robot.get_motor_position[1]
+       else :
+           self.distance > self.robot.get_motor_position[0]
+
+
+
