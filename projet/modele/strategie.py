@@ -31,7 +31,6 @@ class StratLigne(object):
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
         return self.parcouru>self.distance
 
-
 class StratAngle(object):
     def __init__(self,robot, val=-90):
         self.robot=robot
@@ -123,7 +122,7 @@ class StratMur(object):
         else:
             return False
 
-class StratCercle(object) :
+class StratCercle(object):
    def __init__(self, robot, rayon, temps, direction, cercle) :
        self.robot=robot
        self.rayon=rayon
@@ -153,5 +152,25 @@ class StratCercle(object) :
        else :
            self.distance > self.robot.get_motor_position[0]
 
+class StratContournerPorte(object):
+    def __init__(self,robot,vitesse):
+        self.robot = robot
+        self.vitesse = vitesse
+        s0 = StratMur(self.vitesse, self.robot)
+        ##le reste ici
+        self.strats = [s0]
+        self.cur = -1
 
+    def get_distance(self) :
+        return self.robot.get_distance()
 
+    def step(self):
+        if self.stop() :
+            return
+        if self.cur < 0 or self.strats[self.cur].stop():
+            self.cur+=1
+            self.strats[self.cur].start()
+        self.strats[self.cur].step()
+
+    def stop(self) :
+        return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
