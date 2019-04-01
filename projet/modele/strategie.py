@@ -1,6 +1,6 @@
 from math import fabs, pi
 class StratLigne(object):
-    def __init__(self,distance,vitesse,robot):
+    def __init__(self,robot,vitesse,distance):
         self.distance=distance
         self.vitesse=vitesse
         self.robot=robot
@@ -65,13 +65,13 @@ class StratCarre(object):
         self.robot=robot
         self.vitesse=vitesse
         self.longueurCarre=longueurCarre
-        s0=StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        s0=StratLigne(self.robot, self.vitesse, self.longueurCarre)
         s1=StratAngle(self.robot)
-        s2=StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        s2=StratLigne(self.robot, self.vitesse, self.longueurCarre)
         s3=StratAngle(self.robot)
-        s4=StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        s4=StratLigne(self.robot, self.vitesse, self.longueurCarre)
         s5=StratAngle(self.robot)
-        s6=StratLigne(self.longueurCarre,self.vitesse,self.robot)
+        s6=StratLigne(self.robot, self.vitesse, self.longueurCarre)
 
         self.strats = [s0, s1, s2, s3, s4, s5, s6]
         self.cur =-1
@@ -91,9 +91,10 @@ class StratCarre(object):
 
 class StratMur(object):
     #la distance entre la position initiale du robot et du mur ne depasse pas 8,000 millimetre
-    def __init__(self,vitesse,robot):
+    def __init__(self,robot,vitesse,distance=50):
         self.vitesse=vitesse
         self.robot=robot
+        self.distance=distance
 
     def avancer (self, vitesse):
         self.robot.set_motor_dps(3, ((vitesse*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
@@ -108,13 +109,10 @@ class StratMur(object):
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
         else :
             self.avancer(self.vitesse)
-            #print("getdistance")
-            #print(self.robot.get_distance())
-
 
     def stop(self):
         distance_mur = self.robot.get_distance()
-        if distance_mur<=50 or distance_mur == 8190:
+        if distance_mur<=self.distance or distance_mur == 8190:
             self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
             self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
@@ -156,12 +154,10 @@ class StratContournerPorte(object):
     def __init__(self,robot,vitesse):
         self.robot = robot
         self.vitesse = vitesse
-        s0 = StratMur(self.vitesse, self.robot)
-        s1 = #nouvelle strat pour trouver le bon coté
-        s2 = StratMur(self.vitesse, self.robot)
-        s3 = StratAngle(self.robot, 90) #variable en fonction du coté choisi
-        s4 = StratMur(self.vitesse, self.robot)
-        self.strats = [s0, s1, s2, s3, s4]
+        s0 = StratMur(self.robot, self.vitesse)
+        s1 = 0##nouvelle strat
+        s2 = StratMur(self.robot, self.vitesse)
+        self.strats = [s0, s1, s2]
         self.cur = -1
 
     def get_distance(self) :
