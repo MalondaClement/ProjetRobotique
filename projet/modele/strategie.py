@@ -157,8 +157,11 @@ class StratContournerPorte(object):
         self.robot = robot
         self.vitesse = vitesse
         s0 = StratMur(self.vitesse, self.robot)
-        ##le reste ici
-        self.strats = [s0]
+        s1 = #nouvelle strat pour trouver le bon coté
+        s2 = StratMur(self.vitesse, self.robot)
+        s3 = StratAngle(self.robot, 90) #variable en fonction du coté choisi
+        s4 = StratMur(self.vitesse, self.robot)
+        self.strats = [s0, s1, s2, s3, s4]
         self.cur = -1
 
     def get_distance(self) :
