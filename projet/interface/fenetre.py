@@ -7,7 +7,6 @@ from modele.robotreel import *
 from .affichage import *
 from modele.controleur_robotreel_carre import ControleurRobotReelCarre
 from modele.controleur_robotreel_mur import ControleurRobotReelMur
-#from modele.controleur_robotreel_contourner_porte.py import ControleurContournerPorte
 from threading import Thread
 import time
 
@@ -16,6 +15,7 @@ class Fenetre(Thread):
         self.fin=False
         self.i=i
         super(Fenetre,self).__init__()
+        test=True
 
 
     def creer(self):
@@ -54,13 +54,15 @@ class Fenetre(Thread):
         #self.b.start()
         #ctrl=ControleurRobotReel(self.p)
         #self.start()
-        if not self.controleur.stop():
-            self.controleur.update()
-            self.update() ## a griser si pas d'affichage
-            self.b.update()
-            self.fenetre.after(50,self.demarrer)
-        else:
-            print ("fin")
+        if test :
+            test=False
+            if not self.controleur.stop():
+                self.controleur.update()
+                self.update() ## a griser si pas d'affichage
+                self.b.update()
+                self.fenetre.after(50,self.demarrer)
+            else:
+                print ("fin")
 
     def reset(self):
         """Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
@@ -102,8 +104,6 @@ class Fenetre(Thread):
                     self.controleur=ControleurRobotReelMur(self.p)
                 elif self.i==2 :
                     self.controleur=ControleurRobotReelCercle(self.p, 200, 5, 0, 100)
-                #elif self.i==3 :
-                    #self.controleur=ControleurContournerPorte(self.p)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 self.b.inserer_robot(self.p)
@@ -173,5 +173,7 @@ class Fenetre(Thread):
         while True:
             self.update()
             time.sleep(1./20)
+
+
 
 
