@@ -4,7 +4,7 @@ class ControleurRobotReelMur(Thread):
     def __init__(self,robot):
         super(ControleurRobotReelMur,self).__init__()
         self.robot=robot
-        self.StratMur=StratMur(1000,self.robot)
+        self.StratMur=StratMur(self.robot,1000)
         self.sp=False
         self.start()
 
