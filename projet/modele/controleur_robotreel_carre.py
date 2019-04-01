@@ -4,7 +4,7 @@ class ControleurRobotReelCarre(Thread):
     def __init__(self,robot):
         super(ControleurRobotReelCarre,self).__init__()
         self.robot=robot
-        self.StratLigne=StratLigne(500, 600, self.robot)
+        self.StratLigne=StratLigne(self.robot, 600, 500)
         self.StratCarre=StratCarre(self.robot,250,500)
         self.sp=False
 
