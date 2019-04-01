@@ -15,8 +15,6 @@ class Fenetre(Thread):
         self.fin=False
         self.i=i
         super(Fenetre,self).__init__()
-        test=True
-
 
     def creer(self):
         """cree une fenetre"""
@@ -54,15 +52,13 @@ class Fenetre(Thread):
         #self.b.start()
         #ctrl=ControleurRobotReel(self.p)
         #self.start()
-        if test :
-            test=False
-            if not self.controleur.stop():
-                self.controleur.update()
-                self.update() ## a griser si pas d'affichage
-                self.b.update()
-                self.fenetre.after(50,self.demarrer)
-            else:
-                print ("fin")
+        if not self.controleur.stop():
+            self.controleur.update()
+            self.update() ## a griser si pas d'affichage
+            self.b.update()
+            self.fenetre.after(50,self.demarrer)
+        else:
+            print ("fin")
 
     def reset(self):
         """Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
