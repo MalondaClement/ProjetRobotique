@@ -32,16 +32,16 @@ class StratLigne(object):
         return self.parcouru>self.distance
 
 class StratAngle(object):
-    def __init__(self,robot, val=-90):
+    def __init__(self,robot, angle=-90):
         self.robot=robot
         self.test=True
-        self.angle=-90
-        self.val=val
-        self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/fabs((360/self.val))*360/self.robot.WHEEL_CIRCUMFERENCE
+        self.v_angu=-90
+        self.angle=angle
+        self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/fabs((360/self.angle))*360/self.robot.WHEEL_CIRCUMFERENCE
 
-    def tourner (self, angle):
-        self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
-        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, ((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
+    def tourner (self, v_angu):
+        self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(v_angu/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
+        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, ((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(v_angu/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
 
     def start(self):
         self.parcouru=0
@@ -50,11 +50,11 @@ class StratAngle(object):
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
     def step(self):
-        self.tourner(self.angle)
+        self.tourner(self.v_angu)
         x,y=self.robot.get_motor_position()
         self.parcouru=x
         if self.parcouru >= self.distance*(3/4) and self.test :
-            self.angle = self.angle/5
+            self.v_angu = self.v_angu/5
             self.test=False
 
     def stop(self):
@@ -102,7 +102,6 @@ class StratMur(object):
     def start(self):
         self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
         self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
-        #print("Début start StratMur")
 
     def step(self):
         if self.stop():
@@ -155,7 +154,7 @@ class StratContournerPorte(object):
         self.robot = robot
         self.vitesse = vitesse
         s0 = StratMur(self.robot, self.vitesse)
-        s1 = 0##nouvelle strat
+        s1 = 0
         s2 = StratMur(self.robot, self.vitesse)
         self.strats = [s0, s1, s2]
         self.cur = -1
