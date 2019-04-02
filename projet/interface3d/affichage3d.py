@@ -85,37 +85,37 @@ class Affichage(object):
         pgl.glBegin(ogl.GL_QUADS)
         #bleu
         pgl.glColor3ub(0, 0, 255)
-        pgl.glVertex3f(-200, 0, -200)
-        pgl.glVertex3f(-200,10, -200)
-        pgl.glVertex3f(200, 10, -200)
-        pgl.glVertex3f(200, 0, -200)
+        pgl.glVertex3f(0, 0, 0)
+        pgl.glVertex3f(0,10, 0)
+        pgl.glVertex3f(400, 10, 0)
+        pgl.glVertex3f(400, 0, 0)
         #rouge
         pgl.glColor3ub(255, 0, 0)
-        pgl.glVertex3f(200, 0, -200)
-        pgl.glVertex3f(200,10, -200)
-        pgl.glVertex3f(200, 10, 200)
-        pgl.glVertex3f(200, 0, 200)
+        pgl.glVertex3f(400, 0, 0)
+        pgl.glVertex3f(400,10, 0)
+        pgl.glVertex3f(400, 10, 400)
+        pgl.glVertex3f(400, 0, 400)
         
         #vert
         pgl.glColor3ub(0, 255, 0)
-        pgl.glVertex3f(-200, 0, 200)
-        pgl.glVertex3f(-200,10, 200)
-        pgl.glVertex3f(200, 10, 200)
-        pgl.glVertex3f(200, 0, 200)
+        pgl.glVertex3f(0, 0, 400)
+        pgl.glVertex3f(0,10, 400)
+        pgl.glVertex3f(400, 10, 400)
+        pgl.glVertex3f(400, 0, 400)
         
         #jaune
         pgl.glColor3ub(255, 255, 0)
-        pgl.glVertex3f(-200, 0, -200)
-        pgl.glVertex3f(-200,10, -200)
-        pgl.glVertex3f(-200, 10, 200)
-        pgl.glVertex3f(-200, 0, 200)
+        pgl.glVertex3f(00, 0, 00)
+        pgl.glVertex3f(00,10, 00)
+        pgl.glVertex3f(00, 10, 400)
+        pgl.glVertex3f(00, 0, 400)
         
         #blanc
         pgl.glColor3ub(255, 255, 255)
-        pgl.glVertex3f(-200, 0, 200)
-        pgl.glVertex3f(-200,0, -200)
-        pgl.glVertex3f(200, 0, -200)
-        pgl.glVertex3f(200, 0, 200)
+        pgl.glVertex3f(00, 0, 400)
+        pgl.glVertex3f(00,0, 0)
+        pgl.glVertex3f(400, 0, 0)
+        pgl.glVertex3f(400, 0, 400)
         
         
         pgl.glEnd()
@@ -131,9 +131,9 @@ class Affichage(object):
 
         Ratio = width/height
         pgl.gluPerspective(35, Ratio, 1, 1000)
-        pgl.gluLookAt(0, 0, 00, 0, 0, -200, 0, 1, 0)
-        pgl.glMatrixMode(ogl.GL_MODELVIEW)
+        pgl.gluLookAt(200, 50, 200, 200, 0, 0, 0, 1, 0)
+        #pgl.glMatrixMode(ogl.GL_MODELVIEW)
 
-        pgl.glTranslatef(0, 0, -400)
+        #pgl.glTranslatef(0, 0, -400)
 
 
