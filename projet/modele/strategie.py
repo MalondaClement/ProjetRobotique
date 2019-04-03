@@ -154,13 +154,10 @@ class StratContournerPorte(object):
         self.robot = robot
         self.vitesse = vitesse
         s0 = StratMur(self.robot, self.vitesse)
-        s1 = 0
+        s1 = StratDetectePorte(self.robot)
         s2 = StratMur(self.robot, self.vitesse)
         self.strats = [s0, s1, s2]
         self.cur = -1
-
-    def get_distance(self) :
-        return self.robot.get_distance()
 
     def step(self):
         if self.stop() :
@@ -172,3 +169,22 @@ class StratContournerPorte(object):
 
     def stop(self) :
         return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
+
+class StratDetectePorte(object):
+    def __init__(self, robot):
+        self.robot = robot
+        self.stop = False
+
+    def step(self):
+        if self.stop():
+            return min(d_gauche, d_droite)
+        else:
+            self.robot.servo_rotate(1)
+            d_gauche = self.robot.get_distance()
+            self.robot.servo_rotate(179)
+            d_droite = self.robot.get_distance()
+            self.robot.servo_rotate(90)
+            self.stop = True
+
+    def stop(self):
+        return self.stop
