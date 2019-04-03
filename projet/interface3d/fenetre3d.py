@@ -4,6 +4,11 @@ from pyglet.window import key
 import OpenGL.GL as ogl
 from .affichage3d import *
 import math as m
+from modele.arene import Arene
+from modele.robotreel import RobotReel
+from modele.obstacle import Obstacle
+import time
+from threading import Thread
 
 WINDOW = 600
 INCREMENT = 5
@@ -18,11 +23,4 @@ class Window(pyglet.window.Window) :
         pgl.glClearColor(0, 0, 0, 1)
         pgl.glEnable(pgl.GL_DEPTH_TEST)
 
-
-win = Window(WINDOW, WINDOW, 'Cube')
-aff = Affichage(win)
-aff.on_resize(WINDOW,WINDOW)
-aff.mur()
-
-
-pyglet.app.run()
+        
