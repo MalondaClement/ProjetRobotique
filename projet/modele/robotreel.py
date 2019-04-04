@@ -67,13 +67,13 @@ class RobotReel(object) :
         """Rcupération de la distance qui sépare de l'obstacle
             :returns: la distance au plus proche obstacle
         """
-        recherche_x= self.x +(self.largeur/2)*cos(self.angle)
-        recherche_y= self.y -(self.longueur/2)*sin(self.angle)
+        recherche_x= self.x +(self.largeur/2)*cos(self.angle+self.angle_tete)
+        recherche_y= self.y -(self.longueur/2)*sin(self.angle+self.angle_tete)
         #print(recherche_y,recherche_x)
         test=0
         while test==0:
-            recherche_x+=cos(self.angle)*2
-            recherche_y-=sin(self.angle)*2
+            recherche_x+=cos(self.angle+self.angle_tete)*2
+            recherche_y-=sin(self.angle+self.angle_tete)*2
             recherche_x=int(round(recherche_x,0))
             recherche_y=int(round(recherche_y,0))
             if recherche_x<0 or recherche_y<0 or recherche_x>self.arene.nb_colonne or recherche_y>self.arene.nb_ligne:
