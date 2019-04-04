@@ -152,19 +152,19 @@ class StratCercle(object):
 
 
    def stop(self) :
-       if self.direction==0 :
-           if self.distance < self.robot.get_motor_position()[1]:
-           self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
-            self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
-            self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
-        return self.distance < self.robot.get_motor_position()[1]
-        
-       else :
-           if self.distance < self.robot.get_motor_position()[0]:
+        if self.direction==0 :
+            if self.distance < self.robot.get_motor_position()[1]:
                 self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
                 self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
                 self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
-           return self.distance < self.robot.get_motor_position()[0]
+            return self.distance < self.robot.get_motor_position()[1]
+
+        else :
+            if self.distance < self.robot.get_motor_position()[0]:
+                self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
+                self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
+                self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+            return self.distance < self.robot.get_motor_position()[0]
 
 class StratContournerPorte(object):
     def __init__(self,robot,vitesse):
