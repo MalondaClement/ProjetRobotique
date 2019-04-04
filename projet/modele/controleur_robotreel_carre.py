@@ -15,7 +15,9 @@ class ControleurRobotReelCarre(Thread):
         return self.robot.get_distance()
 
     def update(self):
-        if self.StratCarre.step():
+        if not self.StratCarre.stop():
+            self.StratCarre.step()
+        else:
             self.sp=True
             return self.stop
 
