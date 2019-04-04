@@ -14,7 +14,9 @@ class ControleurRobotReelContournerPorte(Thread):
         return self.robot.get_distance()
 
     def update(self):
-        if self.StratContournerPorte.step():
+        if not self.StratContournerPorte.stop():
+            self.StratContournerPorte.step()
+        else:
             self.sp=True
             return self.stop
 
