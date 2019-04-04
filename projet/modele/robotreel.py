@@ -111,7 +111,7 @@ class RobotReel(object) :
                 #print("entree dans case normal")
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
             else :
-                #print("entree dans case cercle")
+                print("entree dans case cercle")
                 #rayon= fabs (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
                 #vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
                 #vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
