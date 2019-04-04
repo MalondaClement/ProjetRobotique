@@ -91,7 +91,7 @@ class Arene(Thread):
         for i in l_rob:
             self.inserer_robot(i)
             i.actualiser()
-            print(i.y)
+            #print(i.y)
 
     def run(self):
         while True:
