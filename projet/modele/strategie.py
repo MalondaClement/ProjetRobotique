@@ -117,7 +117,7 @@ class StratMur(object):
             self.avancer(self.vitesse)
 
     def stop(self):
-        #distance_mur = self.robot.get_distance()
+        distance_mur = self.robot.get_distance()
         print(distance_mur)
         if distance_mur<=self.distance or distance_mur == 8190:
             self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
