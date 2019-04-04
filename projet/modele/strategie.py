@@ -134,7 +134,7 @@ class StratCercle(object):
        self.temps=temps
        self.direction=direction
        self.cercle=cercle
-       self.distance= (2*pi*rayon)* (cercle/100)*robot.WHEEL_CIRCUMFERENCE/360
+       self.distance= (2*pi*rayon)*(cercle/100)*(360/self.robot.WHEEL_CIRCUMFERENCE)
 
    def start(self):
        self.parcouru=0
@@ -153,18 +153,20 @@ class StratCercle(object):
 
    def stop(self) :
         if self.direction==0 :
-            if self.distance < self.robot.get_motor_position()[1]:
+            if self.distance > self.robot.get_motor_position()[1]:
                 self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
                 self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
                 self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
-            return self.distance < self.robot.get_motor_position()[1]
+                print("strat terminee")
+            return self.distance > self.robot.get_motor_position()[1]
 
         else :
-            if self.distance < self.robot.get_motor_position()[0]:
+            if self.distance > self.robot.get_motor_position()[0]:
                 self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
                 self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
                 self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
-            return self.distance < self.robot.get_motor_position()[0]
+                print("strat terminee")
+            return self.distance > self.robot.get_motor_position()[0]
 
 class StratContournerPorte(object):
     def __init__(self,robot,vitesse):
