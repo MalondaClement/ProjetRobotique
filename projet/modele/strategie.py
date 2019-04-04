@@ -172,12 +172,13 @@ class StratContournerPorte(object):
         if self.stop() :
             return
         if self.cur < 0 or self.strats[self.cur].stop():
-            print(self.cur)
             self.cur+=1
             self.strats[self.cur].start()
         self.strats[self.cur].step()
+        print(self.cur)
 
     def stop(self) :
+        print("toto")
         return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
 
 class StratDetectePorte(object):
