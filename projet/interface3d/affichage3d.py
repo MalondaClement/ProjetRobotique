@@ -1,5 +1,6 @@
 import pyglet
 import pyglet.gl as pgl
+from PIL.Image import*
 from pyglet.window import key
 import OpenGL.GL as ogl
 from modele.obstacle import*
@@ -25,68 +26,68 @@ class Affichage(Thread):
         #self.ctrl=ControleurRobotReelCarre(self.robot)
 
     def draw(self) :
-        z=50 #m.sqrt(self.r.largeur**2+self.r.longueur**2)
+        #z=50 #m.sqrt(self.r.largeur**2+self.r.longueur**2)
+        print(self.arene.list_obj)
+        for i in self.arene.list_obj:
+            i.hauteur=50
+            # Effacer la fenetre
+            #self.fenetre3d.clear()
 
-        # Effacer la fenetre
-        self.fenetre3d.clear()
+            # Creation d'une matrice
+            #pgl.glPushMatrix()
 
-        # Creation d'une matrice
-        pgl.glPushMatrix()
+            # Debut du dessin
+            #pgl.glBegin(ogl.GL_QUADS)
+            x=i.x-i.largeur//2
+            y=i.y-i.longueur//2
 
-        # Definit la rotation autour de l'axe choisi par la suite 
-        pgl.glRotatef(self.fenetre3d.xRotation, 0, 1, 0)
-        pgl.glRotatef(self.fenetre3d.yRotation, 0, 1, 1)
+            # Premier carre rouge de derrier
+            pgl.glColor3ub(255, 0, 0)
+            pgl.glVertex3f(x, 0, y)
+            pgl.glVertex3f(x, i.hauteur, y)
+            pgl.glVertex3f(x+i.largeur, i.hauteur, y)
+            pgl.glVertex3f(x+i.largeur, 0, y)
 
-        # Debut du dessin
-        pgl.glBegin(ogl.GL_QUADS)
+            # Second carre bleu de gauche
+            pgl.glColor3ub(0, 0, 255)
+            pgl.glVertex3f(x, 0, y)
+            pgl.glVertex3f(x, i.hauteur, y)
+            pgl.glVertex3f(x, i.hauteur, y+i.longueur)
+            pgl.glVertex3f(x, 0, y+i.longueur)
 
-        # Premier carre rouge
-        pgl.glColor3ub(255, 0, 0)
-        pgl.glVertex3f(0, 0, 0)
-        pgl.glVertex3f(0, self.r.largeur, 0)
-        pgl.glVertex3f(self.r.longueur, self.r.largeur, 0)
-        pgl.glVertex3f(self.r.longueur, 0, 0)
+            # Troisieme carre vert du dessous
+            pgl.glColor3ub(0, 255, 0)
+            pgl.glVertex3f(x, 0, y)
+            pgl.glVertex3f(x+i.largeur, 0, y)
+            pgl.glVertex3f(x+i.largeur, 0, y+i.longueur)
+            pgl.glVertex3f(x, 0, y+i.longueur)
 
-        # Second carre bleu
-        pgl.glColor3ub(0, 0, 255)
-        pgl.glVertex3f(0, 0, 0)
-        pgl.glVertex3f(0, self.r.largeur, 0)
-        pgl.glVertex3f(0, self.r.largeur, z)
-        pgl.glVertex3f(0, 0, z)
+            # Quatrieme carre rose de droite
+            pgl.glColor3ub(255, 0, 255)
+            pgl.glVertex3f(x+i.largeur, 0, y)
+            pgl.glVertex3f(x+i.largeur, i.hauteur, y)
+            pgl.glVertex3f(x+i.largeur, i.hauteur, y+i.longueur)
+            pgl.glVertex3f(x+i.largeur, 0, y+i.longueur)
 
-        # Troisieme carre vert
-        pgl.glColor3ub(0, 255, 0)
-        pgl.glVertex3f(0, self.r.largeur, 0)
-        pgl.glVertex3f(0, self.r.largeur, z)
-        pgl.glVertex3f(self.r.longueur, self.r.largeur, z)
-        pgl.glVertex3f(self.r.longueur, self.r.largeur, 0)
+            # Cinquieme carre gris fclair du haut
+            pgl.glColor3ub(122, 122, 122)
+            pgl.glVertex3f(x, i.hauteur, y)
+            pgl.glVertex3f(x+i.largeur, i.hauteur, y)
+            pgl.glVertex3f(x+i.largeur, i.hauteur, y+i.longueur)
+            pgl.glVertex3f(x, i.hauteur, y+i.longueur)
 
-        # Quatrieme carre rose
-        pgl.glColor3ub(255, 0, 255)
-        pgl.glVertex3f(self.r.longueur, 0, 0)
-        pgl.glVertex3f(self.r.longueur, self.r.largeur, 0)
-        pgl.glVertex3f(self.r.longueur, self.r.largeur, z)
-        pgl.glVertex3f(self.r.longueur, 0, z)
+            # Sixieme face fonce
+            pgl.glColor3ub(40, 40, 40)
+            pgl.glVertex3f(x, 0, y+i.longueur)
+            pgl.glVertex3f(x, i.hauteur, y+i.longueur)
+            pgl.glVertex3f(x+i.largeur, i.hauteur, y+i.longueur)
+            pgl.glVertex3f(x+i.largeur, 0, y+i.longueur)
+            # Fin du dessin
+            #pgl.glEnd()
 
-        # Cinquieme carre gris fclair
-        pgl.glColor3ub(122, 122, 122)
-        pgl.glVertex3f(0, 0, 0)
-        pgl.glVertex3f(self.r.longueur, 0, 0)
-        pgl.glVertex3f(self.r.longueur, 0, z)
-        pgl.glVertex3f(0, 0, z)
-
-        # Sixieme face fonce
-        pgl.glColor3ub(40, 40, 40)
-        pgl.glVertex3f(0, 0, z)
-        pgl.glVertex3f(self.r.longueur, 0, z)
-        pgl.glVertex3f(self.r.longueur, self.r.largeur, z)
-        pgl.glVertex3f(0, self.r.largeur, z)
-
-        # Fin du dessin
-        pgl.glEnd()
-
-        # Effacer la matrice
-        pgl.glPopMatrix()
+            # Effacer la matrice
+            #pgl.glPopMatrix()
+            #pgl.glFlush()
     def on_draw(self):
         self.fenetre3d.clear()
         #pgl.glPushMatrix()
@@ -127,8 +128,16 @@ class Affichage(Thread):
         pgl.glVertex3f(self.arene.nb_colonne, 0, 0)
         pgl.glVertex3f(self.arene.nb_colonne, 0, self.arene.nb_ligne)
         
-        
+        self.draw()
         pgl.glEnd()
+        """kitten = pyglet.image.load('image2.jpg')
+        sprite = pyglet.sprite.Sprite(kitten)
+        sprite.draw()
+        i=open('image2.jpg')
+        (largeur, hauteur)= i.size
+        for j in range(largeur):
+          for k in range(hauteur):
+              print(i.getpixel((j,k)))"""
         pgl.glFlush()
     def obstacle (self, robot,originex, originey, arene, pas):
         """Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot ?
