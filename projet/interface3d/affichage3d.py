@@ -11,6 +11,7 @@ from modele.controleur_robotreel_mur import ControleurRobotReelMur
 from threading import Thread 
 
 
+
 class Affichage(Thread):
 
     def __init__(self, fenetre3d,arene,robot):
@@ -22,12 +23,16 @@ class Affichage(Thread):
         self.robot=robot
         self.arene=arene
         self.x=200
-        self.ctrl=ControleurRobotReelMur(self.robot)
-        #self.ctrl=ControleurRobotReelCarre(self.robot)
+        #self.ctrl=ControleurRobotReelMur(self.robot)
+        self.ctrl=ControleurRobotReelCarre(self.robot)
+        self.rouge=(255,0,0,255)
+        self.jaune=(255,255,0,255)
+        self.bleu=(0,0,255,255)
+        self.vert=(0,255,0,255)
+        self.tableau=[self.jaune,self.rouge,self.bleu,self.vert]
+        self.tmp=self.tableau
 
     def draw(self) :
-        #z=50 #m.sqrt(self.r.largeur**2+self.r.longueur**2)
-        print(self.arene.list_obj)
         for i in self.arene.list_obj:
             i.hauteur=50
             # Effacer la fenetre
@@ -130,15 +135,38 @@ class Affichage(Thread):
         
         self.draw()
         pgl.glEnd()
-        """kitten = pyglet.image.load('image2.jpg')
+        kitten = pyglet.image.load('balise2.png')
         sprite = pyglet.sprite.Sprite(kitten)
+        sprite.set_position(0,20)
         sprite.draw()
-        i=open('image2.jpg')
+        pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
+        pgl.glFlush()
+        
+    def couleur(self,i,x,y):
+        for p in self.tmp:
+          if i.getpixel((x,y))==p:  
+            return True,p
+
+    def recherche_balise(self):
+        i=open('screenshot.png')
         (largeur, hauteur)= i.size
         for j in range(largeur):
           for k in range(hauteur):
-              print(i.getpixel((j,k)))"""
-        pgl.glFlush()
+              d,e=self.couleur(i,j,k)
+              if d:
+                self.balise(i,j,k,0,e)               
+                print(self.balise(i,j,k,0,e))
+                return
+                 
+    def balise(self,i,x,y,nb,c):
+        if nb==0:  
+          for x in range(x,i.size[0]):
+            self.tmp.remove(c)
+            if i.getpixel((x,y))!=c and (self.couleur(x,y)):
+              return True,x,y
+            elif i.getpixel((x,y))!=c:
+              return False
+        
     def obstacle (self, robot,originex, originey, arene, pas):
         """Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot ?
             :param originex: x de l'origine de la demi-droite
@@ -173,7 +201,6 @@ class Affichage(Thread):
         x=self.robot.x+m.cos(self.robot.angle)*(self.robot.largeur//2)
         y=self.robot.y-m.sin(self.robot.angle)*(self.robot.longueur//2)
         a,b=self.obstacle(self.robot,self.robot.x,self.robot.y,self.arene,1)
-        print(a,b)
         #print(x,y)
         pgl.gluLookAt(x, 10, y, a, 0, b, 0, 1, 0)
         pgl.glMatrixMode(ogl.GL_MODELVIEW)
@@ -181,10 +208,11 @@ class Affichage(Thread):
         #pgl.glTranslatef(0, 0, -400)
 
     def update(self,dt):
-        if not self.ctrl.stop():
+        self.recherche_balise()
+        """if not self.ctrl.stop():
             self.ctrl.update()
             self.on_resize(600,600)
-            self.on_draw()
+            self.on_draw()"""
             
 
 
