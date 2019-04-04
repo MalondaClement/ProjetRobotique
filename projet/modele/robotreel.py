@@ -108,6 +108,7 @@ class RobotReel(object) :
 
         else:
             if self.MOTOR_RIGHT_DPS == -self.MOTOR_LEFT_DPS :
+                print("entree dans case normal")
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
             else :
                 print("entree dans case cercle")
@@ -116,7 +117,7 @@ class RobotReel(object) :
                 vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
                 pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /20
                 angle_rotation=2*pi/pourcentage
-            
+
 
     def calcul_angle(self):
         """Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
