@@ -107,7 +107,14 @@ class RobotReel(object) :
             self.y-= sin(self.angle)* (((self.MOTOR_LEFT_DPS/20) * self.WHEEL_DIAMETER )/ 360 ) /10
 
         elif self.MOTOR_RIGHT_DPS == -self.MOTOR_LEFT_DPS :
-            self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
+             self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
+            
+        else :
+            rayon= fabs (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
+            vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER.5/360
+            vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER.5/360
+            pourcentage=2*pi*rayon/ min(vitesserd, vitesserg) /20
+            angle_rotation=2*pi/pourcentage
 
     def calcul_angle(self):
         """Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
