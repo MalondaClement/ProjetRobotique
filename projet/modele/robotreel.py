@@ -114,7 +114,7 @@ class RobotReel(object) :
             rayon= fabs (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
             vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
             vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
-            pourcentage=2*pi*rayon/ min(vitesserd, vitesserg) /20
+            pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH/ max(vitesserd, vitesserg) /20
             angle_rotation=2*pi/pourcentage
 
     def calcul_angle(self):
