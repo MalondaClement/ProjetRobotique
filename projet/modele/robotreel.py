@@ -1,4 +1,4 @@
-from math import pi,atan,cos,sin,pow,sqrt
+from math import pi,atan,cos,sin,pow,sqrt,fabs
 
 WHEEL_BASE_WIDTH         = 117  # distance (mm) de la roue gauche a la roue droite.
 WHEEL_DIAMETER           = 66.5 #  diametre de la roue (mm)
@@ -108,7 +108,7 @@ class RobotReel(object) :
 
         elif self.MOTOR_RIGHT_DPS == -self.MOTOR_LEFT_DPS :
              self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
-            
+
         else :
             rayon= fabs (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
             vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
