@@ -5,11 +5,13 @@ class ControleurRobotReelCercle(object):
         super(ControleurRobotReelCercle,self).__init__()
         self.StratCercle=StratCercle(robot,rayon,temps,direction,cercle)
         self.sp = False
+        self.start()
 
     def start(self):
         self.StratCercle.start()
 
     def update(self) :
+        print(self.sp)
         if not self.StratCercle.stop():
             self.StratCercle.step()
         else:
