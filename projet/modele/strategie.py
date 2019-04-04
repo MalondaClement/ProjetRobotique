@@ -51,7 +51,7 @@ class StratAngle(object):
 
     def step(self):
         self.tourner(self.v_angu)
-        print(self.robot.MOTOR_LEFT_DPS-self.robot.MOTOR_RIGHT_DPS)
+        print(self.robot.MOTOR_LEFT_DPS+self.robot.MOTOR_RIGHT_DPS)
         x,y=self.robot.get_motor_position()
         self.parcouru=x
         if self.parcouru >= self.distance*(3/4) and self.test :
