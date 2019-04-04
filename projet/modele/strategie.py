@@ -153,9 +153,9 @@ class StratCercle(object):
 
    def stop(self) :
        if direction==0 :
-           self.distance > self.robot.get_motor_position[1]
+           self.distance > self.robot.get_motor_position()[1]
        else :
-           self.distance > self.robot.get_motor_position[0]
+           self.distance > self.robot.get_motor_position()[0]
 
 class StratContournerPorte(object):
     def __init__(self,robot,vitesse):
