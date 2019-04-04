@@ -4,7 +4,7 @@ from modele.controleur_robotreel_cercle import ControleurRobotReelCercle
 try:
     from robot2I013 import Robot2I013 as Robot
     robot = Robot()
-    ctrl=ControleurRobotReelCercle(robot, 500, 5, 0, 75)
+    ctrl=ControleurRobotReelCercle(robot, 100, 5, 0, 50)
     def main(ctrl):
         while not ctrl.stop():
             ctrl.update()
