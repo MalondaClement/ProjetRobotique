@@ -67,13 +67,13 @@ class RobotReel(object) :
         """Rcupération de la distance qui sépare de l'obstacle
             :returns: la distance au plus proche obstacle
         """
-        recherche_x= self.x +(self.largeur/2)*cos(self.angle+self.angle_tete-90)
-        recherche_y= self.y -(self.longueur/2)*sin(self.angle+self.angle_tete-90)
+        recherche_x= self.x +(self.largeur/2)*cos(self.angle+self.angle_tete)
+        recherche_y= self.y -(self.longueur/2)*sin(self.angle+self.angle_tete)
         #print(recherche_y,recherche_x)
         test=0
         while test==0:
-            recherche_x+=cos(self.angle+self.angle_tete-90)*2
-            recherche_y-=sin(self.angle+self.angle_tete-90)*2
+            recherche_x+=cos(self.angle+self.angle_tete)*2
+            recherche_y-=sin(self.angle+self.angle_tete)*2
             recherche_x=int(round(recherche_x,0))
             recherche_y=int(round(recherche_y,0))
             if recherche_x<0 or recherche_y<0 or recherche_x>self.arene.nb_colonne or recherche_y>self.arene.nb_ligne:
@@ -109,12 +109,12 @@ class RobotReel(object) :
         elif self.MOTOR_RIGHT_DPS == -self.MOTOR_LEFT_DPS :
              self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
 
-        else :
+        elif self.MOTOR_RIGHT_DPS != self.MOTOR_LEFT_DPS :
             print("entree dans case cercle")
             rayon= fabs (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
             vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
             vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
-            pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /20
+            pourcentage=2*pi*rayon/ min(vitesserd, vitesserg) /20
             angle_rotation=2*pi/pourcentage
 
     def calcul_angle(self):
