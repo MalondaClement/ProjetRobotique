@@ -30,7 +30,8 @@ class Affichage(Thread):
         self.bleu=(0,0,255,255)
         self.vert=(0,255,0,255)
         self.tableau=[self.jaune,self.rouge,self.bleu,self.vert]
-        self.tmp=self.tableau
+        self.tmp=list(self.tableau)
+        self.centre=(0,0)
 
     def draw(self) :
         for i in self.arene.list_obj:
@@ -137,35 +138,56 @@ class Affichage(Thread):
         pgl.glEnd()
         kitten = pyglet.image.load('balise2.png')
         sprite = pyglet.sprite.Sprite(kitten)
-        sprite.set_position(0,20)
+        sprite.set_position(00,80)
         sprite.draw()
         pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
         pgl.glFlush()
         
-    def couleur(self,i,x,y):
+    def couleur(self,i,x,y):       
         for p in self.tmp:
           if i.getpixel((x,y))==p:  
             return True,p
+        return False,p
 
     def recherche_balise(self):
         i=open('screenshot.png')
         (largeur, hauteur)= i.size
-        for j in range(largeur):
-          for k in range(hauteur):
+        for k in range(hauteur):
+          for j in range(largeur):
               d,e=self.couleur(i,j,k)
               if d:
-                self.balise(i,j,k,0,e)               
-                print(self.balise(i,j,k,0,e))
-                return
+                a=self.balise(i,j,k,e)
+                j=a[1][0]
+                k=a[1][1]
+                if len(self.tmp)==1:
+                    print(self.centre)
+                    print("fini")
+                    return True
+        print("perdu")
                  
-    def balise(self,i,x,y,nb,c):
-        if nb==0:  
-          for x in range(x,i.size[0]):
-            self.tmp.remove(c)
-            if i.getpixel((x,y))!=c and (self.couleur(x,y)):
-              return True,x,y
-            elif i.getpixel((x,y))!=c:
-              return False
+    def balise(self,i,x,y,c):
+        self.tmp.remove(c)
+        if len(self.tmp)==3:
+            for x in range(x,i.size[0]):
+                if i.getpixel((x,y))!=c and (self.couleur(i,x,y)[0]):
+                  return True,(x,y)
+            self.tmp=list(self.tableau)
+            return False,(x,y)
+        elif len(self.tmp)==2:
+            for y in range(y,i.size[1]):
+                if i.getpixel((x,y))!=c and (self.couleur(i,x,y)[0]):
+                  print(x,y)
+                  self.centre=(x,y)
+                  return True,(x,y)
+            self.tmp=list(self.tableau)
+            return False,(x,y)
+        elif len(self.tmp)==1:
+            for x in range(0,x):
+                if i.getpixel((x,y))!=c and (self.couleur(i,x,y)[0]):
+                  return True,(x,y)
+            self.tmp=list(self.tableau)
+            self.centre=(0,0)
+            return False,(x,y)
         
     def obstacle (self, robot,originex, originey, arene, pas):
         """Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot ?
@@ -208,7 +230,8 @@ class Affichage(Thread):
         #pgl.glTranslatef(0, 0, -400)
 
     def update(self,dt):
-        self.recherche_balise()
+        pass
+        #self.recherche_balise()
         """if not self.ctrl.stop():
             self.ctrl.update()
             self.on_resize(600,600)
