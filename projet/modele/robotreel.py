@@ -112,13 +112,49 @@ class RobotReel(object) :
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
             else :
                 print("entree dans case cercle")
-                print(self.MOTOR_LEFT_DPS+self.MOTOR_RIGHT_DPS)
-                #rayon= fabs (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
-                #vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
-                #vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
-                #pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /20
-                #angle_rotation=2*pi/pourcentage
+                rayon= (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
+                print("self.WHEEL_BASE_WIDTH/",self.WHEEL_BASE_WIDTH)
+                print("self.MOTOR_RIGHT_DPS",self.MOTOR_RIGHT_DPS)
+                print("self.MOTOR_LEFT_DPS",self.MOTOR_LEFT_DPS)
+                
+                print("rayon",rayon)
+                vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
+                vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
+                pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /20
+                angle_rotation=2*pi*pourcentage
+                print("angle_rotation", angle_rotation)
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
+                #on a le x et le y du robot, le rayon du cercle , et l'angle de rotation.
+                #on a trois points A, B, C où A est le robot et C le centre du cercle et B la prochaine position du robot. On cherche les coordonnées de B nommées xb et yb.
+                print("x_robot",self.x)
+                print("y_robot",self.y)
+                AB = (sqrt(2*(rayon**2)*(1-cos(angle_rotation))))/20
+                print("AB:",AB)
+                xc = self.x + (cos(angle_rotation - pi/2) * rayon)
+                print("x_c",xc)
+                yc = self.y - (sin(angle_rotation - pi/2) * rayon)
+                print("y_c",yc)
+
+                p = (rayon**2 - AB - xc**2 - yc**2 + self.x**2 + self.y **2)/(2*(self.y - yc))
+                print("p",p)
+                q = (-xc + self.x)/(self.y - yc)
+                print("q",q)
+                a = (1 + q**2)
+                print("a",a)
+                b = (-2 * xc - 2 * p * q + 2 * q * yc)
+                print("b",b)
+                c = xc**2 + p**2 - (2 * p * yc) + yc**2 - (rayon**2)
+                print("c",c)
+                delta = b**2 - (4 * a * c)
+                print("delta ",delta)
+
+                xb = ( -b - sqrt(delta)) / ( 2 * a )
+                print("xb",xb)
+                yb = p - (xb * q)
+                print("yb",yb)
+                print("\n \n \n \n")
+                self.x = xb
+                self.y = yb
 
 
     def calcul_angle(self):
