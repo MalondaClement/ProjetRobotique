@@ -1,12 +1,12 @@
 #script qui est utiliser pour faire le polygone de la question 2.2
-#modification également dans stratégie et ajout d'un fichier controleur_robotreel_triangle.py
+#modification également dans stratégie et ajout d'un fichier controleur_robotreel_polygone.py
 import time
-from modele.controleur_robotreel_triangle import ControleurRobotReelTriangle
+from modele.controleur_robotreel_polygone import ControleurRobotReelPolygone
 
 try:
     from robot2I013 import Robot2I013 as Robot
     robot = Robot()
-    ctrl=ControleurRobotReelTriangle(robot) ##changer
+    ctrl=ControleurRobotReelPolygone(robot)
     def main(ctrl):
         while not ctrl.stop():
             print(robot.get_distance())
