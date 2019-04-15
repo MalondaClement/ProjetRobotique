@@ -85,6 +85,26 @@ class RobotReel(object) :
         if distance < 5 or distance > 8000 :
             distance = 8190
         return distance
+        
+    def obstacle (self, originex, originey, arene, pas):
+        """Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot ?
+            :param originex: x de l'origine de la demi-droite
+            :param origeney: y de l'origine de la demi-droite
+            :param arene: arene (matrice) dans lequel se trouve le robot
+            :param pas: pas entre chaque avancer sur la demi-droite de détection
+            :returns : position x, y de l'obstacle qui permetra le calcul de la distance avec celui-ci
+        """
+        recherche_x= originex
+        recherche_y= originey
+        while True:
+                    recherche_x+=cos(self.angle)*pas
+                    recherche_y-=sin(self.angle)*pas
+                    recherche_x=int(round(recherche_x,0))
+                    recherche_y=int(round(recherche_y,0))
+                    if recherche_x<0 or recherche_y<0 or recherche_x>arene.nb_colonne or recherche_y>arene.nb_ligne:
+                        return recherche_x, recherche_y
+                    if arene.matrice[recherche_y, recherche_x]==6:
+                        return recherche_x, recherche_y
 
     def servo_rotate(self,position):
         if position >= 0 and position <= 180:
@@ -112,49 +132,13 @@ class RobotReel(object) :
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
             else :
                 print("entree dans case cercle")
-                rayon= (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
-                print("self.WHEEL_BASE_WIDTH/",self.WHEEL_BASE_WIDTH)
-                print("self.MOTOR_RIGHT_DPS",self.MOTOR_RIGHT_DPS)
-                print("self.MOTOR_LEFT_DPS",self.MOTOR_LEFT_DPS)
-                
-                print("rayon",rayon)
-                vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
-                vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
-                pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /20
-                angle_rotation=2*pi*pourcentage
-                print("angle_rotation", angle_rotation)
+                print(self.MOTOR_LEFT_DPS+self.MOTOR_RIGHT_DPS)
+                #rayon= fabs (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
+                #vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
+                #vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
+                #pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /20
+                #angle_rotation=2*pi/pourcentage
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
-                #on a le x et le y du robot, le rayon du cercle , et l'angle de rotation.
-                #on a trois points A, B, C où A est le robot et C le centre du cercle et B la prochaine position du robot. On cherche les coordonnées de B nommées xb et yb.
-                print("x_robot",self.x)
-                print("y_robot",self.y)
-                AB = (sqrt(2*(rayon**2)*(1-cos(angle_rotation))))/20
-                print("AB:",AB)
-                xc = self.x + (cos(angle_rotation - pi/2) * rayon)
-                print("x_c",xc)
-                yc = self.y - (sin(angle_rotation - pi/2) * rayon)
-                print("y_c",yc)
-
-                p = (rayon**2 - AB - xc**2 - yc**2 + self.x**2 + self.y **2)/(2*(self.y - yc))
-                print("p",p)
-                q = (-xc + self.x)/(self.y - yc)
-                print("q",q)
-                a = (1 + q**2)
-                print("a",a)
-                b = (-2 * xc - 2 * p * q + 2 * q * yc)
-                print("b",b)
-                c = xc**2 + p**2 - (2 * p * yc) + yc**2 - (rayon**2)
-                print("c",c)
-                delta = b**2 - (4 * a * c)
-                print("delta ",delta)
-
-                xb = ( -b - sqrt(delta)) / ( 2 * a )
-                print("xb",xb)
-                yb = p - (xb * q)
-                print("yb",yb)
-                print("\n \n \n \n")
-                self.x = xb
-                self.y = yb
 
 
     def calcul_angle(self):

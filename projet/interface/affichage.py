@@ -13,6 +13,8 @@ class Affichage(Thread):
         self.arene=arene
         self.vitesse=10
         self.fen=fen
+        self.fen.couleur='pink'
+        self.fen.trace='gray50'
         self.p=robot
         self.a=robot.calcul_angle()
         self.t=robot.calcul_hypo()
@@ -23,13 +25,15 @@ class Affichage(Thread):
     def afficher(self):
         for i in range(0,self.arene.nb_colonne):
             for j in range(0,self.arene.nb_ligne):
-                if self.arene.matrice[j,i]==1:
-                    self.zone_dessin.create_rectangle(i,j,i+1,j+1,fill='black')
+                #if self.arene.matrice[j,i]==1:
+                    #self.zone_dessin.create_rectangle(i,j,i+1,j+1,fill='black')
+                if self.arene.matrice[j,i]==6:
+                    self.zone_dessin.create_rectangle(i,j,i+1,j+1,fill='gray50',outline='gray50')
     def afficher_robot(self):
         p=self.p
         t=self.t
         angle=self.a
-        self.r=self.zone_dessin.create_polygon(p.x+t*cos(p.angle+angle),p.y-t*sin(p.angle+angle),p.x+t*cos(p.angle-angle),p.y-t*sin(p.angle-angle),p.x+t*cos(p.angle+angle+pi),p.y-t*sin(p.angle+angle+pi),p.x+t*cos(p.angle-angle+pi),p.y-t*sin(p.angle-angle+pi),fill='red',outline='red')
+        self.r=self.zone_dessin.create_polygon(p.x+t*cos(p.angle+angle),p.y-t*sin(p.angle+angle),p.x+t*cos(p.angle-angle),p.y-t*sin(p.angle-angle),p.x+t*cos(p.angle+angle+pi),p.y-t*sin(p.angle+angle+pi),p.x+t*cos(p.angle-angle+pi),p.y-t*sin(p.angle-angle+pi),fill=self.fen.couleur,outline=self.fen.couleur)
         self.f=self.zone_dessin.create_line(p.x,p.y,round(50*cos(p.angle+(p.angle_tete-90)*pi/180),1)+p.x,p.y+round(50*sin(-p.angle+(p.angle_tete-90)*pi/180),1),arrow='last',fill='yellow')
 
     def zone(self):
@@ -47,7 +51,7 @@ class Affichage(Thread):
         self.zone_dessin.coords(self.r,int(p.x+t*cos(p.angle+angle)),int(p.y-t*sin(p.angle+angle)),int(p.x+t*cos(p.angle-angle)),int(p.y-t*sin(p.angle-angle)),int(p.x+t*cos(p.angle+angle+pi)),int(p.y-t*sin(p.angle+angle+pi)),int(p.x+t*cos(p.angle-angle+pi)),int(p.y-t*sin(p.angle-angle+pi)))
         self.zone_dessin.coords(self.f,int(p.x),int(p.y),int(round(50*cos(p.angle),1)+p.x),int(p.y+round(50*sin(-p.angle),1)))
     def update(self):
-        self.z.zone_dessin.create_rectangle(self.p.x,self.p.y,self.p.x+1,self.p.y+1,fill='green')
+        self.z.zone_dessin.create_rectangle(self.p.x,self.p.y,self.p.x+1,self.p.y+1,fill=self.fen.trace,outline=self.fen.trace)
         self.z.dessiner()
 
     def run(self):

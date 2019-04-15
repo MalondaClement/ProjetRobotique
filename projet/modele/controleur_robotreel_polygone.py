@@ -1,12 +1,13 @@
-from .strategie import StratLigne,StratAngle,StratCarre
+from .strategie import StratLigne,StratAngle,StratTriangle,StratPolygone
 from threading import Thread
 import time
-class ControleurRobotReelCarre(Thread):
+class ControleurRobotReelPolygone(Thread):
     def __init__(self,robot):
-        super(ControleurRobotReelCarre,self).__init__()
+        super(ControleurRobotReelPolygone,self).__init__()
         self.robot=robot
         self.StratLigne=StratLigne(self.robot, 600, 500)
-        self.StratCarre=StratCarre(self.robot,250,500)
+        self.StratPolygone=StratPolygone(self.robot,250,500,8)
+        #self.StratPolygone=StratPolygone(self.robot,250,500,20)
         self.sp=False
 
     def init(self):
@@ -16,8 +17,8 @@ class ControleurRobotReelCarre(Thread):
         return self.robot.get_distance()
 
     def update(self):
-        if not self.StratCarre.stop():
-            self.StratCarre.step()
+        if not self.StratPolygone.stop():
+            self.StratPolygone.step()
         else:
             self.sp=True
             return self.stop

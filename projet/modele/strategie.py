@@ -1,4 +1,4 @@
-from math import fabs, pi
+from math import fabs, pi ,radians,degrees
 class StratLigne(object):
     def __init__(self,robot,vitesse,distance):
         self.distance=distance
@@ -19,6 +19,7 @@ class StratLigne(object):
     def step(self):
         x,y=self.robot.get_motor_position()
         self.avancer(self.vitesse)
+        print(self.robot.obstacle)
         self.parcouru=(x*self.robot.WHEEL_CIRCUMFERENCE)/360
         if self.parcouru >= self.distance*(3/4) and self.ralenti==False :
             self.ralenti=True
@@ -32,7 +33,7 @@ class StratLigne(object):
         return self.parcouru>self.distance
 
 class StratAngle(object):
-    def __init__(self,robot, angle=-90):
+    def __init__(self,robot, angle):
         self.robot=robot
         self.test=True
         self.v_angu=-90
@@ -72,11 +73,11 @@ class StratCarre(object):
         self.vitesse=vitesse
         self.longueurCarre=longueurCarre
         s0=StratLigne(self.robot, self.vitesse, self.longueurCarre)
-        s1=StratAngle(self.robot)
+        s1=StratAngle(self.robot,-90)
         s2=StratLigne(self.robot, self.vitesse, self.longueurCarre)
-        s3=StratAngle(self.robot)
+        s3=StratAngle(self.robot,-90)
         s4=StratLigne(self.robot, self.vitesse, self.longueurCarre)
-        s5=StratAngle(self.robot)
+        s5=StratAngle(self.robot,-90)
         s6=StratLigne(self.robot, self.vitesse, self.longueurCarre)
 
         self.strats = [s0, s1, s2, s3, s4, s5, s6]
@@ -217,3 +218,53 @@ class StratDetectePorte(object):
 
     def stop(self):
         return self.fin
+   
+class StratTriangle(object):
+  def __init__(self,robot,vitesse,longueur):
+    self.robot=robot
+    self.vitesse=vitesse
+    self.longueur=longueur
+    s0=StratLigne(self.robot, self.vitesse, self.longueur)
+    s1=StratAngle(self.robot,120)
+    s2=StratLigne(self.robot, self.vitesse, self.longueur)
+    s3=StratAngle(self.robot,120)
+    s4=StratLigne(self.robot, self.vitesse, self.longueur)
+    self.strats = [s0, s1,s2,s3,s4]
+    self.cur =-1
+   
+  def step(self):
+        if self.stop() :return
+        if self.cur < 0 or self.strats[self.cur].stop():
+            self.cur+=1
+            self.strats[self.cur].start()
+        self.strats[self.cur].step()
+        
+  def stop(self) :
+        return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
+        
+class StratPolygone(object):
+  def __init__(self,robot,vitesse,longueur,nbr_cote):
+    self.robot=robot
+    self.vitesse=vitesse
+    self.longueur=30/nbr_cote*100
+    self.angle=degrees(((nbr_cote-2)*pi)/nbr_cote)/pi
+    print((self.angle))
+    self.strats = []
+    for i in range(0,nbr_cote):
+      s0=StratLigne(self.robot, self.vitesse, self.longueur)
+      s1=StratAngle(self.robot,self.angle)
+      self.strats.append(s0)
+      self.strats.append(s1)
+    print(self.strats)
+    self.cur =-1
+   
+  def step(self):
+        if self.stop() :return
+        if self.cur < 0 or self.strats[self.cur].stop():
+            self.cur+=1
+            self.strats[self.cur].start()
+        self.strats[self.cur].step()
+        
+  def stop(self) :
+        return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
+

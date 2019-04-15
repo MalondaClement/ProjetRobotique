@@ -24,6 +24,7 @@ class Arene(Thread):
         self.matrice=np.zeros((nb_ligne,nb_colonne))
         self.list_rob=[]
         self.list_obj=[]
+        self.list_zone=[]
         self.coord_rob=[0,0]
         #cree les mur
 
@@ -75,7 +76,10 @@ class Arene(Thread):
         if self.est_dans_matrice(o) and self.est_vide:
             self.remplir_matrice(o,1)
             self.list_obj.append(o)
-
+    def inserer_zone(self,o):
+        if self.est_dans_matrice(o) and self.est_vide:
+            self.remplir_matrice(o,6)
+            self.list_zone.append(o) 
 
     def get_object(self,x,y):
         """Cette fonction permet de savoir si on a un objet est présente dans la case de la matrice.

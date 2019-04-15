@@ -9,6 +9,9 @@ from modele.controleur_robotreel_carre import ControleurRobotReelCarre
 from modele.controleur_robotreel_mur import ControleurRobotReelMur
 from modele.controleur_robotreel_contourner_porte import ControleurRobotReelContournerPorte
 from modele.controleur_robotreel_cercle import ControleurRobotReelCercle
+from modele.controleur_robotreel_triangle import ControleurRobotReelTriangle
+from modele.controleur_robotreel_polygone import ControleurRobotReelPolygone
+
 from threading import Thread
 import time
 
@@ -17,6 +20,8 @@ class Fenetre(Thread):
         self.fin=False
         self.i=i
         super(Fenetre,self).__init__()
+        self.couleur='red'
+        self.trace='black'
 
     def creer(self):
         """cree une fenetre"""
@@ -46,7 +51,7 @@ class Fenetre(Thread):
         """creation de case avec des informations a l'interieur"""
         label = Label(self.fenetre, text="x y", bg="yellow")
         label.pack()
-
+        #self.import_file()
         self.fenetre.mainloop()
 
 
@@ -69,15 +74,15 @@ class Fenetre(Thread):
 
 
     def import_file(self):
-        #filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
+        filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
         #if filepath==() or  filepath=="":
             #return
         #if hasattr(self, 'z'):
             #self.reset()
-        #fichier = open(filepath,'r')
-        a=os.getcwd()
-        a=a.replace('projet','')
-        fichier=open(a+"/Scenario/test.txt",'r')
+        fichier = open(filepath,'r')
+        #a=os.getcwd()
+        #a=a.replace('projet','')
+        #fichier=open(a+"/Scenario/test.txt",'r')
         ARENE=False
         ROBOT=False
         OBSTACLE=False
@@ -101,9 +106,13 @@ class Fenetre(Thread):
                 elif self.i==1 :
                     self.controleur=ControleurRobotReelMur(self.p)
                 elif self.i==2 :
-                    self.controleur=ControleurRobotReelCercle(self.p, 200, 5, 0, 100)
+                    self.controleur=ControleurRobotReelCercle(self.p, 100, 5, 0, 100)
                 elif self.i==3 :
                     self.controleur=ControleurRobotReelContournerPorte(self.p)
+                elif self.i==4 :
+                    self.controleur=ControleurRobotReelTriangle(self.p) 
+                elif self.i==5:
+                    self.controleur=ControleurRobotReelPolygone(self.p)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 self.b.inserer_robot(self.p)
@@ -115,13 +124,9 @@ class Fenetre(Thread):
                 a=0
                 while a<len(L):
                     if int(L[a+2]) == 1:
-                        o=ObstacleRectangle(int(L[a]),int(L[a+1]),int(L[a+3]),int(L[a+4]))#modif
-                    elif int(L[a+2]) == 2:
-                        o=ObstacleEllipse(int(L[a]),int(L[a+1]),int(L[a+3]),int(L[a+4]))#modif
-                    else :
-                        o=ObstacleTriangle(int(L[a]),int(L[a+1]),int(L[a+3]),int(L[a+4]))#modif
-                    self.b.inserer_obs(o)
-                    a=a+5
+                        o=Zone(int(L[a]),int(L[a+1]),int(L[a+2]),int(L[a+3]))#modif
+                        self.b.inserer_zone(o)
+                    a=a+4
                 self.z=Affichage(self.b,self.fenetre,self.p)
                 self.z.arene=self.b
                 self.z.zone()

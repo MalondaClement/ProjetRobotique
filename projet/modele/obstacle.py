@@ -11,6 +11,13 @@ class Obstacle(object):
         self.hauteur=10
         self.forme = forme
 
+class Zone(object):
+  def __init__(self,x,y,forme,cote):
+    self.x=x
+    self.y=y
+    self.forme=forme
+    self.largeur=cote
+    self.longueur=cote
 
 class ObstacleRectangle(Obstacle):
     """ ObstacleRectagle est une classe fille de Obstacle qui permet de creer des objets rectangulaires (et carrés) dans notre arène

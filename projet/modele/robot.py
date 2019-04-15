@@ -32,7 +32,7 @@ class Robot(object):
                     recherche_y=int(round(recherche_y,0))
                     if recherche_x<0 or recherche_y<0 or recherche_x>arene.nb_colonne or recherche_y>arene.nb_ligne:
                         return recherche_x, recherche_y
-                    if arene.matrice[recherche_y, recherche_x]==1:
+                    if arene.matrice[recherche_y, recherche_x]==6:
                         return recherche_x, recherche_y
 
     def changer_angle(self, delta):
