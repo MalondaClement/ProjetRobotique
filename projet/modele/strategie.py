@@ -238,6 +238,8 @@ class StratTriangle(object):
     def step(self):
         if self.stop() :return
         if self.cur < 0 or self.strats[self.cur].stop():
+            print("x = ", self.robot.x)
+            print("y = ",self.robot.y)
             self.cur+=1
             self.strats[self.cur].start()
         self.strats[self.cur].step()
@@ -268,6 +270,8 @@ class StratPolygone(object):
     def step(self):
         if self.stop() :return
         if self.cur < 0 or self.strats[self.cur].stop():
+            print("x = ", self.robot.x)
+            print("y = ",self.robot.y)
             self.cur+=1
             self.strats[self.cur].start()
         self.strats[self.cur].step()
@@ -297,6 +301,8 @@ class StratArene(object):
     def step(self):
         if self.stop() :return
         if self.cur < 0 or self.strats[self.cur].stop():
+            print("x = ", self.robot.x)
+            print("y = ",self.robot.y)
             self.cur+=1
             self.strats[self.cur].start()
         self.strats[self.cur].step()
