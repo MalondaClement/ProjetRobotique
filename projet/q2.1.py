@@ -6,7 +6,7 @@ from modele.controleur_robotreel_triangle import ControleurRobotReelTriangle
 try:
     from robot2I013 import Robot2I013 as Robot
     robot = Robot()
-    ctrl=ControleurRobotReelTriangle(robot) ##changer
+    ctrl=ControleurRobotReelTriangle(robot)
     def main(ctrl):
         while not ctrl.stop():
             print(robot.get_distance())
