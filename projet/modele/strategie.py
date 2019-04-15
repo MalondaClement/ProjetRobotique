@@ -251,15 +251,15 @@ class StratPolygone(object):
         self.robot=robot
         self.vitesse=vitesse
         self.nbCotes = nbCotes
-        self.longueur = 300/nbCotes #300mm / nbCotes pour avoir la longueur du cote du polygone
-        self.angle = 180 - ((self.nbCotes - 2 ) * pi / nbCotes)
+        self.longueur = 3000/nbCotes #300mm / nbCotes pour avoir la longueur du cote du polygone
+        self.angle = ((self.nbCotes - 2 ) * pi / nbCotes)
         i = 0
-        strats = []
+        self.strats = []
         while i < nbCotes:
             sCote=StratLigne(self.robot, self.vitesse, self.longueur)
-            sAngle=StratAngle(self.robot, -self.angle)
-            strats.append(sCote)
-            strats.append(sAngle)
+            sAngle=StratAngle(self.robot, self.angle)
+            self.strats.append(sCote)
+            self.strats.append(sAngle)
             i = i + 1
 
         self.cur =-1
