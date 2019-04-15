@@ -217,3 +217,30 @@ class StratDetectePorte(object):
 
     def stop(self):
         return self.fin
+
+class StratTriangle(object):
+    def __init__(self,robot,vitesse,longueurTriangle):
+        self.robot=robot
+        self.vitesse=vitesse
+        self.longueurTriangle = longueurTriangle
+        s0=StratLigne(self.robot, self.vitesse, self.longueurTriangle)
+        s1=StratAngle(self.robot, -120)
+        s2=StratLigne(self.robot, self.vitesse, self.longueurTriangle)
+        s3=StratAngle(self.robot, -120)
+        s4=StratLigne(self.robot, self.vitesse, self.longueurTriangle)
+        s5=StratAngle(self.robot, -120)
+
+        self.strats = [s0, s1, s2, s3, s4, s5]
+        self.cur =-1
+    def get_distance(self) :
+        return self.robot.get_distance()
+
+    def step(self):
+        if self.stop() :return
+        if self.cur < 0 or self.strats[self.cur].stop():
+            self.cur+=1
+            self.strats[self.cur].start()
+        self.strats[self.cur].step()
+
+    def stop(self) :
+        return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
