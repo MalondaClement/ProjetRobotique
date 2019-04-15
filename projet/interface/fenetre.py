@@ -11,6 +11,7 @@ from modele.controleur_robotreel_contourner_porte import ControleurRobotReelCont
 from modele.controleur_robotreel_cercle import ControleurRobotReelCercle
 from modele.controleur_robotreel_triangle import ControleurRobotReelTriangle
 from modele.controleur_robotreel_polygone import ControleurRobotReelPolygone
+from modele.controleur_robotreel_polygone import ControleurRobotReelArene
 from threading import Thread
 import time
 
@@ -110,6 +111,8 @@ class Fenetre(Thread):
                     self.controleur=ControleurRobotReelTriangle(self.p) #ajout du controleur triangle
                 elif self.i==5 :
                     self.controleur=ControleurRobotReelPolygone(self.p) #ajout du controleur polygone
+                elif self.i==6 :
+                    self.controleur=ControleurRobotReelArene(self.p) #ajout du controleur pour faire le tour de l'arène
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 self.b.inserer_robot(self.p)
