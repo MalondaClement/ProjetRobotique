@@ -8,7 +8,7 @@ from .affichage import *
 from modele.controleur_robotreel_carre import ControleurRobotReelCarre
 from modele.controleur_robotreel_mur import ControleurRobotReelMur
 from modele.controleur_robotreel_contourner_porte import ControleurRobotReelContournerPorte
-from modele.controleur_robotreel_cercle importe ControleurRobotReelCercle
+from modele.controleur_robotreel_cercle import ControleurRobotReelCercle
 from threading import Thread
 import time
 
