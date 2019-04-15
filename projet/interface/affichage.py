@@ -24,12 +24,12 @@ class Affichage(Thread):
         for i in range(0,self.arene.nb_colonne):
             for j in range(0,self.arene.nb_ligne):
                 if self.arene.matrice[j,i]==1:
-                    self.zone_dessin.create_rectangle(i,j,i+1,j+1,fill='black')
+                    self.zone_dessin.create_rectangle(i,j,i+1,j+1,fill='#606060') #modif q1.2
     def afficher_robot(self):
         p=self.p
         t=self.t
         angle=self.a
-        self.r=self.zone_dessin.create_polygon(p.x+t*cos(p.angle+angle),p.y-t*sin(p.angle+angle),p.x+t*cos(p.angle-angle),p.y-t*sin(p.angle-angle),p.x+t*cos(p.angle+angle+pi),p.y-t*sin(p.angle+angle+pi),p.x+t*cos(p.angle-angle+pi),p.y-t*sin(p.angle-angle+pi),fill='red',outline='red')
+        self.r=self.zone_dessin.create_polygon(p.x+t*cos(p.angle+angle),p.y-t*sin(p.angle+angle),p.x+t*cos(p.angle-angle),p.y-t*sin(p.angle-angle),p.x+t*cos(p.angle+angle+pi),p.y-t*sin(p.angle+angle+pi),p.x+t*cos(p.angle-angle+pi),p.y-t*sin(p.angle-angle+pi),fill='#FF1493',outline='#FF1493') #modif q1.1
         self.f=self.zone_dessin.create_line(p.x,p.y,round(50*cos(p.angle+(p.angle_tete-90)*pi/180),1)+p.x,p.y+round(50*sin(-p.angle+(p.angle_tete-90)*pi/180),1),arrow='last',fill='yellow')
 
     def zone(self):
