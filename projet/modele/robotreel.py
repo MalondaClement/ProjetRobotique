@@ -111,18 +111,18 @@ class RobotReel(object) :
                 #print("entree dans case normal")
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
             else :
-                print("entree dans case cercle")
+                #print("entree dans case cercle")
                 rayon= (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
-                print("self.WHEEL_BASE_WIDTH/",self.WHEEL_BASE_WIDTH)
-                print("self.MOTOR_RIGHT_DPS",self.MOTOR_RIGHT_DPS)
-                print("self.MOTOR_LEFT_DPS",self.MOTOR_LEFT_DPS)
-                
-                print("rayon",rayon)
+                #print("self.WHEEL_BASE_WIDTH/",self.WHEEL_BASE_WIDTH)
+                #print("self.MOTOR_RIGHT_DPS",self.MOTOR_RIGHT_DPS)
+                #print("self.MOTOR_LEFT_DPS",self.MOTOR_LEFT_DPS)
+
+                #print("rayon",rayon)
                 vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
                 vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
                 pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /20
                 angle_rotation=2*pi*pourcentage
-                print("angle_rotation", angle_rotation)
+                #print("angle_rotation", angle_rotation)
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
                 #on a le x et le y du robot, le rayon du cercle , et l'angle de rotation.
                 #on a trois points A, B, C où A est le robot et C le centre du cercle et B la prochaine position du robot. On cherche les coordonnées de B nommées xb et yb.
