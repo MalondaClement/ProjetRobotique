@@ -11,7 +11,7 @@ class ControleurRobotReelCercle(object):
         self.StratCercle.start()
 
     def update(self) :
-        print(self.sp)
+        #print(self.sp)
         if not self.StratCercle.stop():
             self.StratCercle.step()
         else:
