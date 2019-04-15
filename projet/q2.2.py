@@ -1,5 +1,5 @@
 #script qui est utiliser pour faire le polygone de la question 2.2
-#modification également dans stratégie et ajout d'un fichier controleur_robotreel_polygone.py
+#modification également dans stratégie  avec la nouvelle class StratPolygone et ajout d'un fichier controleur_robotreel_polygone.py
 import time
 from modele.controleur_robotreel_polygone import ControleurRobotReelPolygone
 
