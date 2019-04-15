@@ -11,7 +11,7 @@ from modele.controleur_robotreel_contourner_porte import ControleurRobotReelCont
 from modele.controleur_robotreel_cercle import ControleurRobotReelCercle
 from modele.controleur_robotreel_triangle import ControleurRobotReelTriangle
 from modele.controleur_robotreel_polygone import ControleurRobotReelPolygone
-from modele.controleur_robotreel_polygone import ControleurRobotReelArene
+from modele.controleur_robotreel_arene import ControleurRobotReelArene
 from threading import Thread
 import time
 
