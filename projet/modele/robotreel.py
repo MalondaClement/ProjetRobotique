@@ -71,7 +71,7 @@ class RobotReel(object) :
         recherche_y= self.y -(self.longueur/2)*sin(self.angle+self.angle_tete-90)
         #print(recherche_y,recherche_x)
         test=0
-        while test==0:
+        while test==0 and recherche_x < 500 and recherche_y < 500:
             recherche_x+=cos(self.angle+self.angle_tete-90)*2
             recherche_y-=sin(self.angle+self.angle_tete-90)*2
             recherche_x=int(round(recherche_x,0))
@@ -126,33 +126,33 @@ class RobotReel(object) :
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
                 #on a le x et le y du robot, le rayon du cercle , et l'angle de rotation.
                 #on a trois points A, B, C où A est le robot et C le centre du cercle et B la prochaine position du robot. On cherche les coordonnées de B nommées xb et yb.
-                print("x_robot",self.x)
-                print("y_robot",self.y)
+                #print("x_robot",self.x)
+                #print("y_robot",self.y)
                 AB = (sqrt(2*(rayon**2)*(1-cos(angle_rotation))))/20
-                print("AB:",AB)
+                #print("AB:",AB)
                 xc = self.x + (cos(angle_rotation - pi/2) * rayon)
-                print("x_c",xc)
+                #print("x_c",xc)
                 yc = self.y - (sin(angle_rotation - pi/2) * rayon)
-                print("y_c",yc)
+                #print("y_c",yc)
 
                 p = (rayon**2 - AB - xc**2 - yc**2 + self.x**2 + self.y **2)/(2*(self.y - yc))
-                print("p",p)
+                #print("p",p)
                 q = (-xc + self.x)/(self.y - yc)
-                print("q",q)
+                #print("q",q)
                 a = (1 + q**2)
-                print("a",a)
+                #print("a",a)
                 b = (-2 * xc - 2 * p * q + 2 * q * yc)
-                print("b",b)
+                #print("b",b)
                 c = xc**2 + p**2 - (2 * p * yc) + yc**2 - (rayon**2)
-                print("c",c)
+                #print("c",c)
                 delta = b**2 - (4 * a * c)
-                print("delta ",delta)
+                #print("delta ",delta)
 
                 xb = ( -b - sqrt(delta)) / ( 2 * a )
-                print("xb",xb)
+                #print("xb",xb)
                 yb = p - (xb * q)
-                print("yb",yb)
-                print("\n \n \n \n")
+                #print("yb",yb)
+                #print("\n \n \n \n")
                 self.x = xb
                 self.y = yb
 
