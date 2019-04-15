@@ -244,3 +244,34 @@ class StratTriangle(object):
 
     def stop(self) :
         return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
+
+
+class StratPolygone(object):
+    def __init__(self,robot,vitesse,nbCotes):
+        self.robot=robot
+        self.vitesse=vitesse
+        self.nbCotes = nbCotes
+        self.longueur = 300/nbCotes #300mm / nbCotes pour avoir la longueur du cote du polygone
+        self.angle = 180 - ((self.nbCotes - 2 ) * pi / nbCotes)
+        i = 0
+        strats = []
+        while i < nbCotes:
+            sCote=StratLigne(self.robot, self.vitesse, self.longueur)
+            sAngle=StratAngle(self.robot, -self.angle)
+            strats.append(sCote)
+            strats.append(sAngle)
+            i = i + 1
+
+        self.cur =-1
+    def get_distance(self) :
+        return self.robot.get_distance()
+
+    def step(self):
+        if self.stop() :return
+        if self.cur < 0 or self.strats[self.cur].stop():
+            self.cur+=1
+            self.strats[self.cur].start()
+        self.strats[self.cur].step()
+
+    def stop(self) :
+        return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
