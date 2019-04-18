@@ -26,13 +26,13 @@ class Affichage(Thread):
         self.arene=arene
         self.x=200
         if i==0 :
-            self.ctrl= ControleurRobotReelCarre(self.p)
+            self.ctrl= ControleurRobotReelCarre(self.robot)
         elif i==1 :
-            self.ctrl=ControleurRobotReelMur(self.p)
+            self.ctrl=ControleurRobotReelMur(self.robot)
         elif i==2 :
-            self.ctrl=ControleurRobotReelCercle(self.p, 200, 5, 0, 100)
+            self.ctrl=ControleurRobotReelCercle(self.robot, 200, 5, 0, 100)
         elif i==3 :
-            self.ctrl=ControleurRobotReelContournerPorte(self.p)
+            self.ctrl=ControleurRobotReelContournerPorte(self.robot)
         self.rouge=(255,0,0,255)
         self.jaune=(255,255,0,255)
         self.bleu=(0,0,255,255)
