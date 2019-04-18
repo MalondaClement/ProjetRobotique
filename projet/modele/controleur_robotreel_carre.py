@@ -8,9 +8,6 @@ class ControleurRobotReelCarre(Thread):
         self.StratCarre=StratCarre(self.robot,250,500)
         self.sp=False
 
-    #def init(self):
-    #    self.start()
-
     def get_distance(self) :
         return self.robot.get_distance()
 
