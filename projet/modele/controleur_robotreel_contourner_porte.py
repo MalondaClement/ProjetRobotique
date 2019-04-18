@@ -7,9 +7,6 @@ class ControleurRobotReelContournerPorte(Thread):
         self.StratContournerPorte = StratContournerPorte(self.robot, 500)
         self.sp=False
 
-    def init(self):
-        self.start()
-
     def get_distance(self) :
         return self.robot.get_distance()
 
