@@ -1,19 +1,22 @@
 from tkinter import *
 from tkinter.filedialog import *
 from math import degrees, radians
-from modele.arene import*
-from modele.obstacle import*
-from modele.robotreel import*
+from modele.arene import *
+from modele.obstacle import *
+from modele.robotreel import *
 from .affichage import *
+from modele.controleur_robotreel_carre import ControleurRobotReelCarre
+from modele.controleur_robotreel_mur import ControleurRobotReelMur
+from modele.controleur_robotreel_contourner_porte import ControleurRobotReelContournerPorte
+from modele.controleur_robotreel_cercle import ControleurRobotReelCercle
 from threading import Thread
-from modele.controleur_robotreel import ControleurRobotReel
 import time
 
 class Fenetre(Thread):
-    def __init__(self):
+    def __init__(self, i):
         self.fin=False
+        self.i=i
         super(Fenetre,self).__init__()
-
 
     def creer(self):
         """cree une fenetre"""
@@ -40,18 +43,19 @@ class Fenetre(Thread):
 
         BoutonReset = Button(self.fenetre, text ='Reset', command = self.reset)
         BoutonReset.pack(side = LEFT, padx = 10, pady = 10)
-
         """creation de case avec des informations a l'interieur"""
         label = Label(self.fenetre, text="x y", bg="yellow")
         label.pack()
+
         self.fenetre.mainloop()
+
 
     def demarrer(self):
         #self.b.start()
         #ctrl=ControleurRobotReel(self.p)
         #self.start()
-        if not self.ctrl.stop():
-            self.ctrl.update()
+        if not self.controleur.stop():
+            self.controleur.update()
             self.update() ## a griser si pas d'affichage
             self.b.update()
             self.fenetre.after(50,self.demarrer)
@@ -65,12 +69,15 @@ class Fenetre(Thread):
 
 
     def import_file(self):
-        filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
-        if filepath==() or  filepath=="":
-            return
-        if hasattr(self, 'z'):
-            self.reset()
-        fichier = open(filepath,'r')
+        #filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
+        #if filepath==() or  filepath=="":
+            #return
+        #if hasattr(self, 'z'):
+            #self.reset()
+        #fichier = open(filepath,'r')
+        a=os.getcwd()
+        a=a.replace('projet','')
+        fichier=open(a+"/Scenario/test.txt",'r')
         ARENE=False
         ROBOT=False
         OBSTACLE=False
@@ -89,7 +96,18 @@ class Fenetre(Thread):
                 OBSTACLE=False
             elif i.strip()=="OBSTACLE":
                 self.p=RobotReel(int(L[0]),int(L[1]),radians(int(L[2])),self.b)
-                self.ctrl=ControleurRobotReel(self.p)
+                if self.i=="0" :
+                    self.controleur= ControleurRobotReelCarre(self.p)
+                elif self.i=="1" :
+                    self.controleur=ControleurRobotReelMur(self.p)
+                elif self.i=="2" :
+                    self.controleur=ControleurRobotReelCercle(self.p, 200, 5, 0, 100)
+                elif self.i=="3" :
+                    self.controleur=ControleurRobotReelContournerPorte(self.p)
+                #ajouter nouveaux controleurs ici
+                else:
+                    print("Erreur la demo demandee n'existe pas")
+                    exit(1)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 self.b.inserer_robot(self.p)
@@ -113,6 +131,8 @@ class Fenetre(Thread):
                 self.z.zone()
                 self.z.afficher()
                 self.z.afficher_robot()
+                #self.start()
+                #self.b.start()
             elif ARENE:
                 L.append(i.strip())
             elif ROBOT:
@@ -153,8 +173,11 @@ class Fenetre(Thread):
         self.z.dessiner()
 
     def run(self):
+        self.fenetre.mainloop()
         while True:
             self.update()
             time.sleep(1./20)
+
+
 
 
