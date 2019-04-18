@@ -1,5 +1,3 @@
-import time
-
 try:
     from robot2I013 import Robot2I013 as Robot
     robot = Robot()
