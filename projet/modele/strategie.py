@@ -140,13 +140,14 @@ class StratCercle(object):
        self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
        self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
-   def step(self) :
-       if self.direction==0 :
-           self.robot.set_motor_dps(1, ((((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH))/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
-           self.robot.set_motor_dps(2, ((((2*pi*self.rayon/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))
-       else :
-           self.robot.set_motor_dps(2, ((((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH))/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
-           self.robot.set_motor_dps(1, ((((2*pi*self.rayon/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))
+   def step(self):
+        print(self.cercle)
+        if self.direction==0 :
+            self.robot.set_motor_dps(1, ((((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH))/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
+            self.robot.set_motor_dps(2, ((((2*pi*self.rayon/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))
+        else :
+            self.robot.set_motor_dps(2, ((((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH))/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
+            self.robot.set_motor_dps(1, ((((2*pi*self.rayon/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))
 
 
    def stop(self) :
