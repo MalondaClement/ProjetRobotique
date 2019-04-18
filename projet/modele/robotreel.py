@@ -48,7 +48,6 @@ class RobotReel(object) :
             self.MOTOR_RIGHT_DPS = dps
         elif port ==MOTOR_LEFT+MOTOR_RIGHT :
             self.MOTOR_RIGHT_DPS = self.MOTOR_LEFT_DPS = dps
-        self.actualiser()
 
     def get_motor_position (self) :
         return self.MOTOR_LEFT_ROTATION, self.MOTOR_RIGHT_ROTATION
