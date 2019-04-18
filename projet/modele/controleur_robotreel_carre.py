@@ -8,8 +8,8 @@ class ControleurRobotReelCarre(Thread):
         self.StratCarre=StratCarre(self.robot,250,500)
         self.sp=False
 
-    def init(self):
-        self.start()
+    #def init(self):
+    #    self.start()
 
     def get_distance(self) :
         return self.robot.get_distance()
@@ -19,7 +19,7 @@ class ControleurRobotReelCarre(Thread):
             self.StratCarre.step()
         else:
             self.sp=True
-            return self.stop
+            return self.stop()
 
     def stop(self):
         return self.sp
