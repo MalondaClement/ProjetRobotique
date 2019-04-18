@@ -33,6 +33,10 @@ class Affichage(Thread):
             self.ctrl=ControleurRobotReelCercle(self.robot, 200, 5, 0, 100)
         elif i==3 :
             self.ctrl=ControleurRobotReelContournerPorte(self.robot)
+        #ajouter les controleurs ici
+        else:
+            print("Erreur la demo demandee n'existe pas")
+            exit(1)
         self.rouge=(255,0,0,255)
         self.jaune=(255,255,0,255)
         self.bleu=(0,0,255,255)
