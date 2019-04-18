@@ -8,16 +8,16 @@ try:
     robot = Robot()
     if menu_demo=="0" :
         from modele.controleur_robotreel_carre import ControleurRobotReelCarre
-        self.ctrl= ControleurRobotReelCarre(robot)
+        ctrl= ControleurRobotReelCarre(robot)
     elif menu_demo=="1" :
         from modele.controleur_robotreel_mur import ControleurRobotReelMur
-        self.ctrl=ControleurRobotReelMur(robot)
+        ctrl=ControleurRobotReelMur(robot)
     elif menu_demo=="2" :
         from modele.controleur_robotreel_cercle import ControleurRobotReelCercle
-        self.ctrl=ControleurRobotReelCercle(robot, 200, 5, 0, 100)
+        ctrl=ControleurRobotReelCercle(robot, 200, 5, 0, 100)
     elif menu_demo=="3" :
         from modele.controleur_robotreel_contourner_porte import ControleurRobotReelContournerPorte
-        self.ctrl=ControleurRobotReelContournerPorte(robot)
+        ctrl=ControleurRobotReelContournerPorte(robot)
     #ajouter les nouveaux controleurs si besoin
     else:
         print("Erreur la demo demandee n'existe pas")
