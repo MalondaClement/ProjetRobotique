@@ -111,12 +111,13 @@ class RobotReel(object) :
                 #print("entree dans case normal")
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
             else :
-                print("entree dans case cercle")
+                self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
+                '''print("entree dans case cercle")
                 rayon= (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
                 print("self.WHEEL_BASE_WIDTH/",self.WHEEL_BASE_WIDTH)
                 print("self.MOTOR_RIGHT_DPS",self.MOTOR_RIGHT_DPS)
                 print("self.MOTOR_LEFT_DPS",self.MOTOR_LEFT_DPS)
-                
+
                 print("rayon",rayon)
                 vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
                 vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
@@ -154,7 +155,7 @@ class RobotReel(object) :
                 print("yb",yb)
                 print("\n \n \n \n")
                 self.x = xb
-                self.y = yb
+                self.y = yb'''
 
 
     def calcul_angle(self):
