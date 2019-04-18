@@ -8,13 +8,13 @@ import math as m
 import time
 from modele.controleur_robotreel_carre import ControleurRobotReelCarre
 from modele.controleur_robotreel_mur import ControleurRobotReelMur
-from threading import Thread 
+from threading import Thread
 
 
 
 class Affichage(Thread):
 
-    def __init__(self, fenetre3d,arene,robot):
+    def __init__(self, fenetre3d,arene,robot,i):
         super(Affichage,self).__init__()
         self.fenetre3d = fenetre3d
         pgl.glClearColor(0, 0, 0, 1)
@@ -23,8 +23,14 @@ class Affichage(Thread):
         self.robot=robot
         self.arene=arene
         self.x=200
-        #self.ctrl=ControleurRobotReelMur(self.robot)
-        self.ctrl=ControleurRobotReelCarre(self.robot)
+        if i==0 :
+            self.ctrl= ControleurRobotReelCarre(self.p)
+        elif i==1 :
+            self.ctrl=ControleurRobotReelMur(self.p)
+        elif i==2 :
+            self.ctrl=ControleurRobotReelCercle(self.p, 200, 5, 0, 100)
+        elif i==3 :
+            self.ctrl=ControleurRobotReelContournerPorte(self.p)
         self.rouge=(255,0,0,255)
         self.jaune=(255,255,0,255)
         self.bleu=(0,0,255,255)
@@ -112,28 +118,28 @@ class Affichage(Thread):
         pgl.glVertex3f(self.arene.nb_colonne,10, 0)
         pgl.glVertex3f(self.arene.nb_colonne, 10, self.arene.nb_ligne)
         pgl.glVertex3f(self.arene.nb_colonne, 0, self.arene.nb_ligne)
-        
+
         #vert
         pgl.glColor3ub(0, 255, 0)
         pgl.glVertex3f(0, 0, self.arene.nb_ligne)
         pgl.glVertex3f(0,10, self.arene.nb_ligne)
         pgl.glVertex3f(self.arene.nb_colonne, 10, self.arene.nb_ligne)
         pgl.glVertex3f(self.arene.nb_colonne, 0, self.arene.nb_ligne)
-        
+
         #jaune
         pgl.glColor3ub(255, 255, 0)
         pgl.glVertex3f(00, 0, 00)
         pgl.glVertex3f(00,10, 00)
         pgl.glVertex3f(00, 10, self.arene.nb_ligne)
         pgl.glVertex3f(00, 0, self.arene.nb_ligne)
-        
+
         #blanc
         pgl.glColor3ub(255, 255, 255)
         pgl.glVertex3f(00, 0, self.arene.nb_ligne)
         pgl.glVertex3f(00,0, 0)
         pgl.glVertex3f(self.arene.nb_colonne, 0, 0)
         pgl.glVertex3f(self.arene.nb_colonne, 0, self.arene.nb_ligne)
-        
+
         self.draw()
         pgl.glEnd()
         kitten = pyglet.image.load('balise2.png')
@@ -142,10 +148,10 @@ class Affichage(Thread):
         sprite.draw()
         pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
         pgl.glFlush()
-        
-    def couleur(self,i,x,y):       
+
+    def couleur(self,i,x,y):
         for p in self.tmp:
-          if i.getpixel((x,y))==p:  
+          if i.getpixel((x,y))==p:
             return True,p
         return False,p
 
@@ -164,7 +170,7 @@ class Affichage(Thread):
                     print("fini")
                     return True
         print("perdu")
-                 
+
     def balise(self,i,x,y,c):
         self.tmp.remove(c)
         if len(self.tmp)==3:
@@ -188,7 +194,7 @@ class Affichage(Thread):
             self.tmp=list(self.tableau)
             self.centre=(0,0)
             return False,(x,y)
-        
+
     def obstacle (self, robot,originex, originey, arene, pas):
         """Cette fonction permet la détection des obstacles se trouvant sur une demi devant le robot ?
             :param originex: x de l'origine de la demi-droite
@@ -236,6 +242,6 @@ class Affichage(Thread):
             self.ctrl.update()
             self.on_resize(600,600)
             self.on_draw()"""
-            
+
 
 
