@@ -116,6 +116,7 @@ class RobotReel(object) :
                 vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
                 pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /20
                 angle_rotation=2*pi*pourcentage
+                print(pourcentage*20)
                 #self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
                 #on a le x et le y du robot, le rayon du cercle , et l'angle de rotation.
                 #on a trois points A, B, C où A est le robot et C le centre du cercle et B la prochaine position du robot. On cherche les coordonnées de B nommées xb et yb.
