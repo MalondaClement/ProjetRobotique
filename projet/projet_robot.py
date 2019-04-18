@@ -1,7 +1,7 @@
 import time
 
 menu_demo = 0
-#text
+print("Veuillez entrer le type de simulation a lancer \n0 : carre \n1 : arret avant un mur\n2 : cercle\n3 : contourner une porte ")
 menu_demo = input()
 try:
     from robot2I013 import Robot2I013 as Robot
@@ -33,7 +33,7 @@ try:
 
 except ImportError:
     menu_type = 0
-    #text
+    print ("Veuillez entrer le type de simulation a lancer \n2 : simulation 2D\n3 : simulation 3D")
     menu_type = input()
     from modele.robotreel import RobotReel as Robot
     if menu_type == "2D" or menu_type == "2":
