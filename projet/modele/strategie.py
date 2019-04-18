@@ -51,7 +51,6 @@ class StratAngle(object):
 
     def step(self):
         self.tourner(self.v_angu)
-        print(self.robot.MOTOR_LEFT_DPS+self.robot.MOTOR_RIGHT_DPS)
         x,y=self.robot.get_motor_position()
         self.parcouru=x
         if self.parcouru >= self.distance*(3/4) and self.test :
@@ -63,7 +62,6 @@ class StratAngle(object):
             self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
             self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
             self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
-            print("fintourne")
         return self.parcouru>=self.distance
 
 class StratCarre(object):
