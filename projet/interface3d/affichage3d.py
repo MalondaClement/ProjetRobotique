@@ -25,13 +25,13 @@ class Affichage(Thread):
         self.robot=robot
         self.arene=arene
         self.x=200
-        if i==0 :
+        if i=="0" :
             self.ctrl= ControleurRobotReelCarre(self.robot)
-        elif i==1 :
+        elif i=="1" :
             self.ctrl=ControleurRobotReelMur(self.robot)
-        elif i==2 :
+        elif i=="2" :
             self.ctrl=ControleurRobotReelCercle(self.robot, 200, 5, 0, 100)
-        elif i==3 :
+        elif i=="3" :
             self.ctrl=ControleurRobotReelContournerPorte(self.robot)
         #ajouter les controleurs ici
         else:
