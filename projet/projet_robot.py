@@ -6,13 +6,13 @@ menu_demo = input()
 try:
     from robot2I013 import Robot2I013 as Robot
     robot = Robot()
-    if menu_demo==0 :
+    if menu_demo=="0" :
         self.ctrl= ControleurRobotReelCarre(robot)
-    elif menu_demo==1 :
+    elif menu_demo=="1" :
         self.ctrl=ControleurRobotReelMur(robot)
-    elif menu_demo==2 :
+    elif menu_demo=="2" :
         self.ctrl=ControleurRobotReelCercle(robot, 200, 5, 0, 100)
-    elif menu_demo==3 :
+    elif menu_demo=="3" :
         self.ctrl=ControleurRobotReelContournerPorte(robot)
     #ajouter les nouveaux controleurs si besoin
     else:
