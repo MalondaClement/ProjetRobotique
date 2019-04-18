@@ -104,6 +104,10 @@ class Fenetre(Thread):
                     self.controleur=ControleurRobotReelCercle(self.p, 200, 5, 0, 100)
                 elif self.i==3 :
                     self.controleur=ControleurRobotReelContournerPorte(self.p)
+                #ajouter les controleurs ici
+                else:
+                    print("Erreur la demo demandee n'existe pas")
+                    exit(1)
                 angle=self.p.calcul_angle()
                 t=self.p.calcul_hypo()
                 self.b.inserer_robot(self.p)
