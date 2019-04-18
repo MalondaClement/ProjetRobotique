@@ -96,15 +96,15 @@ class Fenetre(Thread):
                 OBSTACLE=False
             elif i.strip()=="OBSTACLE":
                 self.p=RobotReel(int(L[0]),int(L[1]),radians(int(L[2])),self.b)
-                if self.i==0 :
+                if self.i=="0" :
                     self.controleur= ControleurRobotReelCarre(self.p)
-                elif self.i==1 :
+                elif self.i=="1" :
                     self.controleur=ControleurRobotReelMur(self.p)
-                elif self.i==2 :
+                elif self.i=="2" :
                     self.controleur=ControleurRobotReelCercle(self.p, 200, 5, 0, 100)
-                elif self.i==3 :
+                elif self.i=="3" :
                     self.controleur=ControleurRobotReelContournerPorte(self.p)
-                #ajouter les controleurs ici
+                #ajouter nouveaux controleurs ici
                 else:
                     print("Erreur la demo demandee n'existe pas")
                     exit(1)
