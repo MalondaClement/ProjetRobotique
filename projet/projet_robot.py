@@ -63,4 +63,4 @@ except ImportError:
         pyglet.clock.schedule_interval(aff.update, 0.1)
         pyglet.app.run()
     else :
-        print("Erreur pas d'entrée dans le menu")
+        print("Erreur : Valeur incorrecte")
