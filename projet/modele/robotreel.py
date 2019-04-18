@@ -97,6 +97,7 @@ class RobotReel(object) :
     def actualiser(self) :
         """ Réalise une actualisation de la position, ou de l'angle du robot
         """
+        print(self.x, self.y)
         self.MOTOR_LEFT_ROTATION+= self.MOTOR_LEFT_DPS /20
         self.MOTOR_RIGHT_ROTATION+= self.MOTOR_RIGHT_DPS /20
 
