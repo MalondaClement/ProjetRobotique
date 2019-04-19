@@ -101,7 +101,7 @@ class Fenetre(Thread):
                 elif self.i=="1" :
                     self.controleur=ControleurRobotReelMur(self.p)
                 elif self.i=="2" :
-                    self.controleur=ControleurRobotReelCercle(self.p, 200, 5, 0, 100)
+                    self.controleur=ControleurRobotReelCercle(self.p, 200, 5, "gauche", 100)
                 elif self.i=="3" :
                     self.controleur=ControleurRobotReelContournerPorte(self.p)
                 #ajouter nouveaux controleurs ici
@@ -177,6 +177,9 @@ class Fenetre(Thread):
         while True:
             self.update()
             time.sleep(1./20)
+
+
+
 
 
 
