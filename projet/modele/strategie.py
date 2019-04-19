@@ -141,31 +141,33 @@ class StratCercle(object):
        self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
    def step(self):
-        print(self.cercle)
-        if self.direction==0 :
-            self.robot.set_motor_dps(1, ((((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH))/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
-            self.robot.set_motor_dps(2, ((((2*pi*self.rayon/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))
-        else :
+        print(self.distance)
+        if self.direction=="gauche" :
+            self.robot.set_motor_dps(1, (((((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH))*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))/self.temps))
+            self.robot.set_motor_dps(2, (((((2*pi*self.rayon)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))/self.temps))
+        elif self.direction=="droite" :
             self.robot.set_motor_dps(2, ((((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH))/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
             self.robot.set_motor_dps(1, ((((2*pi*self.rayon/self.temps)*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))
 
 
    def stop(self) :
-        if self.direction==0 :
+        if self.direction=="gauche" :
+            motor_vit=self.robot.get_motor_position()[1]
             if self.distance < self.robot.get_motor_position()[1]:
                 self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
                 self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
                 self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
                 print("strat terminee")
-            return self.distance < self.robot.get_motor_position()[1]
+            return self.distance < motor_vit
 
         else :
+            motor_vit=self.robot.get_motor_position()[0]
             if self.distance < self.robot.get_motor_position()[0]:
                 self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
                 self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
                 self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
                 print("strat terminee")
-            return self.distance < self.robot.get_motor_position()[0]
+            return self.distance < motor_vit
 
 class StratContournerPorte(object):
     def __init__(self,robot,vitesse):
@@ -214,5 +216,7 @@ class StratDetectePorte(object):
             self.fin = True
             print(self.fin)
 
+    def stop(self):
+        return self.fin
     def stop(self):
         return self.fin
