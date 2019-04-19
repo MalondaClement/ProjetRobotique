@@ -1,4 +1,5 @@
 from math import pi,atan,cos,sin,pow,sqrt,fabs
+import time
 
 WHEEL_BASE_WIDTH         = 117  # distance (mm) de la roue gauche a la roue droite.
 WHEEL_DIAMETER           = 66.5 #  diametre de la roue (mm)
@@ -97,9 +98,9 @@ class RobotReel(object) :
     def actualiser(self) :
         """ Réalise une actualisation de la position, ou de l'angle du robot
         """
-        print(self.x, self.y)
         self.MOTOR_LEFT_ROTATION+= self.MOTOR_LEFT_DPS /20
         self.MOTOR_RIGHT_ROTATION+= self.MOTOR_RIGHT_DPS /20
+        print(self.MOTOR_LEFT_ROTATION, self.MOTOR_RIGHT_ROTATION)
 
         if self.MOTOR_RIGHT_DPS == self.MOTOR_LEFT_DPS :
 
@@ -108,52 +109,32 @@ class RobotReel(object) :
 
         else:
             if self.MOTOR_RIGHT_DPS == -self.MOTOR_LEFT_DPS :
-                #print("entree dans case normal")
                 self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
             else :
                 rayon = (self.WHEEL_BASE_WIDTH/2*(self.MOTOR_RIGHT_DPS+self.MOTOR_LEFT_DPS)/(self.MOTOR_RIGHT_DPS-self.MOTOR_LEFT_DPS))
                 vitesserg=self.MOTOR_LEFT_DPS*WHEEL_DIAMETER/360
                 vitesserd=self.MOTOR_RIGHT_DPS*WHEEL_DIAMETER/360
-                pourcentage=2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /20
+                pourcentage=(2*pi*(rayon+WHEEL_BASE_WIDTH)/ max(vitesserd, vitesserg) /100)/20
                 angle_rotation=2*pi*pourcentage
-                print(pourcentage*20)
                 #self.angle+= (((self.MOTOR_RIGHT_DPS/20)*self.WHEEL_CIRCUMFERENCE/self.WHEEL_BASE_CIRCUMFERENCE) * (pi/180))
                 #on a le x et le y du robot, le rayon du cercle , et l'angle de rotation.
                 #on a trois points A, B, C où A est le robot et C le centre du cercle et B la prochaine position du robot. On cherche les coordonnées de B nommées xb et yb.
+                angle_tournage=(pi/2)-((2*pi- angle_rotation) / 2)
+                print((2*pi- angle_rotation) / 2)
 
-                AB = (sqrt(2*(rayon**2)*(1-cos(angle_rotation))))
+                AB = -(cos((2*pi- angle_rotation)/2)*2*rayon)/20
+                print(AB)
 
-                self.angle += (180 - angle_rotation) / 2
-                self.x += cos(self.angle) * AB
-                self.y -= sin(self.angle) * AB
-                self.angle += (180 - angle_rotation) / 2
-                '''
-                xc = self.x + (cos(angle_rotation - pi/2) * rayon)
-                yc = self.y - (sin(angle_rotation - pi/2) * rayon)
-
-                p = (rayon**2 - AB - xc**2 - yc**2 + self.x**2 + self.y **2)/(2*(self.y - yc))
-                q = (-xc + self.x)/(self.y - yc)
-                a = (1 + q**2)
-                b = (-2 * xc - 2 * p * q + 2 * q * yc)
-                c = xc**2 + p**2 - (2 * p * yc) + yc**2 - (rayon**2)
-                delta = b**2 - (4 * a * c)
-
-                xb = ( -b - sqrt(delta)) / ( 2 * a )
-                yb = p - (xb * q)
-                self.x = xb
-                self.y = yb'''
-
-
-    def calcul_angle(self):
-        """Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
-            :returns : Angle de la demi-droite
-        """
-        a=atan(self.largeur/self.longueur)
-        return a
-
-    def calcul_hypo(self):
-        """
-        """
-        a=pow(self.largeur/2,2)+pow(self.longueur/2,2)
-        return sqrt(a)
-
+                self.angle += angle_tournage
+                if self.MOTOR_RIGHT_DPS < self.MOTOR_LEFT_DPS :
+                    self.angle -= angle_tournage
+                    self.x += cos(self.angle) * AB
+                    self.y -= sin(self.angle) * AB
+                    self.angle -= angle_tournage
+                else:
+                    self.angle += angle_tournage
+                    self.x += cos(self.angle) * AB
+                    self.y -= sin(self.angle) * AB
+                    self.angle += angle_tournage
+                #print(self.x , self.y)
+               
