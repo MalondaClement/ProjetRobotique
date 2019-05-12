@@ -141,7 +141,7 @@ class StratCercle(object):
        self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
    def step(self):
-        print(self.distance)
+        #print(self.distance)
         if self.direction=="gauche" :
             self.robot.set_motor_dps(1, ((((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH))/(self.temps*(self.cercle/100)))*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
             self.robot.set_motor_dps(2, ((((2*pi*self.rayon/(self.temps*(self.cercle/100)))*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))

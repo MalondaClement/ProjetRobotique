@@ -120,21 +120,37 @@ class RobotReel(object) :
                 #on a le x et le y du robot, le rayon du cercle , et l'angle de rotation.
                 #on a trois points A, B, C où A est le robot et C le centre du cercle et B la prochaine position du robot. On cherche les coordonnées de B nommées xb et yb.
                 angle_tournage=(pi/2)-((2*pi- angle_rotation) / 2)
-                print((2*pi- angle_rotation) / 2)
+                #print((2*pi- angle_rotation) / 2)
 
-                AB = -(cos((2*pi- angle_rotation)/2)*2*rayon)/20
-                print(AB)
+                AB = (cos((2*pi- angle_rotation)/2)*2*rayon)/20
+                #print(AB)
 
-                self.angle += angle_tournage
+                #self.angle += (angle_tournage*pi/90)
                 if self.MOTOR_RIGHT_DPS < self.MOTOR_LEFT_DPS :
-                    self.angle -= angle_tournage
+                    self.angle -= (angle_tournage*pi/90)
                     self.x += cos(self.angle) * AB
                     self.y -= sin(self.angle) * AB
-                    self.angle -= angle_tournage
+                    self.angle -= (angle_tournage*pi/90)
                 else:
-                    self.angle += angle_tournage
-                    self.x += cos(self.angle) * AB
-                    self.y -= sin(self.angle) * AB
-                    self.angle += angle_tournage
+                    self.angle += (angle_tournage*pi/90)
+                    self.x -= cos(self.angle) * AB
+                    self.y += sin(self.angle) * AB
+                    self.angle += (angle_tournage*pi/90)
+                #time.sleep(0.5)
+                
                 #print(self.x , self.y)
+
+    def calcul_angle(self):
+        """Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
+            :returns : Angle de la demi-droite
+        """
+        a=atan(self.largeur/self.longueur)
+        return a
+
+    def calcul_hypo(self):
+        """
+        """
+        a=pow(self.largeur/2,2)+pow(self.longueur/2,2)
+        return sqrt(a)
+
                
