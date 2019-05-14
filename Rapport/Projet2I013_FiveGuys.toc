@@ -4,15 +4,20 @@
 \contentsline {subsection}{\numberline {2.1}M\IeC {\'e}thodes et outils}{3}
 \contentsline {subsubsection}{\numberline {2.1.1}Agile/Scrum}{3}
 \contentsline {subsubsection}{\numberline {2.1.2}Outils pour le travail d'\IeC {\'e}quipe}{3}
+\contentsline {paragraph}{Git \& GitHub}{3}
+\contentsline {paragraph}{Trello}{3}
+\contentsline {paragraph}{Slack \& Whatsapp}{3}
 \contentsline {subsubsection}{\numberline {2.1.3}Hi\IeC {\'e}rarchie du code}{3}
-\contentsline {subsection}{\numberline {2.2}Mise en place de briques de base}{3}
-\contentsline {subsubsection}{\numberline {2.2.1}Mod\IeC {\'e}lisation du r\IeC {\'e}el}{3}
-\contentsline {subsubsection}{\numberline {2.2.2}Mise en place de l'interface graphique 2D}{3}
-\contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gie de base}{3}
-\contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{3}
-\contentsline {subsection}{\numberline {2.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{3}
-\contentsline {subsubsection}{\numberline {2.3.1}Strat 1}{3}
-\contentsline {subsubsection}{\numberline {2.3.2}Strat 2}{3}
-\contentsline {subsubsection}{\numberline {2.3.3}Strat 3}{3}
-\contentsline {section}{\numberline {3}Remerciements}{4}
-\contentsline {section}{\numberline {4}Conclusion}{5}
+\contentsline {subsection}{\numberline {2.2}Mise en place de briques de base}{4}
+\contentsline {subsubsection}{\numberline {2.2.1}Mod\IeC {\'e}lisation du r\IeC {\'e}el}{4}
+\contentsline {subsubsection}{\numberline {2.2.2}Mise en place de l'interface graphique 2D}{4}
+\contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gies de base}{4}
+\contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{4}
+\contentsline {subsection}{\numberline {2.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{5}
+\contentsline {subsubsection}{\numberline {2.3.1}Strat\IeC {\'e}gie carr\IeC {\'e}}{5}
+\contentsline {subsubsection}{\numberline {2.3.2}Strat\IeC {\'e}gie d\IeC {\'e}tection de mur}{5}
+\contentsline {subsubsection}{\numberline {2.3.3}Strat\IeC {\'e}gie cercle}{5}
+\contentsline {subsubsection}{\numberline {2.3.4}Strat\IeC {\'e}gie contourner une porte}{5}
+\contentsline {subsubsection}{\numberline {2.3.5}Strat\IeC {\'e}gie d\IeC {\'e}tection balise}{5}
+\contentsline {section}{\numberline {3}Remerciements}{6}
+\contentsline {section}{\numberline {4}Conclusion}{7}
