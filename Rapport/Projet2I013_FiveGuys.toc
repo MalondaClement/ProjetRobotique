@@ -3,8 +3,8 @@
 \contentsline {section}{\numberline {2}Rapport}{3}
 \contentsline {subsection}{\numberline {2.1}M\IeC {\'e}thodes et outils}{3}
 \contentsline {subsubsection}{\numberline {2.1.1}Agile/Scrum}{3}
-\contentsline {subsubsection}{\numberline {2.1.2}Outils pour le travail d'\IeC {\'e}quipe}{3}
-\contentsline {paragraph}{Git \& GitHub\\}{3}
+\contentsline {subsubsection}{\numberline {2.1.2}Outils pour le travail d'\IeC {\'e}quipe}{4}
+\contentsline {paragraph}{Git \& GitHub\\}{4}
 \contentsline {paragraph}{Trello\\}{4}
 \contentsline {paragraph}{Slack \& Whatsapp\\}{4}
 \contentsline {paragraph}{Python\\}{4}
