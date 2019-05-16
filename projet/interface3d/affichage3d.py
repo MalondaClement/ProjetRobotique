@@ -30,7 +30,7 @@ class Affichage(Thread):
         elif i=="1" :
             self.ctrl=ControleurRobotReelMur(self.robot)
         elif i=="2" :
-            self.ctrl=ControleurRobotReelCercle(self.robot, 200, 5, 0, 100)
+            self.ctrl=ControleurRobotReelCercle(self.robot, 100, 10, "droite", 50)
         elif i=="3" :
             self.ctrl=ControleurRobotReelContournerPorte(self.robot)
         #ajouter les controleurs ici
@@ -148,11 +148,11 @@ class Affichage(Thread):
 
         self.draw()
         pgl.glEnd()
-        kitten = pyglet.image.load('balise2.png')
-        sprite = pyglet.sprite.Sprite(kitten)
-        sprite.set_position(00,80)
-        sprite.draw()
-        pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
+        #kitten = pyglet.image.load('balise2.png')
+        #sprite = pyglet.sprite.Sprite(kitten)
+        #sprite.set_position(00,80)
+        #sprite.draw()
+        #pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
         pgl.glFlush()
 
     def couleur(self,i,x,y):
@@ -242,12 +242,14 @@ class Affichage(Thread):
         #pgl.glTranslatef(0, 0, -400)
 
     def update(self,dt):
-        pass
         #self.recherche_balise()
-        """if not self.ctrl.stop():
+        if not self.ctrl.stop():
             self.ctrl.update()
+            self.robot.actualiser()
+            self.arene.update()
+            print(self.robot.x,self.robot.y)
             self.on_resize(600,600)
-            self.on_draw()"""
+            self.on_draw()
 
 
 

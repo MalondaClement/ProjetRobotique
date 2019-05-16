@@ -56,10 +56,10 @@ except ImportError:
         ar.inserer_obs(ob1)
         rob=RobotReel(70,400,m.pi/2,ar)
         aff = Affichage(win,ar,rob,menu_demo)
-        aff.start()
         aff.on_resize(600,600)
         aff.on_draw()
-        aff.recherche_balise()
+        #aff.recherche_balise()
+        aff.start()
         pyglet.clock.schedule_interval(aff.update, 0.1)
         pyglet.app.run()
     else :
