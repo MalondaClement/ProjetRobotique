@@ -55,6 +55,7 @@ except ImportError:
         ar.inserer_obs(ob)
         ar.inserer_obs(ob1)
         rob=RobotReel(70,400,m.pi/2,ar)
+        ar.inserer_robot(rob)
         aff = Affichage(win,ar,rob,menu_demo)
         aff.on_resize(600,600)
         aff.on_draw()
