@@ -216,7 +216,7 @@ class Affichage(Thread):
                     recherche_y-=m.sin(robot.angle)*pas
                     #recherche_x=int(round(recherche_x,0))
                     #recherche_y=int(round(recherche_y,0))
-                    if recherche_x<0 or recherche_y<0 or recherche_x>arene.nb_colonne or recherche_y>arene.nb_ligne:
+                    if recherche_x<0 or recherche_y<0 or recherche_x>=arene.nb_colonne or recherche_y>=arene.nb_ligne:
                         return recherche_x, recherche_y
                     if arene.matrice[int(recherche_y), int(recherche_x)]==1:
                         return recherche_x, recherche_y
@@ -245,7 +245,6 @@ class Affichage(Thread):
         #self.recherche_balise()
         if not self.ctrl.stop():
             self.ctrl.update()
-            self.robot.actualiser()
             self.arene.update()
             print(self.robot.x,self.robot.y)
             self.on_resize(600,600)
