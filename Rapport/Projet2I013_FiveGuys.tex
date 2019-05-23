@@ -139,9 +139,12 @@ Le terme d’arène peut être vulgarisé par le terme d’espace. C’est l’e
 \paragraph{Notre Robot\\}
 Nous avons décidé de modéliser notre robot comme un rectangle muni d’un angle de direction car ce sont les concepts de base se rapprochant au maximum de nos contraintes dans notre contexte. Son corps est ainsi un rectangle (rouge) muni d’une certaine longueur et d’une certaine largeur. Si nous voulons savoir où se trouve notre robot, nous avons qu’à parcourir la matrice et chercher l’élément ayant pour valeur « 1 ». Cependant, cela ne correspond qu’au centre du robot et non l’espace total qu’il occupe. Nous savons que notre robot possède un centre de coordonnées [ x , y ], une longueur et une largeur. Ainsi, l’espace occupé est réellement tous les éléments de l’arène ayant une abscisse comprise entre ‘ ’x – largeur /2 ’’ et ‘’x + largeur/2’’ et une ordonnée comprise entre ‘ ’y – longueur /2 ’’ et ‘’y + longueur/2’’. Pour mieux visualiser, vous trouverez un schéma ci-dessous :
 
+\paragraph{Nos Obstacles\\}
+Dans la même idée que pour notre robot, nos obstacles sont modélisés par des rectangles noirs, avec une longueur et une largeur. Dans notre matrice, leur centre correspondent aux éléments « 2 ». Les différencier par la valeur de leurs éléments va nous permettre de connaître, par exemple, leur nombre, leurs coordonnées et l’espace qu’ils occupent individuellement. Cela va nous être très utile pour transmettre à notre robot quelles zones il doit contourner.
 \subsubsection{Mise en place de l'interface graphique 2D}
 \subsubsection{Stratégies de base}
 \subsubsection{Passage de la simulation au réel}
+\tab L'une des exigences pour projet était que notre code ne devais pas dépendre du fait que celui-ci soit lancé dans notre simulateur ou dans notre robot. Le but étant de pouvoir tester les nouvelles fonctionnalitées de notre robot nous voulions ajouter comme
 
 \newpage
 \subsection{Développement des stratégies}
