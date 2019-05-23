@@ -16,12 +16,15 @@
 \contentsline {paragraph}{Nos Obstacles\\}{5}
 \contentsline {subsubsection}{\numberline {2.2.2}Mise en place de l'interface graphique 2D}{5}
 \contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gies de base}{5}
-\contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{5}
-\contentsline {subsection}{\numberline {2.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{6}
-\contentsline {subsubsection}{\numberline {2.3.1}Strat\IeC {\'e}gie carr\IeC {\'e}}{6}
-\contentsline {subsubsection}{\numberline {2.3.2}Strat\IeC {\'e}gie d\IeC {\'e}tection de mur}{6}
-\contentsline {subsubsection}{\numberline {2.3.3}Strat\IeC {\'e}gie cercle}{6}
-\contentsline {subsubsection}{\numberline {2.3.4}Strat\IeC {\'e}gie contourner une porte}{6}
-\contentsline {subsubsection}{\numberline {2.3.5}Strat\IeC {\'e}gie d\IeC {\'e}tection balise}{6}
-\contentsline {section}{\numberline {3}Remerciements}{7}
-\contentsline {section}{\numberline {4}Conclusion}{8}
+\contentsline {paragraph}{Ligne droite\\}{5}
+\contentsline {paragraph}{Rotation\\}{6}
+\contentsline {paragraph}{Detection d'obstacles\\}{6}
+\contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{6}
+\contentsline {subsection}{\numberline {2.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{7}
+\contentsline {subsubsection}{\numberline {2.3.1}Strat\IeC {\'e}gie carr\IeC {\'e}}{7}
+\contentsline {subsubsection}{\numberline {2.3.2}Strat\IeC {\'e}gie d\IeC {\'e}tection de mur}{7}
+\contentsline {subsubsection}{\numberline {2.3.3}Strat\IeC {\'e}gie cercle}{7}
+\contentsline {subsubsection}{\numberline {2.3.4}Strat\IeC {\'e}gie contourner une porte}{7}
+\contentsline {subsubsection}{\numberline {2.3.5}Strat\IeC {\'e}gie d\IeC {\'e}tection balise}{7}
+\contentsline {section}{\numberline {3}Remerciements}{8}
+\contentsline {section}{\numberline {4}Conclusion}{9}
