@@ -14,9 +14,9 @@
 \contentsline {paragraph}{Notre Ar\IeC {\`e}ne\\}{5}
 \contentsline {paragraph}{Notre Robot\\}{5}
 \contentsline {paragraph}{Nos Obstacles\\}{5}
-\contentsline {subsubsection}{\numberline {2.2.2}Mise en place de l'interface graphique 2D}{5}
-\contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gies de base}{5}
-\contentsline {paragraph}{Ligne droite\\}{5}
+\contentsline {subsubsection}{\numberline {2.2.2}Mise en place de l'interface graphique 2D}{6}
+\contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gies de base}{6}
+\contentsline {paragraph}{Ligne droite\\}{6}
 \contentsline {paragraph}{Rotation\\}{6}
 \contentsline {paragraph}{Detection d'obstacles\\}{6}
 \contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{6}
