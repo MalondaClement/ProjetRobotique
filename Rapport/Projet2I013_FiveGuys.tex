@@ -127,7 +127,7 @@
 \paragraph{Hiérarchie de notre code\\}
 
 \begin{center}
-Juste un schéma ?
+Faire un schéma type UML
 \end{center}
 
 \newpage
@@ -138,6 +138,8 @@ Juste un schéma ?
 Le terme d’arène peut être vulgarisé par le terme d’espace. C’est l’environnement dans lequel nous allons conserver nos données. Quoi de mieux qu’une matrice ? Une matrice MxN est un tableau de nombres à M lignes et N colonnes. Les nombres présents dans la matrice sont appelés « éléments de la matrice ».  Ce type de tableau va nous permettre de différencier les objets présents ainsi que leurs coordonnées. Par exemple, nous avons de décidé d’attribuer le chiffre, « 0 » aux emplacements vides, « 1 » au centre de notre robot et « 2 » aux zones occupées par des obstacles. Pour résumer, grâce à cette perspective nous pouvons savoir où se trouve notre robot et si un objet est présent à la colonne x et à la ligne y.
 \paragraph{Notre Robot\\}
 Nous avons décidé de modéliser notre robot comme un rectangle muni d’un angle de direction car ce sont les concepts de base se rapprochant au maximum de nos contraintes dans notre contexte. Son corps est ainsi un rectangle (rouge) muni d’une certaine longueur et d’une certaine largeur. Si nous voulons savoir où se trouve notre robot, nous avons qu’à parcourir la matrice et chercher l’élément ayant pour valeur « 1 ». Cependant, cela ne correspond qu’au centre du robot et non l’espace total qu’il occupe. Nous savons que notre robot possède un centre de coordonnées [ x , y ], une longueur et une largeur. Ainsi, l’espace occupé est réellement tous les éléments de l’arène ayant une abscisse comprise entre ‘ ’x – largeur /2 ’’ et ‘’x + largeur/2’’ et une ordonnée comprise entre ‘ ’y – longueur /2 ’’ et ‘’y + longueur/2’’. Pour mieux visualiser, vous trouverez un schéma ci-dessous :
+
+\img{Images/Robot.png}{Modélisation de notre arène}
 
 \paragraph{Nos Obstacles\\}
 Dans la même idée que pour notre robot, nos obstacles sont modélisés par des rectangles noirs, avec une longueur et une largeur. Dans notre matrice, leur centre correspondent aux éléments « 2 ». Les différencier par la valeur de leurs éléments va nous permettre de connaître, par exemple, leur nombre, leurs coordonnées et l’espace qu’ils occupent individuellement. Cela va nous être très utile pour transmettre à notre robot quelles zones il doit contourner.
@@ -155,7 +157,13 @@ Le second objectif a été de déterminer comment faire tourner le robot. La mé
 Le robot étant doté d'un capteur permettant de déterminer sa distance à un obstacle devant lui, il nous fallait inclure cette fonctionnalité à notre robot simulé. Pour cela nous avons implémenté un capteur, qui au lancement de la fonction se déplace en ligne droite en partant du robot d'un pas fourni en argument, et selon la même procédure de calcul que pour de déplacement du robot. A chaque pas, le capteur observe la valeur de la matrice sur ses coordonées. S'il détecte un "0", il continue à avancer, s'il rencontre un "2" (un obstacle), il s'arrête et la fonction renvoie les dernières coordonnées du capteur, qui étaient ensuite interprétées pour calculer la distance à l'obstacle.
 
 \subsubsection{Passage de la simulation au réel}
-\tab L'une des exigences pour projet était que notre code ne devais pas dépendre du fait que celui-ci soit lancé dans notre simulateur ou dans notre robot. Le but étant de pouvoir tester les nouvelles fonctionnalitées de notre robot nous voulions ajouter comme si elle était déjà dans le robot. Ainsi l'implémentation dans le robot peut être direct et normalement sans bug. Les seules corrections que
+\tab L'une des exigences pour projet était que notre code ne devais pas dépendre du fait que celui-ci soit lancé dans notre simulateur ou dans notre robot. Le but étant de pouvoir tester les nouvelles fonctionnalitées de notre robot nous voulions ajouter comme si elle était déjà dans le robot. Ainsi l'implémentation dans le robot peut être direct et normalement sans bug. La démarche que nous devions adopter nous permet ainsi également de pas développer le code en double.
+
+\tab Nous avons donc du réadapter notre code afin de pouvoir répondre à cette contrainte. Dans un premier temps nous avons donc rajouté une surcouche au niveau de notre robot afin que les fonctions du robot de la simulation soit identiques aux fonctions de l'API du robot. Notre premier robot, telle qu'il est décrit plutôt. Nous avons redifini les paramètres afin qu'il soit ceux du robot. Cette surcouche au niveau du robot permet de faire la traduction ... (a finir ici)
+
+\begin{center}
+Ajout d'un petit schéma à propos du lancement des scripts
+\end{center}
 
 \newpage
 \subsection{Développement des stratégies}
