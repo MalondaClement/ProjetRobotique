@@ -15,19 +15,20 @@
 \contentsline {paragraph}{Notre Robot\\}{5}
 \contentsline {paragraph}{Nos Obstacles\\}{5}
 \contentsline {subsubsection}{\numberline {2.2.2}Mise en place de l'interface graphique 2D}{6}
+\contentsline {paragraph}{Tkinter\\}{6}
 \contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gies de base}{6}
 \contentsline {paragraph}{Ligne droite\\}{6}
 \contentsline {paragraph}{Rotation\\}{6}
 \contentsline {paragraph}{Detection d'obstacles\\}{6}
 \contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{6}
-\contentsline {subsection}{\numberline {2.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{7}
-\contentsline {subsubsection}{\numberline {2.3.1}Strat\IeC {\'e}gie carr\IeC {\'e}}{7}
-\contentsline {subsubsection}{\numberline {2.3.2}Strat\IeC {\'e}gie d\IeC {\'e}tection de mur}{7}
-\contentsline {subsubsection}{\numberline {2.3.3}Strat\IeC {\'e}gie cercle}{7}
-\contentsline {subsubsection}{\numberline {2.3.4}Strat\IeC {\'e}gie contourner une porte}{7}
-\contentsline {subsubsection}{\numberline {2.3.5}Strat\IeC {\'e}gie d\IeC {\'e}tection balise}{7}
-\contentsline {paragraph}{N\IeC {\'e}cessit\IeC {\'e} d'une interface 3D \\}{7}
-\contentsline {paragraph}{Mise en place de la strat\IeC {\'e}gie de d\IeC {\'e}tection\\}{7}
-\contentsline {section}{\numberline {3}Remerciements}{8}
-\contentsline {section}{\numberline {4}Conclusion}{9}
-\contentsline {section}{\numberline {5}Sources}{10}
+\contentsline {subsection}{\numberline {2.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{8}
+\contentsline {subsubsection}{\numberline {2.3.1}Strat\IeC {\'e}gie carr\IeC {\'e}}{8}
+\contentsline {subsubsection}{\numberline {2.3.2}Strat\IeC {\'e}gie d\IeC {\'e}tection de mur}{8}
+\contentsline {subsubsection}{\numberline {2.3.3}Strat\IeC {\'e}gie cercle}{8}
+\contentsline {subsubsection}{\numberline {2.3.4}Strat\IeC {\'e}gie contourner une porte}{8}
+\contentsline {subsubsection}{\numberline {2.3.5}Strat\IeC {\'e}gie d\IeC {\'e}tection balise}{8}
+\contentsline {paragraph}{N\IeC {\'e}cessit\IeC {\'e} d'une interface 3D \\}{8}
+\contentsline {paragraph}{Mise en place de la strat\IeC {\'e}gie de d\IeC {\'e}tection\\}{8}
+\contentsline {section}{\numberline {3}Remerciements}{9}
+\contentsline {section}{\numberline {4}Conclusion}{10}
+\contentsline {section}{\numberline {5}Sources}{11}
