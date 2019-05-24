@@ -76,9 +76,9 @@ class RobotReel(object) :
             recherche_y-=sin(self.angle+self.angle_tete-90)*2
             recherche_x=int(round(recherche_x,0))
             recherche_y=int(round(recherche_y,0))
-            if recherche_x<0 or recherche_y<0 or recherche_x>self.arene.nb_colonne or recherche_y>self.arene.nb_ligne:
+            if recherche_x<0 or recherche_y<0 or recherche_x>=self.arene.nb_colonne or recherche_y>=self.arene.nb_ligne:
                 test=1
-            if self.arene.matrice[recherche_y, recherche_x]==1:
+            elif self.arene.matrice[recherche_y, recherche_x]==1:
                 test=1
 
         distance= sqrt(pow(recherche_x-(self.x+(self.largeur/2)*cos(self.angle)), 2) + pow(recherche_y-(self.y-(self.longueur/2)*sin(self.angle)), 2))
@@ -137,7 +137,7 @@ class RobotReel(object) :
                     self.y += sin(self.angle) * AB
                     self.angle += (angle_tournage*pi/90)
                 #time.sleep(0.5)
-                
+
                 #print(self.x , self.y)
 
     def calcul_angle(self):
@@ -153,4 +153,4 @@ class RobotReel(object) :
         a=pow(self.largeur/2,2)+pow(self.longueur/2,2)
         return sqrt(a)
 
-               
+
