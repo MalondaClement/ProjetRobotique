@@ -149,7 +149,16 @@ Nous avons décidé de modéliser notre robot comme un rectangle muni d’un ang
 Dans la même idée que pour notre robot, nos obstacles sont modélisés par des rectangles noirs, avec une longueur et une largeur. Dans notre matrice, leur centre correspondent aux éléments « 2 ». Les différencier par la valeur de leurs éléments va nous permettre de connaître, par exemple, leur nombre, leurs coordonnées et l’espace qu’ils occupent individuellement. Cela va nous être très utile pour transmettre à notre robot quelles zones il doit contourner.
 
 \subsubsection{Mise en place de l'interface graphique 2D}
+\paragraph
+Nous avons à notre disposition différentes classes comme Robot, Arène et Obstacle. Cependant,  cela n’est que du code et nos clients ne sont pas forcément experts en informatique. Nous devions trouver un moyen adapté pour favoriser la compréhension de notre avancement dans le projet. Voilà pourquoi une grande partie de notre travail était de modéliser l’attente de notre client sous forme de simulation 2D.
 
+\paragraph{Tkinter:\\}
+Après de nombreuses recherches, nous avons fini par trouver le module Python spécifique aux interfaces graphique 2D qui nous convenait le mieux : Tkinter. Il est adapté à chaque OS, fourni avec Python et compatible avec Python 3. Ainsi, après la conception de notre Modèle (ensemble des classes Arène, Robot et Obstacle), nous pouvons nous concentrer sur notre Affichage. 
+Grâce à Tkinter, nous pouvons ainsi créer une fenêtre affichant le robot et les obstacles. De plus, nous y avons ajouté des évènements permettant ainsi aux clients d’interagir avec son robot (hors démo) ou encore des boutons permettant l’importation et l’exportation de différentes simulations. 
+Vous trouverez ci-dessous différentes captures d’écran imageant quelques situations :
+\img{capturetext.png}{Le client appuie sur la flèche de droite du clavier pour que le robot dévie sur la droite}
+
+\subsubsection 
 \subsubsection{Stratégies de base}
 \paragraph{Ligne droite\\}
 Notre premier objectif a été de faire avancer notre robot en ligne droite. Pour cela, nous réalisions une modification des coordonnées du robot pour le déplacer d'une distance fournie en argument. Pour le faire avancer en ligne droite selon son orientation, nous avons au robot un paramètre d'angle qui indique à tout moment son orientation sur le cercle trigonométrique. Ainsi, les fonctions trigonométriques nous permettaient de facilement coefficienter la modification des paramètres, et donc de le faire se déplacer dans la bonne direction.
