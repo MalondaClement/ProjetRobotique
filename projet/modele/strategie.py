@@ -40,8 +40,8 @@ class StratAngle(object):
         self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/fabs((360/self.angle))*360/self.robot.WHEEL_CIRCUMFERENCE
 
     def tourner (self, v_angu):
-        self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(self.angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
-        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, ((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(self.angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
+        self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(v_angu/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
+        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, ((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(v_angu/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
 
     def start(self):
         self.parcouru=0
@@ -52,9 +52,9 @@ class StratAngle(object):
     def step(self):
         self.tourner(self.v_angu)
         x,y=self.robot.get_motor_position()
-        self.parcouru=max(x,y)
+        self.parcouru=x
         if self.parcouru >= self.distance*(3/4) and self.test :
-            self.angle = self.angle/5
+            self.v_angu = self.v_angu/5
             self.test=False
 
     def stop(self):
@@ -132,7 +132,7 @@ class StratCercle(object):
        self.temps=temps
        self.direction=direction
        self.cercle=cercle
-       self.distance= (2*pi*rayon)*(cercle/100)*(360/self.robot.WHEEL_CIRCUMFERENCE)
+       self.distance= (2*pi*rayon)*(cercle/100)*(360/self.robot.WHEEL_BASE_CIRCUMFERENCE)
 
    def start(self):
        self.parcouru=0
@@ -175,7 +175,9 @@ class StratContournerPorte(object):
         self.vitesse = vitesse
         s0 = StratMur(self.robot, self.vitesse, 70)
         s1 = StratDetectePorte(self.robot)
-        self.strats = [s0, s1]
+        s2 = StratAngle(self.robot)
+        #s2 = StratMur(self.robot, self.vitesse)
+        self.strats = [s0, s1, s2]
         self.cur = -1
 
     def step(self):
@@ -184,21 +186,8 @@ class StratContournerPorte(object):
         if self.cur < 0 or self.strats[self.cur].stop():
             self.cur+=1
             self.strats[self.cur].start()
-        if self.cur == 1:
-            g,d = self.strats[self.cur].step()
-            if g > d:
-                self.strats.append(StratAngle(self.robot, 90))
-                self.strats.append(StratMur(self.robot, 700))
-                self.strats.append(StratAngle(self.robot, -90))
-                self.strats.append(StratMur(self.robot, 50))
-            else:
-                self.strats.append(StratAngle(self.robot, -90))
-                self.strats.append(StratMur(self.robot, 700))
-                self.strats.append(StratAngle(self.robot, -90))
-                self.strats.append(StratMur(self.robot, 50))
-            self.cur+=1
-
         self.strats[self.cur].step()
+        print(self.cur)
 
     def stop(self) :
         return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
@@ -207,25 +196,27 @@ class StratDetectePorte(object):
     def __init__(self, robot):
         self.robot = robot
         self.fin = False
-        #self.d_gauche = 0
-        #self.d_droite = 0
+
     def start(self):
         self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
         self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
-        self.robot.servo_rotate(1)
-        self.d_gauche = self.robot.get_distance()
-        #print(d_gauche)
-        self.robot.servo_rotate(179)
-        self.d_droite = self.robot.get_distance()
-        #print(d_droite)
-        self.robot.servo_rotate(90)
-        self.fin = True
-        print(self.fin)
 
     def step(self):
         if self.stop():
-            return (self.d_gauche, self.d_droite)
+            return min(d_gauche, d_droite)
+        else:
+            self.robot.servo_rotate(1)
+            d_gauche = self.robot.get_distance()
+            print(d_gauche)
+            self.robot.servo_rotate(179)
+            d_droite = self.robot.get_distance()
+            print(d_droite)
+            self.robot.servo_rotate(90)
+            self.fin = True
+            print(self.fin)
 
+    def stop(self):
+        return self.fin
     def stop(self):
         return self.fin
