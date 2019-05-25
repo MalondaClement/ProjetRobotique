@@ -188,6 +188,8 @@ Ajout d'un petit schéma à propos du lancement des scripts
 \paragraph{Mise en place de la stratégie de détection\\}
 \tab La stratégie n'est pour le moment pas réelement fonctionnel. Du moins pas sur le robot réel dû à la difficulté de detecter des couleur sur une photo prise par celui-ci. En ce qui concerne le fonctionnement de la stratégie, on commence par ouvrir l'image à analyser, puis on prend chaque pixel et on verifie sa couleur. Si sa couleur correspond à l'une des 4 (bleu,vert,jaune,rouge) visible sur la balise alors on verifie chaque pixel à sa droite à la recherche d'une des 3 autres couleurs attendu. Si on en trouve une couleur attendu on cherche en bas l'une des 2 restantes. Et pour finir si l'on a atteint la 3ème couleur on recherche la dernière à gauche.
 
+\img{Images/baliseschema.png}{Schéma detection balise}
+
 \newpage
 
 \section{Remerciements}
