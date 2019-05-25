@@ -100,7 +100,7 @@ class RobotReel(object) :
         """
         self.MOTOR_LEFT_ROTATION+= self.MOTOR_LEFT_DPS /20
         self.MOTOR_RIGHT_ROTATION+= self.MOTOR_RIGHT_DPS /20
-        print(self.MOTOR_LEFT_ROTATION, self.MOTOR_RIGHT_ROTATION)
+        #print(self.MOTOR_LEFT_ROTATION, self.MOTOR_RIGHT_ROTATION)
 
         if self.MOTOR_RIGHT_DPS == self.MOTOR_LEFT_DPS :
 
