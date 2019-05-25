@@ -203,7 +203,7 @@ class Affichage(Thread):
         elif len(self.tmp)==2:
             for y in range(y,i.size[1]):
                 if i.getpixel((x,y))!=c and (self.couleur(i,x,y)[0]):
-                  print(x,y)
+                  #print(x,y)
                   self.centre=(x,y)
                   return True,(x,y)
             self.tmp=list(self.tableau)
@@ -262,7 +262,7 @@ class Affichage(Thread):
         if not self.ctrl.stop():
             self.ctrl.update()
             self.arene.update()
-            print(self.robot.x,self.robot.y)
+            #print(self.robot.x,self.robot.y)
             self.on_resize(600,600)
             self.on_draw()
 
