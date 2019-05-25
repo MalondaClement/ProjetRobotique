@@ -13,6 +13,8 @@ from threading import Thread
 import time
 
 class Fenetre(Thread):
+    """La classe Fenetre permet de créer une fenetre tkinter avec différent bouton.
+    """
     def __init__(self, i):
         self.fin=False
         self.i=i
@@ -20,12 +22,10 @@ class Fenetre(Thread):
 
     def creer(self):
         """cree une fenetre"""
-        self.fenetre = Tk()#creer une fenetre
-        self.fenetre.title('Arene')#donner un nom  la fenetre
-
+        self.fenetre = Tk()
+        self.fenetre.title('Arene')
         self.fenetre.geometry("1200x600")
         """creation des different bouton"""
-        #f=Fenetre
         BoutonExporter = Button(self.fenetre, text ='Exporter', command = self.export_file)
         BoutonExporter.pack(side = LEFT, padx = 10, pady = 10)
 
@@ -49,12 +49,13 @@ class Fenetre(Thread):
 
         self.fenetre.mainloop()
 
-
+    """Demarre la demo selon le controleur choisi.
+    """
     def demarrer(self):
         #self.b.start()
         #ctrl=ControleurRobotReel(self.p)
         #self.start()
-        if not self.controleur.stop():
+        if not self.controleur.stop() and not self.fin:
             self.controleur.update()
             #print(self.p.x,self.p.y)
             self.update() ## a griser si pas d'affichage
@@ -62,13 +63,19 @@ class Fenetre(Thread):
             self.fenetre.after(50,self.demarrer)
         else:
             print ("fin")
-
+            self.fin=False
+    """Efface le canvas present sur la fenetre. Cela permet de changer d'arène sans avoir a relancer le programme.
+    """
     def reset(self):
         """Cette fonction permet d'effacer un affichage pour pouvoir en importer un autre
         """
         self.z.zone_dessin.destroy()
 
-
+    """L'importation s'effectue en lisant un fichier au format strict.
+    On lit la ligne arène, puis les ligne sont enregistrés dans une liste.
+    Lorsque l'on lit l'element suivant ROBOT, on sait que les informations relatives a l'arène sont dans la liste donc on peut créer notre arène.
+    Et ainsi de suite pour tous les autres éléments liés a l'arène.
+    """
     def import_file(self):
         #filepath = askopenfilename(title="Ouvrir un fichier",filetypes=[('txt files','.txt'),('all files','.*')])
         #if filepath==() or  filepath=="":
@@ -141,9 +148,10 @@ class Fenetre(Thread):
             elif OBSTACLE:
                 L.append(i.strip())
             fichier.close()
-
+ 
     def export_file(self):
         """Cette fonction permet de sauvegarder une configuration : creer un nouveau fichier Scenario.txt
+           On recupère les informations dont nous avons besoin pour construire une arène et ses composants puis on les écrit dans fichier texte.
         """
         if not hasattr(self, 'z'):
             return
@@ -166,13 +174,19 @@ class Fenetre(Thread):
         f.write("FIN")
         f.close()
 
+    """Fonction arreter permet d'arreter une simulation pour exporter une situation voulue par exemple ou pour debugger.
+    """
     def arreter(self):
         self.fin=True
 
+    """Meme chose que update dans affichage.
+    """
     def update(self):
         self.z.zone_dessin.create_rectangle(self.p.x,self.p.y,self.p.x+1,self.p.y+1,fill='green')
         self.z.dessiner()
 
+    """Meme chose que dans affichage.
+    """
     def run(self):
         self.fenetre.mainloop()
         while True:
