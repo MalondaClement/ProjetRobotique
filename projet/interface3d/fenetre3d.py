@@ -14,7 +14,8 @@ WINDOW = 600
 INCREMENT = 5
 
 class Window(pyglet.window.Window) :
-
+    """La classe Window permet de créer une fenetre OpenGL qui gère les affichages 3d.
+    """
     # Rotation au lancement
     xRotation = yRotation = 0
     far = 200
