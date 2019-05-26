@@ -156,6 +156,8 @@ Après de nombreuses recherches, nous avons fini par trouver le module Python sp
 Grâce à Tkinter, nous pouvons ainsi créer une fenêtre affichant le robot et les obstacles. De plus, nous y avons ajouté des évènements permettant ainsi aux clients d’interagir avec son robot (hors démo) ou encore des boutons permettant l’importation et l’exportation de différentes simulations.
 Vous trouverez ci-dessous différentes captures d’écran imageant quelques situations :
 
+\img{Images/interface2D.png}{Interface 2D réalisée pour le simulateur}
+
 \subsubsection{Stratégies de base}
 \paragraph{Ligne droite\\}
 Notre premier objectif a été de faire avancer notre robot en ligne droite. Pour cela, nous réalisions une modification des coordonnées du robot pour le déplacer d'une distance fournie en argument. Pour le faire avancer en ligne droite selon son orientation, nous avons au robot un paramètre d'angle qui indique à tout moment son orientation sur le cercle trigonométrique. Ainsi, les fonctions trigonométriques nous permettaient de facilement coefficienter la modification des paramètres, et donc de le faire se déplacer dans la bonne direction.
@@ -172,11 +174,7 @@ Le robot étant doté d'un capteur permettant de déterminer sa distance à un o
 \tab Nous avons donc du réadapter notre code afin de pouvoir répondre à cette contrainte. Notre première version du robot mise en place dans le simulateur ne répondait pas à cette attente. En effet, il n'était pas conçu de tel sorte qu'il puisse répondre au instructions de la véritable API du robot. Nous avons donc dans un premier temps créé un nouveau robot, fonctionnant dans notre simulation comme le premier robot, mais ne réagissant qu'aux fonctions de l'API du robot. Cette nécessité de créer un nouveau robot à été dans un premier temps problématique car il nous fallait complétement repenser notre robot. Une fois la solution trouvée nous avons pu avancer dans la mise en place des briques de base et le perfectionnement de notre simulateur.
 
 \tab Dorénavant, le code sera indifférencié qu'il soit utilisé dans le robot ou dans le simulateur. Mais alors comment faire la différence ? La différence se fait au moment du lancement de notre script, en jouant sur l'importation de l'API intégré à notre robot. Si python réussi à importer l'API alors on est dans le véritable robot sinon nous sommes dans notre simulateur.
-%Dans un premier temps nous avons donc rajouté une surcouche au niveau de notre robot afin que les fonctions du robot de la simulation soit identiques aux fonctions de l'API du robot. Notre premier robot, telle qu'il est décrit plutôt. Nous avons redifini les paramètres afin qu'il soit ceux du robot. Cette surcouche au niveau du robot permet de faire la traduction pour le véritable robot.
 
-\begin{center}
-Ajout d'un petit schéma à propos du lancement des scripts
-\end{center}
 
 \newpage
 \subsection{Développement des stratégies}
@@ -228,9 +226,6 @@ Ainsi, le robot va tout droit dans le mur, et si la distance est suffisamment pe
 \newpage
 
 \section{Conclusion}
-
-\newpage
-
-\section{Sources}
+\tab Ce projet a été une veritable oportunité de découvrir le travail en équipe dans une ambiance proche d'un travail d'entreprise. En effet au delà d'un simple projet de robotique ce projet étaient une véritable découverte des méthodes de tr
 
 \end{document}
