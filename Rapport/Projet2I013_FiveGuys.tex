@@ -177,6 +177,16 @@ Ajout d'un petit schéma à propos du lancement des scripts
 \subsection{Développement des stratégies}
 \subsubsection{Stratégie carré}
 \subsubsection{Stratégie détection de mur}
+\tab La stratégie « détection de mur » est la stratégie répondant à l’une des missions confiées par nos clients. En effet, la mission consiste à modéliser la course du robot en ligne droite, fonçant dans un mur et s’arrêtant juste avant la collision. 
+Cependant, certaines contraintes s’imposent à nous : \begin{itemize}
+\item[-] La trajectoire de la course du robot est perpendiculaire au mur. En effet, le capteur de distance permettant la détection d’obstacles est au centre de la face avant du robot. Si nous déviions le robot cela pourrait causer la collision entre le mur et le coin du robot.
+\item[-] La distance entre la position initiale du robot et le mur vers lequel il se dirige ne doit pas dépasser 8,000 millimètres car cela correspond à la limite du capteur de distance.
+\item[-] Il n’y a aucun obstacle entre le mur et le robot
+\end{itemize}
+La stratégie aura un attribut ‘’distance’’ qui sera la distance entre lui et le mur et à laquelle le robot va devoir interrompre sa course.
+Nous avons à notre disposition la méthode ‘’get_distance’’ qui nous renvoie la distance entre la face avant du robot et l’obstacle le plus proche si la valeur de retour est comprise entre 5 et 8,000 millimètres, sinon elle nous renvoie ‘’8190’’. Ainsi, nous appelons cette méthode « en continu » et nous vérifions si la distance passée en paramètre est inférieure à la distance retournée par ‘’get_distance’’ ou si la valeur retournée est égale à 8190 car cela voudrait dire que le robot est à moins de 5 millimètre.
+Ainsi, le robot va tout droit dans le mur, et si la distance est suffisamment petite il s’arrête. 
+
 \subsubsection{Stratégie cercle}
 \subsubsection{Stratégie contourner une porte}
 \tab La stratégie pour contourner la porte est une stratégie qui a pour but d'expérimenter une première stratégie qui ne soit pas complètement définie à l'avance. En effet, cette stratégie est construite de telle sorte que le robot puisse passer la porte qu'elle se trouve sur sa droite ou sur sa gauche. La stratégie en elle-même se déroule de la façon suivante : \begin{itemize}
