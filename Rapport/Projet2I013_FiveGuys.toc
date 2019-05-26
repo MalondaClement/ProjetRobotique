@@ -1,33 +1,33 @@
 \select@language {french}
-\contentsline {section}{\numberline {1}Introduction}{2}
-\contentsline {section}{\numberline {2}Rapport}{3}
-\contentsline {subsection}{\numberline {2.1}M\IeC {\'e}thodes et outils}{3}
-\contentsline {subsubsection}{\numberline {2.1.1}Agile/Scrum}{3}
-\contentsline {subsubsection}{\numberline {2.1.2}Outils pour le travail d'\IeC {\'e}quipe}{4}
-\contentsline {paragraph}{Git \& GitHub\\}{4}
-\contentsline {paragraph}{Trello\\}{4}
-\contentsline {subsubsection}{\numberline {2.1.3}Hi\IeC {\'e}rarchie du code}{4}
-\contentsline {paragraph}{MVC (\textit {Model-View-Controler})\\}{4}
-\contentsline {paragraph}{\\}{5}
-\contentsline {subsection}{\numberline {2.2}Mise en place de briques de base}{6}
-\contentsline {subsubsection}{\numberline {2.2.1}Mod\IeC {\'e}lisation du r\IeC {\'e}el}{6}
-\contentsline {paragraph}{Notre Ar\IeC {\`e}ne\\}{6}
-\contentsline {paragraph}{Notre Robot\\}{6}
-\contentsline {paragraph}{Nos Obstacles\\}{6}
-\contentsline {subsubsection}{\numberline {2.2.2}Mise en place de l'interface graphique 2D}{7}
-\contentsline {paragraph}{Tkinter\\}{7}
-\contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gies de base}{7}
-\contentsline {paragraph}{Ligne droite\\}{7}
-\contentsline {paragraph}{Rotation\\}{7}
-\contentsline {paragraph}{Detection d'obstacles\\}{8}
-\contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{8}
-\contentsline {subsection}{\numberline {2.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{9}
-\contentsline {subsubsection}{\numberline {2.3.1}Strat\IeC {\'e}gie carr\IeC {\'e}}{9}
-\contentsline {subsubsection}{\numberline {2.3.2}Strat\IeC {\'e}gie d\IeC {\'e}tection de mur}{9}
-\contentsline {subsubsection}{\numberline {2.3.3}Strat\IeC {\'e}gie cercle}{9}
-\contentsline {subsubsection}{\numberline {2.3.4}Strat\IeC {\'e}gie contourner une porte}{10}
-\contentsline {subsubsection}{\numberline {2.3.5}Strat\IeC {\'e}gie d\IeC {\'e}tection balise}{10}
-\contentsline {paragraph}{N\IeC {\'e}cessit\IeC {\'e} d'une interface 3D \\}{10}
-\contentsline {paragraph}{Mise en place de la strat\IeC {\'e}gie de d\IeC {\'e}tection\\}{11}
-\contentsline {section}{\numberline {3}Remerciements}{12}
+\contentsline {section}{\numberline {1}Remerciements}{2}
+\contentsline {section}{\numberline {2}Introduction}{3}
+\contentsline {section}{\numberline {3}Rapport}{4}
+\contentsline {subsection}{\numberline {3.1}M\IeC {\'e}thodes et outils}{4}
+\contentsline {subsubsection}{\numberline {3.1.1}Agile/Scrum}{4}
+\contentsline {subsubsection}{\numberline {3.1.2}Outils pour le travail d'\IeC {\'e}quipe}{5}
+\contentsline {paragraph}{Git \& GitHub\\}{5}
+\contentsline {paragraph}{Trello\\}{5}
+\contentsline {subsubsection}{\numberline {3.1.3}Hi\IeC {\'e}rarchie du code}{5}
+\contentsline {paragraph}{MVC (\textit {Model-View-Controler})\\}{5}
+\contentsline {paragraph}{\\}{6}
+\contentsline {subsection}{\numberline {3.2}Mise en place de briques de base}{7}
+\contentsline {subsubsection}{\numberline {3.2.1}Mod\IeC {\'e}lisation du r\IeC {\'e}el}{7}
+\contentsline {paragraph}{Notre Ar\IeC {\`e}ne\\}{7}
+\contentsline {paragraph}{Notre Robot\\}{7}
+\contentsline {paragraph}{Nos Obstacles\\}{7}
+\contentsline {subsubsection}{\numberline {3.2.2}Mise en place de l'interface graphique 2D}{8}
+\contentsline {paragraph}{Tkinter\\}{8}
+\contentsline {subsubsection}{\numberline {3.2.3}Strat\IeC {\'e}gies de base}{8}
+\contentsline {paragraph}{Ligne droite\\}{8}
+\contentsline {paragraph}{Rotation\\}{8}
+\contentsline {paragraph}{Detection d'obstacles\\}{9}
+\contentsline {subsubsection}{\numberline {3.2.4}Passage de la simulation au r\IeC {\'e}el}{9}
+\contentsline {subsection}{\numberline {3.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{10}
+\contentsline {subsubsection}{\numberline {3.3.1}Strat\IeC {\'e}gie carr\IeC {\'e}}{10}
+\contentsline {subsubsection}{\numberline {3.3.2}Strat\IeC {\'e}gie d\IeC {\'e}tection de mur}{10}
+\contentsline {subsubsection}{\numberline {3.3.3}Strat\IeC {\'e}gie cercle}{10}
+\contentsline {subsubsection}{\numberline {3.3.4}Strat\IeC {\'e}gie contourner une porte}{11}
+\contentsline {subsubsection}{\numberline {3.3.5}Strat\IeC {\'e}gie d\IeC {\'e}tection balise}{12}
+\contentsline {paragraph}{N\IeC {\'e}cessit\IeC {\'e} d'une interface 3D \\}{12}
+\contentsline {paragraph}{Mise en place de la strat\IeC {\'e}gie de d\IeC {\'e}tection\\}{12}
 \contentsline {section}{\numberline {4}Conclusion}{13}
