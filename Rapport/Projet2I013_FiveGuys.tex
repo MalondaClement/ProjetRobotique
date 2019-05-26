@@ -117,19 +117,18 @@ La logiciel de gestion de version Git, nous a permis de concerver une version ce
 
 \subsubsection{Hiérarchie du code}
 
+\paragraph{MVC (\textit{Model-View-Controler})\\}
+\tab La hiérarchie du code présenté ci-dessous se base sur une volonté d'appliquer un modèle de conception de logiciel (\textit{design pattern}) appelé le modèle \textit{MVC} (Modèle - Vue - Contrôleur). Ce \textit{design pattern} impose une hiérarchie du code très précise qui comprend trois parties distinctes : \begin{itemize}
+\item[-] la partie modèle gère les données relatives au programme mais également les calculs sur celles-ci,
+\item[-] la partie contrôleur fait le lien entre l'affichage et le modèle, le contrôleur transmet à la vue les données à afficher depuis le modèle et communique en retour les informations issues des interactions avec l'interface au modèle,
+\item[-] la partie vue gère uniquement l'affichage à partir des informations qui lui sont communiquées par le contrôleur.
+\end{itemize}
+
+
 \paragraph{Hiérarchie de notre code\\}
 
-\begin{center}
-Faire un schéma type UML
-\end{center}
+\img{Images/hierarchie.jpeg}{Hierarchie de notre code}
 
-
-\paragraph{MVC (\textit{Model-View-Controler})\\}
-\tab La hiérarchie du code présenté ci-dessus se base sur une volonté d'appliqué un modèle de conception de logiciel (\textit{design pattern}) appelé le modèle MVC (Modèle - Vue - Controleur). Ce \textit{design pattern} impose une hiérarchie du code très précise de code qu'il nous a fallu respecter : \begin{itemize}
-\item[-] la partie modèle gère les données relatives au programme mais également les calculs sur celles-ci,
-\item[-] la partie contrôleur fait le lien entre l'affichage et le modèle, le controleur transmet à la vue les données à afficher depuis le modèle et recommunique au modèle les informations issues des interactions avec l'interface,
-\item[-] la partie vue gère uniquement notre affichage à partir des informations qui lui sont communiquées par le contrôleur.
-\end{itemize}
 \newpage
 \subsection{Mise en place de briques de base}
 \subsubsection{Modélisation du réel}
@@ -180,7 +179,7 @@ Ajout d'un petit schéma à propos du lancement des scripts
 \subsubsection{Stratégie détection de mur}
 \subsubsection{Stratégie cercle}
 \subsubsection{Stratégie contourner une porte}
-\tab La stratégie pour contourner la porte est une stratégie qui a pour but d'expérimenter une première stratégie qui ne soit pas complètement défini à l'avance. En effet, cette stratégie est construite de telle sorte que le robot puisse passer la porte qu'elle se trouve sur sa droite ou sur sa gauche. La stratégie en elle-même se déroule de la façon suivante : \begin{itemize}
+\tab La stratégie pour contourner la porte est une stratégie qui a pour but d'expérimenter une première stratégie qui ne soit pas complètement définie à l'avance. En effet, cette stratégie est construite de telle sorte que le robot puisse passer la porte qu'elle se trouve sur sa droite ou sur sa gauche. La stratégie en elle-même se déroule de la façon suivante : \begin{itemize}
 \item[-] le robot se trouve face au mur de la porte et avance,
 \item[-] une fois au mur on détecte le côté de la porte en tournant la tête du robot et en utilisant le capteur de distance,
 \item[-] on tourne du cote de la porte qui se trouve à la distance la plus courte au niveau du retour du capteur,
