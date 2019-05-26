@@ -124,12 +124,17 @@ La logiciel de gestion de version Git, nous a permis de concerver une version ce
 \item[-] la partie vue gère uniquement l'affichage à partir des informations qui lui sont communiquées par le contrôleur.
 \end{itemize}
 
-
-\paragraph{Hiérarchie de notre code\\}
-
-\img{Images/hierarchie.jpeg}{Hierarchie de notre code}
-
 \newpage
+\paragraph{\\}
+
+\begin{figure}[!h]
+  \centering
+    \includegraphics[width=0.80\paperwidth]{Images/ProjetRobotique6.jpg}
+  \caption{Hiérarchie du code}
+  \label{img:Images/ProjetRobotique6.jpg}
+\end{figure}
+
+%\newpage
 \subsection{Mise en place de briques de base}
 \subsubsection{Modélisation du réel}
 \tab Comme nous le savons, le but du projet est de modéliser les différents comportements d’un robot dans son environnement. Autrement dit, le déplacement d’un robot dans une arène semée d’obstacles. Nous remarquons ainsi la présence des termes de nos objets de bases: une arène, un robot et des obstacles.
@@ -176,7 +181,19 @@ Ajout d'un petit schéma à propos du lancement des scripts
 \newpage
 \subsection{Développement des stratégies}
 \subsubsection{Stratégie carré}
+\tab Notre première grand objectif a été d'implémenter une stratégie carré. Pour ce faire nous avons utiliser les stratégies ligne et angle. Les paramètres de la stratégie carré sont le robot, sa vitesse et la longueur de carré a réalisé. Pour que le robot puis réaliser un carré il nous a fallu implémenter 4 stratégies ligne possèdant les mêmes paramètres, et 4 stratégies angle possèdant également les mêmes paramètres. Par la suite on ajoute chacune de ses stratégies dans un tableau, qui effectura le mouvement d'un carré. Notre stratégie va donc parcourir ce tableau, jusqu'à ce qu'il n'y est plus de stratégie, en affichant a chaque déplacement sa distance. Cependant, lors de notre premiers essai, nous n'avons pas obtenu un carré parfait car on obtenait un légère différence au niveau de la premier rotation, ce qui entrainait une modification sur les quatres côtés du robot. Ainsi, pour combler ce problème, nous avions penser a diminué la vitesse du robot sur les stratégies de base avant que le robot effectue une rotation, pour que chaque rotation du robot soit identique à la valeur que nous avions attribué dans les paramètres du robot.
+
 \subsubsection{Stratégie détection de mur}
+\tab La stratégie « détection de mur » est la stratégie répondant à l’une des missions confiées par nos clients. En effet, la mission consiste à modéliser la course du robot en ligne droite, fonçant dans un mur et s’arrêtant juste avant la collision.
+Cependant, certaines contraintes s’imposent à nous : \begin{itemize}
+\item[-] La trajectoire de la course du robot est perpendiculaire au mur. En effet, le capteur de distance permettant la détection d’obstacles est au centre de la face avant du robot. Si nous déviions le robot cela pourrait causer la collision entre le mur et le coin du robot.
+\item[-] La distance entre la position initiale du robot et le mur vers lequel il se dirige ne doit pas dépasser 8,000 millimètres car cela correspond à la limite du capteur de distance.
+\item[-] Il n’y a aucun obstacle entre le mur et le robot
+\end{itemize}
+La stratégie aura un attribut "distance" qui sera la distance entre lui et le mur et à laquelle le robot va devoir interrompre sa course.
+Nous avons à notre disposition la méthode "get\_distance" qui nous renvoie la distance entre la face avant du robot et l’obstacle le plus proche si la valeur de retour est comprise entre 5 et 8,000 millimètres, sinon elle nous renvoie "8190". Ainsi, nous appelons cette méthode « en continu » et nous vérifions si la distance passée en paramètre est inférieure à la distance retournée par "get\_distance" ou si la valeur retournée est égale à 8190 car cela voudrait dire que le robot est à moins de 5 millimètre.
+Ainsi, le robot va tout droit dans le mur, et si la distance est suffisamment petite il s’arrête.
+
 \subsubsection{Stratégie cercle}
 \subsubsection{Stratégie contourner une porte}
 \tab La stratégie pour contourner la porte est une stratégie qui a pour but d'expérimenter une première stratégie qui ne soit pas complètement définie à l'avance. En effet, cette stratégie est construite de telle sorte que le robot puisse passer la porte qu'elle se trouve sur sa droite ou sur sa gauche. La stratégie en elle-même se déroule de la façon suivante : \begin{itemize}
