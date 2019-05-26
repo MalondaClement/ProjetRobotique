@@ -57,7 +57,6 @@ class Fenetre(Thread):
         #self.start()
         if not self.controleur.stop() and not self.fin:
             self.controleur.update()
-            #print(self.p.x,self.p.y)
             self.update() ## a griser si pas d'affichage
             self.b.update()
             self.fenetre.after(50,self.demarrer)
