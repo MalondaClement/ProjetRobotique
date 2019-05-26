@@ -116,7 +116,6 @@ class StratMur(object):
 
     def stop(self):
         distance_mur = self.robot.get_distance()
-        print(distance_mur)
         if distance_mur<=self.distance or distance_mur == 8190:
             self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
             self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
@@ -141,8 +140,6 @@ class StratCercle(object):
        self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
    def step(self):
-        print(self.distance)
-        #print (self.robot.get_motor_position())
         if self.direction=="gauche" :
             self.robot.set_motor_dps(2, ((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH)/(self.cercle/100))/self.temps)*(360/self.robot.WHEEL_BASE_CIRCUMFERENCE))
             self.robot.set_motor_dps(1, ((2*pi*self.rayon/(self.cercle/100))/self.temps)*(360/self.robot.WHEEL_BASE_CIRCUMFERENCE))
@@ -188,7 +185,6 @@ class StratContournerPorte(object):
             self.cur+=1
             self.strats[self.cur].start()
         self.strats[self.cur].step()
-        print(self.cur)
 
     def stop(self) :
         return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
@@ -209,13 +205,10 @@ class StratDetectePorte(object):
         else:
             self.robot.servo_rotate(1)
             d_gauche = self.robot.get_distance()
-            print(d_gauche)
             self.robot.servo_rotate(179)
             d_droite = self.robot.get_distance()
-            print(d_droite)
             self.robot.servo_rotate(90)
             self.fin = True
-            print(self.fin)
 
     def stop(self):
         return self.fin
