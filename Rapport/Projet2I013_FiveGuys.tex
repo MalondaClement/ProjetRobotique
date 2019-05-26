@@ -191,10 +191,17 @@ Cependant, certaines contraintes s’imposent à nous : \begin{itemize}
 \item[-] Il n’y a aucun obstacle entre le mur et le robot
 \end{itemize}
 La stratégie aura un attribut "distance" qui sera la distance entre lui et le mur et à laquelle le robot va devoir interrompre sa course.
-Nous avons à notre disposition la méthode "get\_distance" qui nous renvoie la distance entre la face avant du robot et l’obstacle le plus proche si la valeur de retour est comprise entre 5 et 8,000 millimètres, sinon elle nous renvoie "8190". Ainsi, nous appelons cette méthode « en continu » et nous vérifions si la distance passée en paramètre est inférieure à la distance retournée par "get\_distance" ou si la valeur retournée est égale à 8190 car cela voudrait dire que le robot est à moins de 5 millimètre.
+Nous avons à notre disposition la méthode "get\_distance" qui nous renvoie la distance entre la face avant du robot et l’obstacle le plus proche si la valeur de retour est comprise entre 5 et 8,000 millimètres, sinon elle nous renvoie "8190". Ainsi, nous appelons cette méthode « en continu » et nous vérifions si la distance passée en paramètre est inférieure à la distance retournée par "get\_distance" ou si la valeur retournée est égale à 8190 car cela voudrait dire que le robot est à moins de 5 millimètres.
 Ainsi, le robot va tout droit dans le mur, et si la distance est suffisamment petite il s’arrête.
 
 \subsubsection{Stratégie cercle}
+\tab La stratégie cercle a pour ambition d'utiliser toutes les capacités du robot. En effet, les 2 roues du robot pouvant aller à des vitesses différentes, le robot peut réaliser n'importe quelle courbe, pour avoir un déplacement plus fluide qu'en devant s'arrêter pour tourner sur lui-même. Pour que l'utilisateur puisse complètement choisir la courbe à réaliser, il a été décidé qu'il devrait fournir à la stratégie le rayon autour duquel le robot doit tourner, le rapport "arc de cercle à parcourir/cercle total" et le temps dédié pour effectuer le déplacement, le but étant de facilement utilser cette stratégie pour réaliser des mouvements complexes.
+\tab Si sa réalisaton a été assez simple dans la réalité a été assez simple, son implémentation dans le simulateur a posé plus de problèmes. La solution a été d'approximer le mouvement du robot par une quadrature du cercle, en réalisant un arc de cercle de 20 cotés par seconde.
+
+\img{Images/Cercle.png}{Robot réalisant un cercle dans la simulation}
+
+\tab Cepandant, si la stratégie est fonctionnelle, certains aspects du problème n'ont pas trouvé de solution, notamment la gestion de la vitesse du robot en fonction du temps alloué et de la distance à parcourir.
+
 \subsubsection{Stratégie contourner une porte}
 \tab La stratégie pour contourner la porte est une stratégie qui a pour but d'expérimenter une première stratégie qui ne soit pas complètement définie à l'avance. En effet, cette stratégie est construite de telle sorte que le robot puisse passer la porte qu'elle se trouve sur sa droite ou sur sa gauche. La stratégie en elle-même se déroule de la façon suivante : \begin{itemize}
 \item[-] le robot se trouve face au mur de la porte et avance,
@@ -203,14 +210,14 @@ Ainsi, le robot va tout droit dans le mur, et si la distance est suffisamment pe
 \item[-] puis on se replace dans l'axe précedent
 \item[-] on fini ensuite par traverser le couloir jusqu'au mur.
 \end{itemize}
-\tab Pour mettre en place cette stratégie, nous avons pris le parti de concidérer des portes s'ouvrant uniquement vers l'intérieur de la pièce et de façon perpendiculaire comme la porte de notre salle de TP. Ainsi le capteur de détecte la porte qui se trouve alors à la distance la plus courte et le robot tourne vers elle. Ce choix est arbitraire et peut causer quelque souci lors de l'utilisation si le mur si trouve plus pret du robot.
+\tab Pour mettre en place cette stratégie, nous avons pris le parti de considérer des portes s'ouvrant uniquement vers l'intérieur de la pièce et de façon perpendiculaire comme la porte de notre salle de TP. Ainsi le capteur de détecte la porte, qui se trouve alors à la distance la plus courte, et le robot tourne vers elle. Ce choix est arbitraire et peut causer quelques soucis lors de l'utilisation si le mur si trouve plus pret du robot.
 
 \subsubsection{Stratégie détection balise}
 \paragraph{Nécessité d'une interface 3D \\}
-\tab La mise en place de l'interface 3D était nécessaire pour la réalisation du challenge detection de balise car nous avions besoin de simuler la camera frontal du robot. Nous avons donc choisi le module pyglet comme préconisé dans le cour sur la 3D puis nous avons suivi différent tuto afin de maîtriser le dessin en 3D ainsi que le positionnement de la camera. L'implémentation de la 3D fut plus simple que celle de la 2D car nos différentes stratégies étaient déjà débuggés et fonctionnels .
+\tab La mise en place de l'interface 3D était nécessaire pour la réalisation du challenge detection de balise car nous avions besoin de simuler la camera frontale du robot. Nous avons donc choisi le module pyglet comme préconisé dans le cours sur la 3D puis nous avons suivi différent tuto afin de maîtriser le dessin en 3D ainsi que le positionnement de la camera. L'implémentation de la 3D fut plus simple que celle de la 2D car nos différentes stratégies étaient déjà débuggées et fonctionnelles .
 
 \paragraph{Mise en place de la stratégie de détection\\}
-\tab En ce qui concerne le fonctionnement de la stratégie, on commence par ouvrir l'image à analyser, puis on prend chaque pixel et on verifie sa couleur. Si sa couleur correspond à l'une des quatre (bleu,vert,jaune,rouge) visible sur la balise alors on verifie chaque pixel à sa droite à la recherche d'une des trois autres couleurs attendu. Si on en trouve une couleur attendu on cherche en bas l'une des deux restantes. Et pour finir si l'on a atteint la troisième couleur on recherche la dernière à gauche. La stratégie n'est pour le moment pas réelement fonctionnel. Du moins pas sur le robot réel dû à la difficulté de detecter des couleur sur une photo prise par celui-ci.
+\tab En ce qui concerne le fonctionnement de la stratégie, on commence par ouvrir l'image à analyser, puis on prend chaque pixel et on verifie sa couleur. Si sa couleur correspond à l'une des quatre (bleu,vert,jaune,rouge) visible sur la balise alors on verifie chaque pixel à sa droite à la recherche d'une des trois autres couleurs attendues. Si on en trouve une couleur attendue on cherche en bas l'une des deux restantes. Et pour finir si l'on a atteint la troisième couleur on recherche la dernière à gauche. La stratégie n'est pour le moment pas réelement fonctionnelle. Du moins pas sur le robot réel dû à la difficulté de détecter des couleur sur une photo prise par celui-ci.
 
 \img{Images/baliseschema.png}{Schéma détection balise}
 
