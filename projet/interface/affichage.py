@@ -63,6 +63,5 @@ class Affichage(Thread):
     """
     def run(self):
         while True:
-            #print("b")
             self.update()
             time.sleep(1./50)
