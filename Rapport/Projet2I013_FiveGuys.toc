@@ -7,20 +7,20 @@
 \contentsline {paragraph}{Git \& GitHub\\}{4}
 \contentsline {paragraph}{Trello\\}{4}
 \contentsline {subsubsection}{\numberline {2.1.3}Hi\IeC {\'e}rarchie du code}{4}
-\contentsline {paragraph}{Hi\IeC {\'e}rarchie de notre code\\}{4}
 \contentsline {paragraph}{MVC (\textit {Model-View-Controler})\\}{4}
+\contentsline {paragraph}{Hi\IeC {\'e}rarchie de notre code\\}{4}
 \contentsline {subsection}{\numberline {2.2}Mise en place de briques de base}{5}
 \contentsline {subsubsection}{\numberline {2.2.1}Mod\IeC {\'e}lisation du r\IeC {\'e}el}{5}
 \contentsline {paragraph}{Notre Ar\IeC {\`e}ne\\}{5}
-\contentsline {paragraph}{Notre Robot\\}{5}
-\contentsline {paragraph}{Nos Obstacles\\}{5}
+\contentsline {paragraph}{Notre Robot\\}{6}
+\contentsline {paragraph}{Nos Obstacles\\}{6}
 \contentsline {subsubsection}{\numberline {2.2.2}Mise en place de l'interface graphique 2D}{6}
 \contentsline {paragraph}{Tkinter\\}{6}
-\contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gies de base}{6}
-\contentsline {paragraph}{Ligne droite\\}{6}
-\contentsline {paragraph}{Rotation\\}{6}
-\contentsline {paragraph}{Detection d'obstacles\\}{6}
-\contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{6}
+\contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gies de base}{7}
+\contentsline {paragraph}{Ligne droite\\}{7}
+\contentsline {paragraph}{Rotation\\}{7}
+\contentsline {paragraph}{Detection d'obstacles\\}{7}
+\contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{7}
 \contentsline {subsection}{\numberline {2.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{8}
 \contentsline {subsubsection}{\numberline {2.3.1}Strat\IeC {\'e}gie carr\IeC {\'e}}{8}
 \contentsline {subsubsection}{\numberline {2.3.2}Strat\IeC {\'e}gie d\IeC {\'e}tection de mur}{8}
