@@ -69,7 +69,6 @@ class RobotReel(object) :
         """
         recherche_x= self.x +(self.largeur/2)*cos(self.angle+self.angle_tete-90)
         recherche_y= self.y -(self.longueur/2)*sin(self.angle+self.angle_tete-90)
-        #print(recherche_y,recherche_x)
         test=0
         while test==0:
             recherche_x+=cos(self.angle+self.angle_tete-90)*2
@@ -100,7 +99,6 @@ class RobotReel(object) :
         """
         self.MOTOR_LEFT_ROTATION+= self.MOTOR_LEFT_DPS /20
         self.MOTOR_RIGHT_ROTATION+= self.MOTOR_RIGHT_DPS /20
-        print(self.MOTOR_LEFT_ROTATION, self.MOTOR_RIGHT_ROTATION)
 
         if self.MOTOR_RIGHT_DPS == self.MOTOR_LEFT_DPS :
 
@@ -128,9 +126,6 @@ class RobotReel(object) :
                     self.x += cos(self.angle) * AB
                     self.y -= sin(self.angle) * AB
                     self.angle += (angle_tournage*pi/90)
-                #time.sleep(0.5)
-                
-                #print(self.x , self.y)
 
     def calcul_angle(self):
         """Cette fonction permet de faire le calcul de l'angle de la demi droite de recherche d'obstacle
