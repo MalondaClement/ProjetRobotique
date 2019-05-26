@@ -72,7 +72,7 @@
 \newpage
 
 \section{Remerciements}
-\tab Tout d’abord, nous tenons à remercier la Sorbonne-Université qui nous offre chaque année l’opportunité de nous exercer dans des exercices de plus en plus complexes comme l’UE 2I013 Robotique. En effet, cette démarche nous a permis d’avoir l’occasion d’approcher au plus près le travail d’équipe les bons côtés comme les mauvais. Grâce à cela, nous ne pouvons qu’être plus confiant à l’entrée dans le monde professionnel.
+\tab Tout d’abord, nous tenons à remercier la Sorbonne-Université qui nous offre chaque année l’opportunité de nous exercer dans des exercices de plus en plus complexes comme l’UE 2I013 Robotique. En effet, cette démarche nous a permis d’avoir l’occasion d’approcher au plus près le travail d’équipe les bons côtés comme les mauvais. Grâce à cela, nous ne pouvons qu’être plus confiant à notre entrée dans le monde professionnel.
 
 \tab De plus, nous remercions nos professeurs M. Baskiotis et M. Veniat qui nous ont soutenus dans ce travail périlleux. Ils ont tenu le rôle de professeurs et de clients à la fois. Cela nous a permis de nous sentir en confiance et d’avoir en même temps la pression d’un contrat à maintenir.
 De la part de Clément MALONDA, Nicolas DESCHAR, Angelo BEAUBREUIL, James GUIRGUES et Nagulan SELVACHANDRAN, nous vous présentons nos plus sincères remerciements.
@@ -80,7 +80,7 @@ De la part de Clément MALONDA, Nicolas DESCHAR, Angelo BEAUBREUIL, James GUIRGU
 
 \section{Introduction}
 
-\tab Dans le cadre de l'UE 2I013, notre projet était de concevoir un logiciel permettant de contrôler un robot ainsi que son simulateur. Nous avions en charge la totalité du projet et aucun code ne nous était fourni. Nos encadrants étaient à la fois nos superviseurs et nos clients. Il s'agissait donc d'échanger avec eux au sujet des éléments à changer et de l'avancement de notre projet.\\
+\tab Dans le cadre de l'UE 2I013, notre projet était de concevoir un logiciel permettant de contrôler un robot ainsi que son simulateur. Nous avions en charge la totalité du projet et aucun code ne nous était fourni. Nos encadrants étaient à la fois nos superviseurs et nos clients. Il s'agissait donc d'échanger avec eux au sujet des éléments à modifier et de l'avancement de notre projet.\\
 
 \tab Les deux objectifs principaux de ce travail étaient : \begin{itemize}
 \item[-] la découverte d'un projet de robotique
@@ -88,9 +88,9 @@ De la part de Clément MALONDA, Nicolas DESCHAR, Angelo BEAUBREUIL, James GUIRGU
 \item[]
 \end{itemize}
 \tab Le projet s'est développé en trois grandes étapes :\begin{itemize}
-\item[-] dans un premier temps, il a fallu mettre en place les outils et méthodes nécessaires à notre travail d'équipe
-\item[-] dans un deuxième temps, nous avons mis en place les briques de bases de notre projet tel que notre modèle physique ou notre simulateur 2D.
-\item[-] pour finir, nous avons commencé à développer les stratégies qui nous permettent de répondre aux challenges qui nous on été soumis.
+\item[-] dans un premier temps, il a fallu mettre en place les outils et les méthodes nécessaires à notre travail d'équipe
+\item[-] dans un deuxième temps, nous avons mis en place les briques de bases de notre projet tels que notre modèle physique ou notre simulateur 2D.
+\item[-] pour finir, nous avons commencé à développer les stratégies qui nous permettent de répondre aux challenges qui nous ont été soumis.
 \end{itemize}
 
 
@@ -115,21 +115,21 @@ De la part de Clément MALONDA, Nicolas DESCHAR, Angelo BEAUBREUIL, James GUIRGU
 
 \subsubsection{Outils pour le travail d'équipe}
 \paragraph{Git \& GitHub\\}
-La logiciel de gestion de version Git, nous a permis de concerver une version centralisée du code. Ce système nous permet alors de développer un même code sans avoir à le partager manuellement à chaque modification. De plus, cette organisation, par la centralisation du code permet d'éviter un maximum de conflit lors du développement de celui-ci mais également de concerver une trâce de ses versions précédentes.
+La logiciel de gestion de version Git, nous a permis de concerver une version centralisée du code. Ce système nous permet alors de développer un même code sans avoir à le partager manuellement à chaque modification. De plus, cette organisation, par la centralisation du code permet d'éviter un maximum de conflit lors du développement de celui-ci mais également de concerver une trace de ses versions précédentes.
 
 \paragraph{Trello\\}
-\tab Pour mettre en place les différentes tâches présentes dans le backlog, nous avons utilisé le logiciel Trello. La fontionnalité de celui-ci permet de créer un tableau numérique qui facilite la mise en place de nos différentes tâches et leurs lisibilités. Dans un premier temps l'élaboration de nos sprints et la préparation de nos cartes nous on montrer une mauvaise mise en place d'Agile, ce qui nous a conduit compréhension des résultats attendus et parfois du travail en double.
+\tab Pour mettre en place les différentes tâches présentes dans le backlog, nous avons utilisé le logiciel Trello. La fontionnalité de celui-ci permet de créer un tableau numérique qui facilite la mise en place de nos différentes tâches et leur lisibilité. Dans un premier temps l'élaboration de nos sprints et la préparation de nos "cartes" nous ont montrés une mauvaise mise en place d'Agile, ce qui nous a conduit à des résultats inattendus et parfois du travail en double.
 
-\tab Par la suite, grace aux premières réunions et aux premiers retours, nous avons pu améliorer la préparations de nos sprints, et nous permettre ainsi d'avancer dans la préparation de notre simulateur avec une première interface et la mise en place de notre modèle.
+\tab Par la suite, grâce aux premières réunions et aux premiers retours, nous avons pu améliorer la préparation de nos sprints, et nous permettre ainsi d'avancer dans la préparation de notre simulateur avec une première interface et la mise en place de notre modèle.
 
 
 \subsubsection{Hiérarchie du code}
 
 \paragraph{MVC (\textit{Model-View-Controler})\\}
 \tab La hiérarchie du code présenté ci-dessous se base sur une volonté d'appliquer un modèle de conception de logiciel (\textit{design pattern}) appelé le modèle \textit{MVC} (Modèle - Vue - Contrôleur). Ce \textit{design pattern} impose une hiérarchie du code très précise qui comprend trois parties distinctes : \begin{itemize}
-\item[-] la partie modèle gère les données relatives au programme mais également les calculs sur celles-ci,
-\item[-] la partie contrôleur fait le lien entre l'affichage et le modèle, le contrôleur transmet à la vue les données à afficher depuis le modèle et communique en retour les informations issues des interactions avec l'interface au modèle,
-\item[-] la partie vue gère uniquement l'affichage à partir des informations qui lui sont communiquées par le contrôleur.
+\item[-] la partie Modèle gère les données relatives au programme mais également les calculs sur celles-ci,
+\item[-] la partie Contrôleur fait le lien entre l'affichage et le modèle. Le contrôleur transmet à la vue les données à afficher depuis le modèle et communique en retour les informations issues des interactions avec l'interface au modèle,
+\item[-] la partie Vue gère uniquement l'affichage à partir des informations qui lui sont communiquées par le contrôleur.
 \end{itemize}
 
 \newpage
@@ -147,7 +147,7 @@ La logiciel de gestion de version Git, nous a permis de concerver une version ce
 \subsubsection{Modélisation du réel}
 \tab Comme nous le savons, le but du projet est de modéliser les différents comportements d’un robot dans son environnement. Autrement dit, le déplacement d’un robot dans une arène semée d’obstacles. Nous remarquons ainsi la présence des termes de nos objets de bases: une arène, un robot et des obstacles.
 \paragraph{Notre Arène\\}
-Le terme d’arène peut être vulgarisé par le terme d’espace. C’est l’environnement dans lequel nous allons conserver nos données. Quoi de mieux qu’une matrice ? Une matrice $M \times N$ est un tableau de nombres à M lignes et N colonnes. Les nombres présents dans la matrice sont appelés « éléments de la matrice ».  Ce type de tableau va nous permettre de différencier les objets présents ainsi que leurs coordonnées. Par exemple, nous avons de décidé d’attribuer le chiffre, « 0 » aux emplacements vides, « 1 » au centre de notre robot et « 2 » aux zones occupées par des obstacles. Pour résumer, grâce à cette perspective nous pouvons savoir où se trouve notre robot et si un objet est présent à la colonne x et à la ligne y.
+Le terme d’arène peut être vulgarisé par le terme d’espace. C’est l’environnement dans lequel nous allons conserver nos données. Quoi de mieux qu’une matrice ? Une matrice $M \times N$ est un tableau de nombres à M lignes et N colonnes. Les nombres présents dans la matrice sont appelés « éléments de la matrice ».  Ce type de tableau va nous permettre de différencier les objets présents ainsi que leurs coordonnées. Par exemple, nous avons décidé d’attribuer le chiffre, « 0 » aux emplacements vides, « 1 » au centre de notre robot et « 2 » aux zones occupées par des obstacles. Pour résumer, grâce à cette perspective nous pouvons savoir où se trouve notre robot et si un objet est présent à la colonne x et à la ligne y.
 \paragraph{Notre Robot\\}
 Nous avons décidé de modéliser notre robot comme un rectangle muni d’un angle de direction car ce sont les concepts de base se rapprochant au maximum de nos contraintes dans notre contexte. Son corps est ainsi un rectangle (rouge) muni d’une certaine longueur et d’une certaine largeur. Si nous voulons savoir où se trouve notre robot, nous avons qu’à parcourir la matrice et chercher l’élément ayant pour valeur « 1 ». Cependant, cela ne correspond qu’au centre du robot et non l’espace total qu’il occupe. Nous savons que notre robot possède un centre de coordonnées [ x , y ], une longueur et une largeur. Ainsi, l’espace occupé est réellement tous les éléments de l’arène ayant une abscisse comprise entre ‘ ’x – largeur /2 ’’ et ‘’x + largeur/2’’ et une ordonnée comprise entre ‘ ’y – longueur /2 ’’ et ‘’y + longueur/2’’. Pour mieux visualiser, vous trouverez un schéma ci-dessous :
 
@@ -162,32 +162,32 @@ Nous avons à notre disposition différentes classes comme Robot, Arène et Obst
 \paragraph{Tkinter\\}
 Après de nombreuses recherches, nous avons fini par trouver le module Python spécifique aux interfaces graphique 2D qui nous convenait le mieux : Tkinter. Il est adapté à chaque OS, fourni avec Python et compatible avec Python 3. Ainsi, après la conception de notre Modèle (ensemble des classes Arène, Robot et Obstacle), nous pouvons nous concentrer sur notre Affichage.
 Grâce à Tkinter, nous pouvons ainsi créer une fenêtre affichant le robot et les obstacles. De plus, nous y avons ajouté des évènements permettant ainsi aux clients d’interagir avec son robot (hors démo) ou encore des boutons permettant l’importation et l’exportation de différentes simulations.
-Vous trouverez ci-dessous différentes captures d’écran imageant quelques situations :
+Vous trouverez ci-dessous une capture d'écran imageant une situation avec un robot et deux obstalces dans une arène délmitée par des murs :
 
 \img{Images/interface2D.png}{Interface 2D réalisée pour le simulateur}
 
 \subsubsection{Stratégies de base}
 \paragraph{Ligne droite\\}
-Notre premier objectif a été de faire avancer notre robot en ligne droite. Pour cela, nous réalisions une modification des coordonnées du robot pour le déplacer d'une distance fournie en argument. Pour le faire avancer en ligne droite selon son orientation, nous avons fournis au robot un paramètre d'angle qui indique à tout moment son orientation sur le cercle trigonométrique. Ainsi, les fonctions trigonométriques nous permettaient de facilement coefficienter la modification des paramètres, et donc de le faire se déplacer dans la bonne direction.
+Notre premier objectif a été de faire avancer notre robot en ligne droite. Pour cela, nous réalisions une modification des coordonnées du robot pour le déplacer d'une distance fournie en argument. Pour le faire avancer en ligne droite selon son orientation, nous avons transmis au robot un paramètre d'angle qui lui indique à tout moment son orientation sur le cercle trigonométrique. Ainsi, les fonctions trigonométriques nous permettaient de facilement coefficienter la modification des paramètres, et donc de le faire se déplacer dans la bonne direction.
 
 \paragraph{Rotation\\}
-Le second objectif a été de déterminer comment faire tourner le robot. La méthode la plus simple était de le faire tourner sur lui-même, n'ayant pas à gérer de modification de ses coordonnées. L'implémentation du paramètre d'angle a grandement facilité la réalisation de cette fonction, puisque réduite a une modification de paramètre.
+Le second objectif a été de déterminer comment faire tourner le robot. La méthode la plus simple était de le faire tourner sur lui-même, n'ayant pas à gérer de modification de ses coordonnées. L'implémentation du paramètre d'angle a grandement facilité la réalisation de cette fonction, puisque réduite à une modification de paramètre.
 
 \paragraph{Detection d'obstacles\\}
-Le robot étant doté d'un capteur permettant de déterminer sa distance à un obstacle devant lui, il nous fallait inclure cette fonctionnalité à notre robot simulé. Pour cela nous avons implémenté un capteur, qui au lancement de la fonction se déplace en ligne droite en partant du robot d'un pas fourni en argument, et selon la même procédure de calcul que pour de déplacement du robot. A chaque pas, le capteur observe la valeur de la matrice sur ses coordonées. S'il détecte un "0", il continue à avancer, s'il rencontre un "2" (un obstacle), il s'arrête et la fonction renvoie les dernières coordonnées du capteur, qui étaient ensuite interprétées pour calculer la distance à l'obstacle.
+Le robot étant doté d'un capteur permettant de déterminer sa distance par rapport à un obstacle devant lui, il nous fallait inclure cette fonctionnalité à notre robot simulé. Pour cela nous avons implémenté un capteur, qui au lancement de la fonction se déplace en ligne droite en partant du robot d'un pas fourni en argument, et selon la même procédure de calcul que pour de déplacement du robot. A chaque pas, le capteur observe la valeur de la matrice sur ses coordonées. S'il détecte un "0", il continue à avancer, s'il rencontre un "2" (centre d'un obstacle), il s'arrête et la fonction renvoie les dernières coordonnées du capteur, qui étaient ensuite interprétées pour calculer la distance à l'obstacle.
 
 \subsubsection{Passage de la simulation au réel}
-\tab L'une des exigences pour projet était que notre code ne devait pas dépendre du fait que celui-ci soit lancé dans notre simulateur ou dans notre robot. Le but étant de pouvoir tester les nouvelles fonctionnalitées de notre robot, nous voulions les ajouter comme si elles étaient déjà dans le robot. Ainsi l'implémentation dans le robot peut être directe et normalement sans bug. La démarche que nous devions adopter nous permet ainsi également de pas développer le code en double.
+\tab L'une des exigences pour notre projet était que notre code ne devait pas dépendre du fait que celui-ci soit lancé dans notre simulateur ou dans notre robot. Le but étant de pouvoir tester les nouvelles fonctionnalitées de notre robot, nous voulions les ajouter comme si elles étaient déjà dans le robot. Ainsi l'implémentation dans le robot peut être directe et normalement sans bug. La démarche que nous devions adopter nous permet ainsi également de pas développer le code en double.
 
-\tab Nous avons donc du réadapter notre code afin de pouvoir répondre à cette contrainte. Notre première version du robot mise en place dans le simulateur ne répondait pas à cette attente. En effet, il n'était pas conçu de tel sorte qu'il puisse répondre au instructions de la véritable API du robot. Nous avons donc dans un premier temps créé un nouveau robot, fonctionnant dans notre simulation comme le premier robot, mais ne réagissant qu'aux fonctions de l'API du robot. Cette nécessité de créer un nouveau robot à été dans un premier temps problématique car il nous fallait complétement repenser notre robot. Une fois la solution trouvée nous avons pu avancer dans la mise en place des briques de base et le perfectionnement de notre simulateur.
+\tab Nous avons donc dû réadapter notre code afin de pouvoir répondre à cette contrainte. Notre première version du robot mise en place dans le simulateur ne répondait pas à cette attente. En effet, il n'était pas conçu de telle sorte qu'il puisse répondre au instructions de la véritable API du robot. Nous avons donc dans un premier temps créé un nouveau robot, fonctionnant dans notre simulation comme le premier robot, mais ne réagissant qu'aux fonctions de l'API du robot. Cette nécessité de créer un nouveau robot a été dans un premier temps problématique car il nous fallait complétement repenser notre robot. Une fois la solution trouvée nous avons pu avancer dans la mise en place des briques de base et le perfectionnement de notre simulateur.
 
-\tab Dorénavant, le code sera indifférencié qu'il soit utilisé dans le robot ou dans le simulateur. Mais alors comment faire la différence ? La différence se fait au moment du lancement de notre script, en jouant sur l'importation de l'API intégré à notre robot. Si python réussi à importer l'API alors on est dans le véritable robot sinon nous sommes dans notre simulateur.
+\tab Dorénavant, le code sera indifférencié qu'il soit utilisé dans le robot ou dans le simulateur. Mais alors comment faire la différence ? La différence se fait au moment du lancement de notre script, en jouant sur l'importation de l'API intégré à notre robot. Si python réussit à importer l'API alors on est dans le véritable robot sinon nous sommes dans notre simulateur.
 
 
 \newpage
 \subsection{Développement des stratégies}
 \subsubsection{Stratégie carré}
-\tab Notre premier grand objectif a été d'implémenter une stratégie carré. Pour ce faire nous avons utilisé les stratégies ligne et angle. Les paramètres de la stratégie carré sont le robot, sa vitesse et la longueur du carré a réalisé. Pour que le robot puis réaliser un carré il nous a fallu implémenter 4 stratégies ligne possèdant les mêmes paramètres, et 4 stratégies angle possèdant également les mêmes paramètres. Par la suite on ajoute chacune de ses stratégies dans un tableau, qui effectura le mouvement d'un carré. Notre stratégie va donc parcourir ce tableau, jusqu'à ce qu'il n'y est plus de stratégie, en affichant a chaque déplacement sa distance. Cependant, lors de notre premiers essai, nous n'avions pas obtenu un carré parfait car on obtenait un légère différence au niveau de la première rotation, ce qui implique une modification sur les quatres côtés du robot. Ainsi, pour combler ce problème, nous avions pensé a diminuer la vitesse du robot sur les stratégies de base avant que le robot effectue une rotation, pour que chaque rotation du robot soit identique à la valeur que nous avions attribué dans les paramètres du robot.
+\tab Notre premier grand objectif a été d'implémenter une stratégie carré. Pour se faire, nous avons utilisé les stratégies ligne et angle. Les paramètres de la stratégie carré sont le robot, sa vitesse et la longueur du carré à réaliser. Pour que le robot puisse réaliser un carré, il nous a fallu implémenter 4 stratégies ligne possèdant les mêmes paramètres, et 4 stratégies angle possèdant également les mêmes paramètres. Par la suite, on ajoute chacune de ses stratégies dans un tableau, qui effectura le mouvement d'un carré. Notre stratégie va donc parcourir ce tableau, jusqu'à ce qu'il n'y ait plus de stratégie, en affichant à chaque déplacement sa distance. Cependant, lors de notre premiers essai, nous n'avions pas obtenu un carré parfait car on obtenait une légère différence au niveau de la première rotation, ce qui implique une modification sur les quatres côtés du robot. Ainsi, pour combler ce problème, nous avions pensé à diminuer la vitesse du robot sur les stratégies de base avant que le robot effectue une rotation, pour que chaque rotation du robot soit identique à la valeur que nous avions attribué dans les paramètres du robot.
 
 \subsubsection{Stratégie détection de mur}
 \tab La stratégie « détection de mur » est la stratégie répondant à l’une des missions confiées par nos clients. En effet, la mission consiste à modéliser la course du robot en ligne droite, fonçant dans un mur et s’arrêtant juste avant la collision.
@@ -206,10 +206,10 @@ Ainsi, le robot va tout droit dans le mur, et si la distance est suffisamment pe
 
 \img{Images/Cercle.png}{Robot réalisant un cercle dans la simulation}
 
-\tab Cepandant, si la stratégie est fonctionnelle, certains aspects du problème n'ont pas trouvé de solution, notamment la gestion de la vitesse du robot en fonction du temps alloué et de la distance à parcourir.
+\tab Cependant, si la stratégie est fonctionnelle, certains aspects du problème n'ont pas trouvé de solution, notamment la gestion de la vitesse du robot en fonction du temps alloué et de la distance à parcourir.
 
 \subsubsection{Stratégie contourner une porte}
-\tab L'objectif de contournement de la porte a pour but d'expérimenter une première stratégie qui ne soit pas complètement définie à l'avance. En effet, cette stratégie est construite de telle sorte que le robot puisse passer la porte qu'elle se trouve sur sa droite ou sur sa gauche. La stratégie en elle-même se déroule de la façon suivante : \begin{itemize}
+\tab L'objectif de contournement de la porte a pour but d'expérimenter une première stratégie qui ne soit pas complètement définie à l'avance. En effet, cette stratégie est construite de telle sorte que le robot puisse passer la porte sans se péoccuper qu'elle se trouve sur sa droite ou sur sa gauche. La stratégie en elle-même se déroule de la façon suivante : \begin{itemize}
 \item[-] le robot se trouve face au mur de la porte et avance,
 \item[-] une fois au mur il détecte le côté de la porte, en tournant sa tête, grâce à son capteur de distance,
 \item[-] il tourne alors du côté de la distance la plus courte,
@@ -220,15 +220,15 @@ Ainsi, le robot va tout droit dans le mur, et si la distance est suffisamment pe
 \item[-] la première consiste à considérer uniquement les portes s'ouvrant vers l'interieur de la pièce et de façon perpendiculaire comme celle de notre salle de TME,
 \item[-] la seconde consiste à imposer le fait que la porte se trouvera à la distance la plus proche du robot.
 \end{itemize}
-\tab Ce choix est arbitraire et peut causer quelques problèmes lors de l'utilisation si le mur si trouve plus prêt du robot.
+\tab Ce choix est arbitraire et peut causer quelques problèmes lors de l'utilisation si le mur se trouve plus prêt du robot.
 
 \newpage
 \subsubsection{Stratégie détection balise}
 \paragraph{Nécessité d'une interface 3D \\}
-\tab La mise en place de l'interface 3D était nécessaire pour la réalisation du challenge detection de balise car nous avions besoin de simuler la camera frontale du robot. Nous avons donc choisi le module pyglet comme préconisé dans le cours sur la 3D puis nous avons suivi différent tuto afin de maîtriser le dessin en 3D ainsi que le positionnement de la camera. L'implémentation de la 3D fut plus simple que celle de la 2D car nos différentes stratégies étaient déjà débuggées et fonctionnelles.
+\tab La mise en place de l'interface 3D était nécessaire pour la réalisation du challenge detection de balise car nous avions besoin de simuler la camera frontale du robot. Nous avons donc choisi le module Pyglet comme préconisé dans le cours sur la 3D puis nous avons observer différents tutoriels afin de maîtriser le dessin en 3D ainsi que le positionnement de la camera. L'implémentation de la 3D fut plus simple que celle de la 2D car nos différentes stratégies étaient déjà débuggées et fonctionnelles.
 
 \paragraph{Mise en place de la stratégie de détection\\}
-\tab En ce qui concerne le fonctionnement de la stratégie, on commence par ouvrir l'image à analyser, puis on prend chaque pixel et on verifie sa couleur. Si sa couleur correspond à l'une des quatre (bleu,vert,jaune,rouge) visible sur la balise alors on verifie chaque pixel à sa droite à la recherche d'une des trois autres couleurs attendues. Si on en trouve une couleur attendue on cherche en bas l'une des deux restantes. Et pour finir si l'on a atteint la troisième couleur on recherche la dernière à gauche. La stratégie n'est pour le moment pas réelement fonctionnelle. Du moins pas sur le robot réel dû à la difficulté de détecter des couleur sur une photo prise par celui-ci.
+\tab En ce qui concerne le fonctionnement de la stratégie, on commence par ouvrir l'image à analyser, puis on prend chaque pixel et on verifie sa couleur. Si sa couleur correspond à l'une des quatre (bleu,vert,jaune,rouge) visible sur la balise alors on verifie chaque pixel à sa droite à la recherche d'une des trois autres couleurs attendues. Si on en trouve une couleur attendue on cherche en bas l'une des deux restantes. Et pour finir, si l'on a atteint la troisième couleur on recherche la dernière à gauche. La stratégie n'est pour le moment pas réelement fonctionnelle. Du moins pas sur le robot réel dû à la difficulté de détecter des couleur sur une photo prise par celui-ci.
 
 \img{Images/baliseschema.png}{Schéma détection balise}
 
@@ -236,7 +236,7 @@ Ainsi, le robot va tout droit dans le mur, et si la distance est suffisamment pe
 \newpage
 
 \section{Conclusion}
-\tab Ce projet a été une veritable opportunité pour découvrir le travail en équipe dans une ambiance proche d'un travail d'entreprise. En effet, au delà d'un simple projet de robotique, ce dernier a permis de découvrir de nouvelles méthodes de développement et d'organisation de travail.
+\tab Ce projet a été une veritable opportunité pour découvrir le travail en équipe dans une ambiance proche d'un travail d'entreprise. En effet, au delà d'un simple projet de robotique, ce dernier nous a permis de découvrir de nouvelles méthodes de développement et d'organisation de travail.
 
 \tab En début de projet, nous nous sommes confrontés à des difficultés d'organisation. Les \textit{sprint review} nous ont permis de repenser l'organisation que nous avions mise en place et ainsi faciliter nos échanges.
 
