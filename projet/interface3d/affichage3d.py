@@ -15,7 +15,8 @@ from threading import Thread
 
 
 class Affichage(Thread):
-
+    """La classe affichage(3d) permet d'effectuer une visualisation 3d de notre robot dans une fenetre préalablement crée.
+    """
     def __init__(self, fenetre3d,arene,robot,i):
         super(Affichage,self).__init__()
         self.fenetre3d = fenetre3d
@@ -45,15 +46,11 @@ class Affichage(Thread):
         self.tmp=list(self.tableau)
         self.centre=(0,0)
 
+    """Cette fonction dessine les obstacles inséré dans la liste d'obstacle.
+    """
     def draw(self) :
         for i in self.arene.list_obj:
             i.hauteur=50
-            # Effacer la fenetre
-            #self.fenetre3d.clear()
-
-            # Creation d'une matrice
-            #pgl.glPushMatrix()
-
             # Debut du dessin
             #pgl.glBegin(ogl.GL_QUADS)
             x=i.x-i.largeur//2
@@ -106,6 +103,9 @@ class Affichage(Thread):
             # Effacer la matrice
             #pgl.glPopMatrix()
             #pgl.glFlush()
+
+    """Cette fonction dessine l'arène sous forme de 4 mur de couleur differente et d'un "sol" blanc.
+    """
     def on_draw(self):
         self.fenetre3d.clear()
         #pgl.glPushMatrix()
@@ -148,19 +148,28 @@ class Affichage(Thread):
 
         self.draw()
         pgl.glEnd()
-        #kitten = pyglet.image.load('balise2.png')
-        #sprite = pyglet.sprite.Sprite(kitten)
-        #sprite.set_position(00,80)
-        #sprite.draw()
-        #pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
+        """Permet de faire un screenshot"""
+        kitten = pyglet.image.load('balise2.png')
+        sprite = pyglet.sprite.Sprite(kitten)
+        sprite.set_position(00,80)
+        sprite.draw()
+        pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
         pgl.glFlush()
 
+    """Cette fonction permet de savoir si le pixel choisi fait parti d'un pool de couleur defini dans self.tmp.
+    Presentement ce pool de couleur est composé des 4 couleurs composant la balise.
+    """
     def couleur(self,i,x,y):
         for p in self.tmp:
           if i.getpixel((x,y))==p:
             return True,p
         return False,p
 
+    """Recherche balise permet de trouver la balise si elle dans le champs de vision du robot.
+    Pour ce faire la fonction va ouvrir l'image, verifier chaque pixel et lancer la fonction couleur.*
+    Si celle-ci renvoie True alors la fonction balise est lancé .
+    Lorsque balise est fini et que toute les couleur ont été trouvé alors on renvoie True.
+    """
     def recherche_balise(self):
         i=open('screenshot.png')
         (largeur, hauteur)= i.size
@@ -177,6 +186,12 @@ class Affichage(Thread):
                     return True
         print("perdu")
 
+    """Balise sert quant à lui à verifier que nous avons bien à faire à une balise.
+    Donc à rentrer dans la fonction une couleur a été trouver préalablement donc on décrémente la liste de couleur à trouver pour avoir une balise.
+    Si on a trouver une couleur on cherche a droite si il y a un pixel correspondant aux couleur restantes dans la liste.
+    Si on a trouver 2 couleur on cherche en bas ....
+    Si on a trouver 3 couleur on cherche à gauche ....
+    """
     def balise(self,i,x,y,c):
         self.tmp.remove(c)
         if len(self.tmp)==3:
@@ -188,7 +203,7 @@ class Affichage(Thread):
         elif len(self.tmp)==2:
             for y in range(y,i.size[1]):
                 if i.getpixel((x,y))!=c and (self.couleur(i,x,y)[0]):
-                  print(x,y)
+                  #print(x,y)
                   self.centre=(x,y)
                   return True,(x,y)
             self.tmp=list(self.tableau)
@@ -222,9 +237,8 @@ class Affichage(Thread):
                         return recherche_x, recherche_y
 
     def on_resize(self, width, height):
-
-        # Definir le repere (la zone de la fenetre utilisee)
-        #pgl.glViewport(0, 0, width, height)
+        """Cette fonction permet de placer la camera a l'endroit ou le robot est dans la simulation.
+        """
 
         # Utiliser une projection
         pgl.glMatrixMode(ogl.GL_PROJECTION)
@@ -241,12 +255,14 @@ class Affichage(Thread):
 
         #pgl.glTranslatef(0, 0, -400)
 
+    """Fait l'update du controleur, de l'arène et redessine.
+    """
     def update(self,dt):
         #self.recherche_balise()
         if not self.ctrl.stop():
             self.ctrl.update()
             self.arene.update()
-            print(self.robot.x,self.robot.y)
+            #print(self.robot.x,self.robot.y)
             self.on_resize(600,600)
             self.on_draw()
 

@@ -78,7 +78,7 @@ class RobotReel(object) :
             recherche_y=int(round(recherche_y,0))
             if recherche_x<0 or recherche_y<0 or recherche_x>self.arene.nb_colonne or recherche_y>self.arene.nb_ligne:
                 test=1
-            if self.arene.matrice[recherche_y, recherche_x]==1:
+            else if self.arene.matrice[recherche_y, recherche_x]==1:
                 test=1
 
         distance= sqrt(pow(recherche_x-(self.x+(self.largeur/2)*cos(self.angle)), 2) + pow(recherche_y-(self.y-(self.longueur/2)*sin(self.angle)), 2))

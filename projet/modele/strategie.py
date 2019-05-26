@@ -38,10 +38,11 @@ class StratAngle(object):
         self.v_angu=-90
         self.angle=angle
         self.distance=self.robot.WHEEL_BASE_CIRCUMFERENCE/fabs((360/self.angle))*360/self.robot.WHEEL_CIRCUMFERENCE
+        self.parcouru = 0
 
     def tourner (self, v_angu):
-        self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(v_angu/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
-        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, ((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(v_angu/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
+        self.robot.set_motor_dps(self.robot.MOTOR_LEFT, -((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(self.angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
+        self.robot.set_motor_dps(self.robot.MOTOR_RIGHT, ((self.robot.WHEEL_BASE_CIRCUMFERENCE)*(self.angle/360)*360)/self.robot.WHEEL_CIRCUMFERENCE)
 
     def start(self):
         self.parcouru=0
@@ -52,9 +53,9 @@ class StratAngle(object):
     def step(self):
         self.tourner(self.v_angu)
         x,y=self.robot.get_motor_position()
-        self.parcouru=x
+        self.parcouru=max(x,y)
         if self.parcouru >= self.distance*(3/4) and self.test :
-            self.v_angu = self.v_angu/5
+            self.angle = self.angle/5
             self.test=False
 
     def stop(self):
@@ -132,7 +133,7 @@ class StratCercle(object):
        self.temps=temps
        self.direction=direction
        self.cercle=cercle
-       self.distance= (2*pi*rayon)*(cercle/100)*(360/self.robot.WHEEL_CIRCUMFERENCE)
+       self.distance= (2*pi*rayon)*(cercle/100)*(360/self.robot.WHEEL_BASE_CIRCUMFERENCE)
 
    def start(self):
        self.parcouru=0
@@ -173,11 +174,9 @@ class StratContournerPorte(object):
     def __init__(self,robot,vitesse):
         self.robot = robot
         self.vitesse = vitesse
-        s0 = StratMur(self.robot, self.vitesse, 70)
+        s0 = StratMur(self.robot, self.vitesse, 20)
         s1 = StratDetectePorte(self.robot)
-        s2 = StratAngle(self.robot)
-        #s2 = StratMur(self.robot, self.vitesse)
-        self.strats = [s0, s1, s2]
+        self.strats = [s0, s1]
         self.cur = -1
 
     def step(self):
@@ -187,7 +186,19 @@ class StratContournerPorte(object):
             self.cur+=1
             self.strats[self.cur].start()
         self.strats[self.cur].step()
-        print(self.cur)
+        if self.cur == 1:
+            g,d=self.strats[self.cur].step()
+            if d>g:
+                self.strats.append(StratAngle(self.robot, -90))
+                self.strats.append(StratMur(self.robot, self.vitesse, 30))
+                self.strats.append(StratAngle(self.robot, 90))
+                self.strats.append(StratMur(self.robot, self.vitesse))
+            else:
+                self.strats.append(StratAngle(self.robot, 90))
+                self.strats.append(StratMur(self.robot, self.vitesse, 30))
+                self.strats.append(StratAngle(self.robot, -90))
+                self.strats.append(StratMur(self.robot, self.vitesse))
+            self.cur+=1
 
     def stop(self) :
         return self.cur==len(self.strats)-1 and self.strats[self.cur].stop()
@@ -201,20 +212,15 @@ class StratDetectePorte(object):
         self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
         self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
         self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
+        self.robot.servo_rotate(1)
+        self.d_gauche = self.robot.get_distance()
+        self.robot.servo_rotate(179)
+        self.d_droite = self.robot.get_distance()
+        self.robot.servo_rotate(90)
 
     def step(self):
-        if self.stop():
-            return min(d_gauche, d_droite)
-        else:
-            self.robot.servo_rotate(1)
-            d_gauche = self.robot.get_distance()
-            print(d_gauche)
-            self.robot.servo_rotate(179)
-            d_droite = self.robot.get_distance()
-            print(d_droite)
-            self.robot.servo_rotate(90)
-            self.fin = True
-            print(self.fin)
+        #if self.stop():
+        return self.d_gauche, self.d_droite
 
     def stop(self):
         return self.fin
