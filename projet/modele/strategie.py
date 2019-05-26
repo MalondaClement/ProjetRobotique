@@ -117,7 +117,6 @@ class StratMur(object):
 
     def stop(self):
         distance_mur = self.robot.get_distance()
-        print(distance_mur)
         if distance_mur<=self.distance or distance_mur == 8190:
             self.robot.offset_motor_encoder(self.robot.MOTOR_LEFT, self.robot.get_motor_position()[0])
             self.robot.offset_motor_encoder(self.robot.MOTOR_RIGHT, self.robot.get_motor_position()[1])
@@ -142,7 +141,6 @@ class StratCercle(object):
        self.robot.set_motor_dps(self.robot.MOTOR_LEFT+self.robot.MOTOR_RIGHT,0)
 
    def step(self):
-        #print(self.distance)
         if self.direction=="gauche" :
             self.robot.set_motor_dps(1, ((((2*pi*(self.rayon+self.robot.WHEEL_BASE_WIDTH))/(self.temps*(self.cercle/100)))*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE))
             self.robot.set_motor_dps(2, ((((2*pi*self.rayon/(self.temps*(self.cercle/100)))*360)/self.robot.WHEEL_BASE_CIRCUMFERENCE)))
