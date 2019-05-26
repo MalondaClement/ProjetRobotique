@@ -28,7 +28,7 @@
 \contentsline {subsubsection}{\numberline {2.3.4}Strat\IeC {\'e}gie contourner une porte}{8}
 \contentsline {subsubsection}{\numberline {2.3.5}Strat\IeC {\'e}gie d\IeC {\'e}tection balise}{8}
 \contentsline {paragraph}{N\IeC {\'e}cessit\IeC {\'e} d'une interface 3D \\}{8}
-\contentsline {paragraph}{Mise en place de la strat\IeC {\'e}gie de d\IeC {\'e}tection\\}{8}
-\contentsline {section}{\numberline {3}Remerciements}{9}
-\contentsline {section}{\numberline {4}Conclusion}{10}
-\contentsline {section}{\numberline {5}Sources}{11}
+\contentsline {paragraph}{Mise en place de la strat\IeC {\'e}gie de d\IeC {\'e}tection\\}{9}
+\contentsline {section}{\numberline {3}Remerciements}{10}
+\contentsline {section}{\numberline {4}Conclusion}{11}
+\contentsline {section}{\numberline {5}Sources}{12}
