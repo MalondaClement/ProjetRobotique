@@ -19,8 +19,8 @@
 \contentsline {subsubsection}{\numberline {2.2.3}Strat\IeC {\'e}gies de base}{7}
 \contentsline {paragraph}{Ligne droite\\}{7}
 \contentsline {paragraph}{Rotation\\}{7}
-\contentsline {paragraph}{Detection d'obstacles\\}{7}
-\contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{7}
+\contentsline {paragraph}{Detection d'obstacles\\}{8}
+\contentsline {subsubsection}{\numberline {2.2.4}Passage de la simulation au r\IeC {\'e}el}{8}
 \contentsline {subsection}{\numberline {2.3}D\IeC {\'e}veloppement des strat\IeC {\'e}gies}{9}
 \contentsline {subsubsection}{\numberline {2.3.1}Strat\IeC {\'e}gie carr\IeC {\'e}}{9}
 \contentsline {subsubsection}{\numberline {2.3.2}Strat\IeC {\'e}gie d\IeC {\'e}tection de mur}{9}
@@ -31,4 +31,3 @@
 \contentsline {paragraph}{Mise en place de la strat\IeC {\'e}gie de d\IeC {\'e}tection\\}{10}
 \contentsline {section}{\numberline {3}Remerciements}{11}
 \contentsline {section}{\numberline {4}Conclusion}{12}
-\contentsline {section}{\numberline {5}Sources}{13}
